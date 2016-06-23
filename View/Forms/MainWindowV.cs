@@ -260,5 +260,28 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         }
         #endregion
+
+        private void kriterienBearbeitenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChooseCriteriaManagerV chooseCriteriaManager = new ChooseCriteriaManagerV(CriteriaList);
+            chooseCriteriaManager.BtnOk.Enabled = true;
+            chooseCriteriaManager.ShowDialog();
+        }
+
+        private void MainWindowV_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                if (IdInternDetails.LoadedDataPath != "")
+                {
+                    IdInternDetails.SaveDetails();
+                }
+                else
+                {
+                    IdInternDetails.SaveDetailsAs();
+                }
+            }
+        }
+        
     }
 }

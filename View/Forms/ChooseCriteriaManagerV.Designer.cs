@@ -124,7 +124,7 @@
         private System.Windows.Forms.Button BtnEditCriteria;
         private System.Windows.Forms.Button BtnRemoveCriteria;
         private System.Windows.Forms.ListBox LbxCriteria;
-        private System.Windows.Forms.Button BtnOk;
+        public System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.Button BtnCancle;
     }
 }

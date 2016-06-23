@@ -26,6 +26,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private MainWindowV Basis;
         public string LoadedDataPath;
 
+
         public InternDetailsV() 
         {
             InitializeComponent();
@@ -117,7 +118,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             {
                 return;
             }
-            
+                 UpdatePresenter();
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Title = SAVEDIALOG_TITLE;
                 saveFileDialog.Filter = "XML Files|*.xml";
@@ -199,7 +200,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         {
             if (viewState == ViewState.IsRefreshing) return;
             {
-
+                UpdatePresenter();
                 string savePath = LoadedDataPath;
                     try
                     {
@@ -223,6 +224,39 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                     }
                 }
             }
+
+        private void UpdatePresenter()
+        {
+            viewState = ViewState.IsRefreshing;
+
+            string firstname = TxtFirstName.Text;
+            presenter.FirstName = firstname;
+            string lastname = TxtLastName.Text;
+            presenter.LastName = lastname;
+            DateTime dateofbirth = DtpDateOfBirth.Value;
+            presenter.DateOfBirth = dateofbirth;
+            string department = TxtDepartment.Text;
+            presenter.Department = department;
+            DateTime fromdate = DtpFromDate.Value;
+            presenter.FromDate = fromdate;
+            DateTime untildate = DtpUntilDate.Value;
+            presenter.UntilDate = untildate;
+            string exercises = RtxtExercises.Text;
+            presenter.Exercises = exercises;
+            string practicalexperience = RtxtPracticalExperience.Text;
+            presenter.PracticalExperience = practicalexperience;
+            Sex sex;
+            if (RbtnMale.Checked == true)
+            {
+                sex = Sex.Male;
+            }
+            else
+            {
+                sex = Sex.Female;
+            }
+            presenter.Sex = sex;
+            viewState = ViewState.WaitingForInput;
+        }
 
         private void TxtFirstName_Leave(object sender, EventArgs e)
         {
@@ -284,6 +318,22 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             presenter.PracticalExperience = RtxtPracticalExperience.Text;
         }
         #endregion
+
+        private void All_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                if (LoadedDataPath != "")
+                {
+                    SaveDetails();
+                }
+                else
+                {
+                    SaveDetailsAs();
+                       
+                }
+            }
+        }
     }
     public enum ViewState
     {

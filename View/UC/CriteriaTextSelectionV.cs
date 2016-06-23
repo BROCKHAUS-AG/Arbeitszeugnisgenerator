@@ -19,6 +19,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         Sex sex;
         private int CriteriaIndex;
         MainWindowV View;
+        private bool GradeIsSelectedByUser;
+        private bool VariationSelectedByUser;
 
         public EventHandler DeleteButtonClicked;
 
@@ -30,6 +32,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             presenter = new CriteriaTextSelectionP(this, selectedCriteria);
             viewState = ViewState.WaitingForInput;
             this.sex = sex;
+            GradeIsSelectedByUser = false;
+            VariationSelectedByUser = false;
             View = view;
             RefreshView();
         }
@@ -59,38 +63,46 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             {
                 CbxGrade.Items.Add(grade.Name);
             }
-            if (presenter.SelectedGrade != null)
+            if (!GradeIsSelectedByUser && CbxGrade.Items.Count > 0)
             {
-                CbxGrade.SelectedItem = presenter.SelectedGrade.Name;
+                presenter.SelectGrade(0);
             }
+                if (presenter.SelectedGrade != null)
+                {
+                    CbxGrade.SelectedItem = presenter.SelectedGrade.Name;
+                }
+            
         }
 
         private void RefreshVariations()
         {
-            if (presenter.SelectedGrade != null)
+            if (presenter.SelectedGrade != null && presenter.SelectedGrade.Variations.Count >0)
             {
                 CbxVariation.Enabled = true;
                 CbxVariation.Items.Clear();
                 foreach (Variation variation in presenter.SelectedGrade.Variations)
                 {
-
-
                     CbxVariation.Items.Add(variation.Name);
                 }
-                    if (presenter.SelectedVariation != null)
-                    {
-                        CbxVariation.SelectedItem = presenter.SelectedVariation.Name;
-                    }
-                    else
-                    {
-                        CbxVariation.Text = "";
-                    }
-                
+                if (!VariationSelectedByUser && CbxVariation.Items.Count > 0)
+                {
+                    presenter.SelectVariationByIndex(0);
+                }
+
+                if (presenter.SelectedVariation != null)
+                {
+                    CbxVariation.SelectedItem = presenter.SelectedVariation.Name;
+                }
+                else
+                {
+                    CbxVariation.Text = "";
+                }
             }
             else
             {
                 CbxVariation.Items.Clear();
                 CbxVariation.SelectedItem = "";
+                CbxVariation.Text = "";
                 CbxVariation.Enabled = false;
             }
         }
@@ -149,14 +161,15 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private void CbxGrade_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
-
+            GradeIsSelectedByUser = true;
+            VariationSelectedByUser = false;
             presenter.SelectGrade(CbxGrade.SelectedIndex);
         }
 
         private void CbxVariation_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
-
+            VariationSelectedByUser = true;
           presenter.SelectVariationByReference(CbxVariation.SelectedItem.ToString());
         }
 

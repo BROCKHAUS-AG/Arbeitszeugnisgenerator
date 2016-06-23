@@ -104,6 +104,7 @@
             this.TxtFirstName.Name = "TxtFirstName";
             this.TxtFirstName.Size = new System.Drawing.Size(200, 20);
             this.TxtFirstName.TabIndex = 1;
+            this.TxtFirstName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.TxtFirstName.Leave += new System.EventHandler(this.TxtFirstName_Leave);
             // 
             // TxtLastName
@@ -112,6 +113,7 @@
             this.TxtLastName.Name = "TxtLastName";
             this.TxtLastName.Size = new System.Drawing.Size(200, 20);
             this.TxtLastName.TabIndex = 2;
+            this.TxtLastName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.TxtLastName.Leave += new System.EventHandler(this.TxtLastName_Leave);
             // 
             // DtpUntilDate
@@ -120,6 +122,7 @@
             this.DtpUntilDate.Name = "DtpUntilDate";
             this.DtpUntilDate.Size = new System.Drawing.Size(200, 20);
             this.DtpUntilDate.TabIndex = 6;
+            this.DtpUntilDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.DtpUntilDate.Leave += new System.EventHandler(this.DtpUntilDate_Leave);
             // 
             // DtpDateOfBirth
@@ -128,6 +131,7 @@
             this.DtpDateOfBirth.Name = "DtpDateOfBirth";
             this.DtpDateOfBirth.Size = new System.Drawing.Size(200, 20);
             this.DtpDateOfBirth.TabIndex = 3;
+            this.DtpDateOfBirth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.DtpDateOfBirth.Leave += new System.EventHandler(this.DtpDateOfBirth_Leave);
             // 
             // DtpFromDate
@@ -136,6 +140,7 @@
             this.DtpFromDate.Name = "DtpFromDate";
             this.DtpFromDate.Size = new System.Drawing.Size(200, 20);
             this.DtpFromDate.TabIndex = 5;
+            this.DtpFromDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.DtpFromDate.Leave += new System.EventHandler(this.DtpFromDate_Leave);
             // 
             // LblExercises
@@ -154,6 +159,7 @@
             this.RtxtExercises.Size = new System.Drawing.Size(200, 93);
             this.RtxtExercises.TabIndex = 7;
             this.RtxtExercises.Text = "";
+            this.RtxtExercises.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.RtxtExercises.Leave += new System.EventHandler(this.RtxtExercises_Leave);
             // 
             // LblDepartment
@@ -171,6 +177,7 @@
             this.TxtDepartment.Name = "TxtDepartment";
             this.TxtDepartment.Size = new System.Drawing.Size(200, 20);
             this.TxtDepartment.TabIndex = 4;
+            this.TxtDepartment.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.TxtDepartment.Leave += new System.EventHandler(this.TxtDepartment_Leave);
             // 
             // LblSex
@@ -194,6 +201,7 @@
             this.RbtnMale.Text = "männlich";
             this.RbtnMale.UseVisualStyleBackColor = true;
             this.RbtnMale.CheckedChanged += new System.EventHandler(this.RBtnsSex_CheckedChanged);
+            this.RbtnMale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             // 
             // RbtnFemale
             // 
@@ -250,6 +258,7 @@
             this.RtxtPracticalExperience.Size = new System.Drawing.Size(200, 73);
             this.RtxtPracticalExperience.TabIndex = 7;
             this.RtxtPracticalExperience.Text = "";
+            this.RtxtPracticalExperience.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.RtxtPracticalExperience.Leave += new System.EventHandler(this.RtxtPracticalExperience_Leave);
             // 
             // LblPracticalExperience
