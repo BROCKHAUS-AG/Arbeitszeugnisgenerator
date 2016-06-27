@@ -19,6 +19,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts)
         {
 
+
             //Erstelle nötige Pfade
             string csvFileName = "csvTempFile.csv";
             string fullCsvFilePath = Path.GetFullPath(csvFileName);
@@ -133,9 +134,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             if (SavepathSerializer.Instance.SavePath != "")
             {
                 File.Copy(SavepathSerializer.Instance.SavePath, tempTemplatePath, true);
+                Thread.Sleep(100);
             }
             else
-            {}
+            {
+                File.Copy(@"../../Files/Vorlage.docx",tempTemplatePath, true);
+            }
 
             if (s == Sex.Female)
             {
