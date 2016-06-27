@@ -50,6 +50,7 @@
             // 
             // CbxGrade
             // 
+            this.CbxGrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbxGrade.FormattingEnabled = true;
             this.CbxGrade.Location = new System.Drawing.Point(26, 59);
             this.CbxGrade.Name = "CbxGrade";
@@ -59,6 +60,7 @@
             // 
             // CbxVariation
             // 
+            this.CbxVariation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbxVariation.FormattingEnabled = true;
             this.CbxVariation.Location = new System.Drawing.Point(178, 59);
             this.CbxVariation.Name = "CbxVariation";

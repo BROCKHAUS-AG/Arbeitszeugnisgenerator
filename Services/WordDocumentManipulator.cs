@@ -42,6 +42,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
             criteriaEvaluation = StringEditor.replaceMuster(internDetails, criteriaEvaluation);
             criteriaEvaluation = StringEditor.ReplaceSexDependendWordsRegex(internDetails, criteriaEvaluation);
+            Regex backSlashN = new Regex(@"\n");
+            criteriaEvaluation = backSlashN.Replace(criteriaEvaluation, " ");
 
             //Überschreibe MailMergeField "PraktischeErfahrung" und "Aufgaben" damit diese Mehrzeilig sind
             try
@@ -89,7 +91,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 using (StreamWriter streamWriter = new StreamWriter(csvFileStream))
                 {
                     streamWriter.WriteLine("Name; Vorname; Geburtsdatum; Abteilung; Anfangsdatum; Enddatum; Aufgaben; PraktischeErfahrung; HeutigesDatum; Benotung");
-                    streamWriter.WriteLine(lastname + ";" + firstname + ";" + dateOfBirth + ";" + department + ";" + fromDate + ";" + untilDate + ";" + "" + ";" + "" + ";" + today + ";" + criteriaEvaluation);
+                    streamWriter.WriteLine(lastname + ";" + firstname + ";" + dateOfBirth + ";" + department + ";" + fromDate + ";" + untilDate + ";" + " " + ";" + " " + ";" + today + ";" + criteriaEvaluation);
                 }
             }
 
@@ -150,6 +152,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                     }
                 }
             }
+            Thread.Sleep(100);
             return tempTemplatePath;
         }
 
