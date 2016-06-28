@@ -166,7 +166,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 if (newSavepath.ShowDialog() != DialogResult.Cancel)
                 {
-                    if (Path.GetExtension(newSavepath.FileName) != ".docx"&& Path.GetExtension(newSavepath.FileName) != ".dotx")
+                    if (Path.GetExtension(newSavepath.FileName) != ".docx" && Path.GetExtension(newSavepath.FileName) != ".dotx")
                     { throw new InvalidFileFormatException(); }
 
                     SavepathSerializer.Instance.SaveSavepath(newSavepath.FileName);
@@ -282,6 +282,19 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 }
             }
         }
-        
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+
+            if (IdInternDetails.LoadedDataPath != "")
+            {
+                IdInternDetails.SaveDetails();
+            }
+            else
+            {
+                IdInternDetails.SaveDetailsAs();
+            }
+
+        }
     }
 }

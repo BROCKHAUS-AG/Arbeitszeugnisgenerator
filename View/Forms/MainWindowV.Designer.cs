@@ -36,6 +36,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.TlpCriteriaButtonContainer = new System.Windows.Forms.TableLayoutPanel();
             this.BtnGenerate = new System.Windows.Forms.Button();
             this.BtnChooseTemplate = new System.Windows.Forms.Button();
+            this.BtnSave = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.FlpMainContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.FlpCriteriaContainer = new System.Windows.Forms.FlowLayoutPanel();
@@ -50,7 +51,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.informationenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.datengrundlageErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.IdInternDetails = new Brockhaus.PraktikumZeugnisGenerator.View.UC.InternDetailsV();
-            this.BtnSave = new System.Windows.Forms.Button();
             this.TlpCriteriaButtonContainer.SuspendLayout();
             this.FlpMainContainer.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -130,6 +130,17 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.BtnChooseTemplate.Text = "Vorlage auswählen";
             this.BtnChooseTemplate.UseVisualStyleBackColor = true;
             this.BtnChooseTemplate.Click += new System.EventHandler(this.BtnChooseTemplate_Click);
+            // 
+            // BtnSave
+            // 
+            this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSave.Location = new System.Drawing.Point(306, 51);
+            this.BtnSave.Name = "BtnSave";
+            this.BtnSave.Size = new System.Drawing.Size(105, 23);
+            this.BtnSave.TabIndex = 9;
+            this.BtnSave.Text = "Speichern";
+            this.BtnSave.UseVisualStyleBackColor = true;
+            this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // FlpMainContainer
             // 
@@ -242,16 +253,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.IdInternDetails.Name = "IdInternDetails";
             this.IdInternDetails.Size = new System.Drawing.Size(687, 297);
             this.IdInternDetails.TabIndex = 6;
-            // 
-            // BtnSave
-            // 
-            this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSave.Location = new System.Drawing.Point(306, 51);
-            this.BtnSave.Name = "BtnSave";
-            this.BtnSave.Size = new System.Drawing.Size(105, 23);
-            this.BtnSave.TabIndex = 9;
-            this.BtnSave.Text = "Speichern";
-            this.BtnSave.UseVisualStyleBackColor = true;
             // 
             // MainWindowV
             // 
