@@ -21,7 +21,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private const string INVALIDE_FILE_FORMAT_TEXT = "Bitte nur Dateien mit einem gültigen Dateiformat auswählen.";
         private const string FILE_NOT_FOUND_TITLE = "Datei nicht Gefunden";
         private const string FILE_NOT_FOUN_TEXT = "Die angegebene Datei konnte nicht gefunden werden.";
-        private const string DEFAULT_TEMPLATE_NOT_FOUND_TEXT = "Die Datei Standardvorlage wurde nicht gefunden.";
+        private const string DEFAULT_TEMPLATE_NOT_FOUND_TEXT = "Die Standardvorlage wurde nicht gefunden.";
         private const string SAVE_NOTIFICATION_TITLE = "Daten sind nicht gespeichert";
         private const string SAVE_NOTIFICATION_TEXT = "Wollen sie die Daten voher speichern?";
         private const string CHOOSE_TEMPLATE_TITLE = "Vorlage ausgewählt";
@@ -30,6 +30,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private const string INVALID_PATH_TEXT = "Der Pfad konnte nicht gefunden werden.";
         private const string AUTHORIZATION_MISSING_TITLE = "Fehler mit der Berechtigung";
         private const string AUTHORIZATION_MISSING_TEXT = "Sie haben nicht genügend Berechtigungen.";
+        private const string CREATE_NEW_DOC_TITLE = "Neues Dokument erstellen";
+        private const string CREATE_NEW_DOC_TEXT = "Wollen Sie die Daten voher Speichern?";
         public MainWindowP Presenter;
         private ViewState ViewState;
         private List<Criteria> CriteriaList;
@@ -111,7 +113,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
             try
             {
-                Presenter.GenerateWordDocument2(IdInternDetails.presenter.CurShowedInternDetails, textParts);
+                Presenter.GenerateWordDocument(IdInternDetails.presenter.CurShowedInternDetails, textParts);
             }
             catch (FileNotFoundException)
             {
@@ -220,7 +222,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         {
             if (!IdInternDetails.presenter.savedChanges)
             {
-                ConfirmationDialog saving = new ConfirmationDialog("Neues Dokument erstellen", "Wollen Sie die Daten voher Speichern?");
+                ConfirmationDialog saving = new ConfirmationDialog(CREATE_NEW_DOC_TITLE, CREATE_NEW_DOC_TEXT);
                 if (saving.ShowDialog() == DialogResult.Yes)
                 {
                     if (IdInternDetails.LoadedDataPath != "")
@@ -259,13 +261,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
 
         }
-        #endregion
+       
 
         private void kriterienBearbeitenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChooseCriteriaManagerV chooseCriteriaManager = new ChooseCriteriaManagerV(CriteriaList);
             chooseCriteriaManager.BtnOk.Enabled = true;
             chooseCriteriaManager.ShowDialog();
+            RefreshView();
         }
 
         private void MainWindowV_KeyDown(object sender, KeyEventArgs e)
@@ -296,5 +299,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
 
         }
+        #endregion
     }
 }

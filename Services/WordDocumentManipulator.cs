@@ -16,6 +16,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 
     class WordDocumentManipulater
     {
+        private const string WORDPROCESS_ERR_TITLE = "Fehler";
+        private const string WORDPROCESS_ERR_TEXT = "Es ist ein Fehler aufgetreten. Bitte beachten Sie, dass die Vorlage eine Serienbriefvorlage sein muss.";
+
         public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts)
         {
 
@@ -80,7 +83,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
             catch (Exception)
             {
-                MessageDialog msg = new MessageDialog("Fehler", "Es ist ein Fehler aufgetreten. Bitte beachten Sie, dass die Vorlage eine Serienbriefvorlage ist.");
+                MessageDialog msg = new MessageDialog(WORDPROCESS_ERR_TITLE, WORDPROCESS_ERR_TEXT);
             }
 
 
@@ -88,7 +91,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             //Erstelle .csv Datei für Serienbrief
             using (FileStream csvFileStream = new FileStream(csvFileName, FileMode.Create))
             {
-
                 using (StreamWriter streamWriter = new StreamWriter(csvFileStream))
                 {
                     streamWriter.WriteLine("Name; Vorname; Geburtsdatum; Abteilung; Anfangsdatum; Enddatum; Aufgaben; PraktischeErfahrung; HeutigesDatum; Benotung");
@@ -116,9 +118,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                     wrdDoc.Close(false);
                 wrdApp = null;
             }
-
             DeleteUsedFiles(csvFileName, tempTemplatePath);
-
         }
 
         private static void DeleteUsedFiles(string csvFileName, string tempTemplatePath)
@@ -129,7 +129,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 
         private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
         {
-            string tempTemplatePath = @"Files\Vorlage.docx";
+            string tempTemplatePath = @"Files\TempVorlage.docx";
             string docText = "";
             if (SavepathSerializer.Instance.SavePath != "")
             {
@@ -138,7 +138,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
             else
             {
-                File.Copy(@"../../Files/Vorlage.docx",tempTemplatePath, true);
+                File.Copy(@"Files/Vorlage.docx",tempTemplatePath, true);
             }
 
             if (s == Sex.Female)
@@ -160,7 +160,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             return tempTemplatePath;
         }
 
-        private static void OverrideMailmergefield(OpenXmlElement mailMergeField, string text, ParagraphProperties prp)
+        private static void OverrideMailmergefield(OpenXmlElement mailMergeField, string text, ParagraphProperties paragraphProps)
         {
             Regex splitter1 = new Regex("\n\r");
             Regex splitter2 = new Regex("\n");
@@ -171,7 +171,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             
             foreach (String s in splittedString.Reverse())
             {
-                mailMergeField.InsertAfterSelf<OpenXmlElement>(OpenXmlElementCreator.CreateNewParagraph(s, prp));
+                mailMergeField.InsertAfterSelf<OpenXmlElement>(OpenXmlElementCreator.CreateNewParagraph(s, paragraphProps));
             }
         }
     }

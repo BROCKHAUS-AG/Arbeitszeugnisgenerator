@@ -1,11 +1,5 @@
 ﻿using Brockhaus.PraktikumZeugnisGenerator.Model;
-using Microsoft.Office.Interop.Word;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Services
@@ -34,6 +28,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 Regex sein_big = new Regex(@"\bSein\b");
                 Regex seinem_small = new Regex(@"\bseinem\b");
                 Regex seinem_big = new Regex(@"\bSeinem\b");
+                Regex seinen_small = new Regex(@"\bseinen\b");
+                Regex seinen_big = new Regex(@"\bSeinen\b");
 
                 text = er_small.Replace(text, "Sie");
                 text = er_big.Replace(text, "sie");
@@ -50,6 +46,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 text = sein_small.Replace(text, "ihr");
                 text = seinem_small.Replace(text, "ihrem");
                 text = seinem_big.Replace(text, "Ihrem");
+                text = seinen_small.Replace(text, "ihren");
+                text = seinen_big.Replace(text, "Ihren");
                 text += " ";
             }
 
@@ -62,13 +60,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             Regex replaceMuster = new Regex("Muster");
             docText = replaceMuster.Replace(docText, internDetails.LastName != null ? internDetails.LastName : "");
             return docText;
-        }
-
-        public static string replaceCommaWithSemicolon(string text)
-        {
-            Regex replaceComma = new Regex(",");
-            text = replaceComma.Replace(text, ";");
-            return text;
         }
     }
 }

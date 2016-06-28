@@ -11,9 +11,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
     public partial class ChooseCriteriaManagerV : Form
     {
         private const string NAME_WÄHLEN_MESSAGE = "Name des Kriteriums:";
-        private const string KRITERIUM_LOESCHEN_MESSAGE = "Wollen sie das Kriterium wirklich löschen?";
         private const string NAME_WÄHLEN_TITLE = "Eingabe für Kriteriumsname";
-        private const string KRITERIUM_LÖSCHEN_TITLE = "Löschen des Kriteriums bestätigen";
+        private const string KRITERIUM_LOESCHEN_TITLE = "Löschen des Kriteriums bestätigen";
+        private const string KRITERIUM_LOESCHEN_MESSAGE = "Wollen sie das Kriterium wirklich löschen?";
 
         private List<Criteria> CriteriaList;
         public ChooseCriteriaManagerP presenter;
@@ -125,7 +125,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         {
             if (viewState == ViewState.IsRefreshing) return;
 
-            ConfirmationDialog confirmation = new ConfirmationDialog(KRITERIUM_LÖSCHEN_TITLE, KRITERIUM_LOESCHEN_MESSAGE);
+            ConfirmationDialog confirmation = new ConfirmationDialog(KRITERIUM_LOESCHEN_TITLE, KRITERIUM_LOESCHEN_MESSAGE);
             if (confirmation.ShowDialog() == DialogResult.Yes)
             {
                 presenter.RemoveCriteria(LbxCriteria.SelectedIndex);
@@ -153,10 +153,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 BtnOk_Click(sender, e);
         }
 
-
-
-        #endregion
-
         private void ChooseCriteriaManagerV_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Escape)
@@ -165,5 +161,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 BtnCancle_Click(sender, e);
             }
         }
+        #endregion
     }
 }

@@ -13,8 +13,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         {
             set
             {
-                CurShowedInternDetails.Sex = value;
-                savedChanges = false;
+                if (CurShowedInternDetails.Sex != value)
+                {
+                    CurShowedInternDetails.Sex = value;
+                    savedChanges = false;
+                }
                 view.RefreshView();
             }
             get
@@ -26,8 +29,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         {
             set
             {
-                CurShowedInternDetails.FirstName = value;
-                savedChanges = false;
+                if (CurShowedInternDetails.FirstName != value)
+                {
+                    CurShowedInternDetails.FirstName = value;
+                    savedChanges = false;
+                }
                 view.RefreshView();
             }
         }
@@ -35,8 +41,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         {
             set
             {
-                CurShowedInternDetails.LastName = value;
-                savedChanges = false;
+                if (CurShowedInternDetails.LastName != value)
+                {
+                    CurShowedInternDetails.LastName = value;
+                    savedChanges = false;
+                }
                 view.RefreshView();
             }
         }
@@ -44,54 +53,72 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         {
             set
             {
-                CurShowedInternDetails.DateOfBirth = value;
-                savedChanges = false;
-                view.RefreshView();
+                if (CurShowedInternDetails.DateOfBirth != value)
+                {
+                    CurShowedInternDetails.DateOfBirth = value;
+                    savedChanges = false;
+                    view.RefreshView();
+                }
             }
         }
         public string Department
         {
             set
             {
-                CurShowedInternDetails.Department = value;
-                savedChanges = false;
-                view.RefreshView();
+                if (CurShowedInternDetails.Department != value)
+                {
+                    CurShowedInternDetails.Department = value;
+                    savedChanges = false;
+                    view.RefreshView();
+                }
             }
         }
         public DateTime FromDate
         {
             set
             {
-                CurShowedInternDetails.FromDate = value;
-                savedChanges = false;
-                view.RefreshView();
+                if (CurShowedInternDetails.FromDate != value)
+                {
+                    CurShowedInternDetails.FromDate = value;
+                    savedChanges = false;
+                    view.RefreshView();
+                }
             }
         }
         public DateTime UntilDate
         {
             set
             {
-                CurShowedInternDetails.UntilDate = value;
-                savedChanges = false;
-                view.RefreshView();
+                if (CurShowedInternDetails.UntilDate != value)
+                {
+                    CurShowedInternDetails.UntilDate = value;
+                    savedChanges = false;
+                    view.RefreshView();
+                }
             }
         }
         public string Exercises
         {
             set
             {
-                CurShowedInternDetails.Exercises = value;
-                savedChanges = false;
-                view.RefreshView();
+                if (CurShowedInternDetails.Exercises != value)
+                {
+                    CurShowedInternDetails.Exercises = value;
+                    savedChanges = false;
+                    view.RefreshView();
+                }
             }
         }
         public string PracticalExperience
         {
             set
             {
-                CurShowedInternDetails.PracitcalExperience = value;
-                savedChanges = false;
-                view.RefreshView();
+                if (CurShowedInternDetails.PracitcalExperience != value)
+                {
+                    CurShowedInternDetails.PracitcalExperience = value;
+                    savedChanges = false;
+                    view.RefreshView();
+                }
             }
         }
         public bool savedChanges = true;

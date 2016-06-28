@@ -20,7 +20,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Dialogs
 
         private void MessageDialog_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Escape && e.KeyData == Keys.Enter)
+            if (e.KeyData == Keys.Escape || e.KeyData == Keys.Enter)
             {
                 
                 btnOK_Click(sender, e);

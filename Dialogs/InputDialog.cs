@@ -39,9 +39,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Dialogs
             }
         }
 
-
-        #endregion
-
         private void InputDialog_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Escape)
@@ -49,5 +46,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Dialogs
                 BtnCancel_Click(sender, e);
             }
         }
+        #endregion
+
     }
 }

@@ -34,7 +34,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             Criterias = new List<Criteria>();
         }
 
-        #region Serializer und Deserializer
 
         public static CriteriasWrapper LoadCrieriasWrapper()
         {
@@ -68,6 +67,5 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
         }
 
-        #endregion
     }
 }

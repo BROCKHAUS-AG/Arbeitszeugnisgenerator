@@ -12,7 +12,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 {
     public partial class InternDetailsV : UserControl
     {
-        private const string NAME_INKORREKT_TITLE = "Fehler beim Namen";
+        private const string NAME_INKORREKT_TITLE = "Ungültiger Name";
         private const string NAME_INKORREKT_TEXT = "Es muss ein Name für die Datei vergeben werden.";
         private const string AUTHORIZATION_MISSING_TITLE = "Fehler mit der Berechtigung";
         private const string AUTHORIZATION_MISSING_TEXT = "Sie haben nicht genügend Berechtigungen.";
@@ -167,7 +167,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             }
 
                 OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Title = "Praktikantendaten Öffnen";
+                openFileDialog.Title = "Personendaten Öffnen";
                 openFileDialog.Filter = "XML Files|*.xml";
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -317,7 +317,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             if (viewState == ViewState.IsRefreshing) return;
             presenter.PracticalExperience = RtxtPracticalExperience.Text;
         }
-        #endregion
 
         private void All_KeyDown(object sender, KeyEventArgs e)
         {
@@ -334,6 +333,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 }
             }
         }
+        #endregion
     }
     public enum ViewState
     {

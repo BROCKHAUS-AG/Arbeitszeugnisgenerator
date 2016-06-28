@@ -42,11 +42,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
            {
                 OpenMessageDialog();
            }
-
-
-
-            
-            
         }
 
         public static InternDetails Deserialize(string loadPath)

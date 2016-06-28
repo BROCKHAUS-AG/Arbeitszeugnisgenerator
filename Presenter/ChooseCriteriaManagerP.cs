@@ -8,6 +8,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 {
     public class ChooseCriteriaManagerP
     {
+        private const string NAME_ERR_TITLE = "Fehler";
+        private const string NAME_ERR_TEXT = "Namen dürfen nicht doppelt vergeben werden";
         public List<Criteria> Criterias;
         public Criteria SelectedCriteria;
         public ChooseCriteriaManagerV view;
@@ -34,7 +36,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             }
             catch(ArgumentException)
             {
-                MessageDialog msg = new MessageDialog("Fehler", "Namn dürfen nicht doppelt vergeben werden");
+                MessageDialog msg = new MessageDialog(NAME_ERR_TITLE, NAME_ERR_TEXT);
                    msg.ShowDialog();
             }
         }

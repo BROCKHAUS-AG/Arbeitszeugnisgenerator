@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Brockhaus.PraktikumZeugnisGenerator.View.Forms;
 using System.IO;
-using DocumentFormat.OpenXml.Packaging;
 using Brockhaus.PraktikumZeugnisGenerator.Model;
 using Brockhaus.PraktikumZeugnisGenerator.Services;
 using Brockhaus.PraktikumZeugnisGenerator.Dialogs;
-using System.Threading;
 
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
@@ -18,7 +15,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         private const string UNGÜLTIGES_GEBURTSDATUM_TEXT = "Das Geburtsdatum kann nicht nach dem Anfangsdatum sein.";
         private const string UNGÜLTIGES_ANFANGSDATUM_TEXT = "Das Anfangsdatum kann nicht nach dem Enddatum sein.";
         private const string VORLAGE_NICHT_GEFUNDEN_TITLE = "Vorlage nicht gefunden!";
-        private const string VORLAGE_NICHT_GEFUNDEN_TEXT = "Die Vorlage konnte nicht gefunden werden.";
+        private const string VORLAGE_NICHT_GEFUNDEN_TEXT = "Die Vorlage konnte nicht gefunden werden. Es wird auf die Standardvorlage zurück gegriffen";
         private MainWindowV view;
         
 
@@ -27,7 +24,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             this.view = view;
         }
 
-        public void GenerateWordDocument2(
+        public void GenerateWordDocument(
             InternDetails internDetails,
             Dictionary<string, string> textParts)
         {
@@ -43,9 +40,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 messagedialog.ShowDialog();
                 return;
             }
-
-
-            string orginalDocumentPath = SavepathSerializer.Instance.SavePath;
             try
             {
                 WordDocumentManipulater.WordReplacerInterop( internDetails, textParts);
@@ -54,6 +48,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             {
                 MessageDialog message = new MessageDialog(VORLAGE_NICHT_GEFUNDEN_TITLE, VORLAGE_NICHT_GEFUNDEN_TEXT);
                 message.ShowDialog();
+                SavepathSerializer.Instance.SavePath = "";
+                GenerateWordDocument(internDetails, textParts);
             }
         }
     }

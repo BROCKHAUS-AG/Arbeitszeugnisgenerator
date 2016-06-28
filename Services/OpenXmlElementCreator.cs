@@ -5,12 +5,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
     class OpenXmlElementCreator
     {
-        public static OpenXmlElement CreateNewTextPart(string text)
-        {
-            Run run = new Run(new Text(text));
-            return run;
-        }
-
         public static OpenXmlElement CreateNewParagraph(string text, ParagraphProperties prp)
         {
             Paragraph paragraph = new Paragraph();

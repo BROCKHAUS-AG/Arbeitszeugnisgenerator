@@ -1,11 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Brockhaus.PraktikumZeugnisGenerator.Exceptions
+﻿namespace Brockhaus.PraktikumZeugnisGenerator.Exceptions
 {
     class InvalidFileFormatException : System.Exception
     {
