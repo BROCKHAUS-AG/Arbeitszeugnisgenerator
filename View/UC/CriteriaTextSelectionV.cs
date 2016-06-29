@@ -19,7 +19,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         Sex sex;
         private int CriteriaIndex;
         MainWindowV View;
-        private bool GradeIsSelectedByUser;
+        private bool GradeSelectedByUser;
         private bool VariationSelectedByUser;
 
         public EventHandler DeleteButtonClicked;
@@ -32,7 +32,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             presenter = new CriteriaTextSelectionP(this, selectedCriteria);
             viewState = ViewState.WaitingForInput;
             this.sex = sex;
-            GradeIsSelectedByUser = false;
+            GradeSelectedByUser = false;
             VariationSelectedByUser = false;
             View = view;
             RefreshView();
@@ -63,7 +63,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             {
                 CbxGrade.Items.Add(grade.Name);
             }
-            if (!GradeIsSelectedByUser && CbxGrade.Items.Count > 0)
+            if (!GradeSelectedByUser && CbxGrade.Items.Count > 0)
             {
                 presenter.SelectGrade(0);
             }
@@ -161,7 +161,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private void CbxGrade_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
-            GradeIsSelectedByUser = true;
+            GradeSelectedByUser = true;
             VariationSelectedByUser = false;
             presenter.SelectGrade(CbxGrade.SelectedIndex);
         }
@@ -169,6 +169,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private void CbxVariation_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
+            GradeSelectedByUser = true;
             VariationSelectedByUser = true;
           presenter.SelectVariationByReference(CbxVariation.SelectedItem.ToString());
         }

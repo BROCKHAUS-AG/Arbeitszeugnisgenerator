@@ -70,9 +70,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 throw new IndexOutOfRangeException("Der Index liegt nicht in den auswählbaren Noten(Grade)");
             }
             SelectedGrade = CurShowedCriteria.Grades[selectIndex];
-            SelectedVariation = null;
+            SelectedVariation = selectedGrade.Variations.Count > 0 ? selectedGrade.Variations[0] : null;
             view.RefreshView();
         }
+
 
         public void SelectVariationByIndex(int selectIndex )
         {
