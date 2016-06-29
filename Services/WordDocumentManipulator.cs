@@ -8,7 +8,6 @@ using System.IO;
 using System.Text.RegularExpressions;
 using Word = Microsoft.Office.Interop.Word;
 using System.Linq;
-using System.Threading;
 using Brockhaus.PraktikumZeugnisGenerator.Dialogs;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Services
@@ -134,7 +133,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             if (SavepathSerializer.Instance.SavePath != "")
             {
                 File.Copy(SavepathSerializer.Instance.SavePath, tempTemplatePath, true);
-                Thread.Sleep(100);
             }
             else
             {
@@ -156,7 +154,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                     }
                 }
             }
-            Thread.Sleep(100);
             return tempTemplatePath;
         }
 

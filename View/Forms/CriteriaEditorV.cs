@@ -183,6 +183,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             if(variationsInput.ShowDialog() != DialogResult.Cancel && variationsInput.InputText != "")
             presenter.AddVariation(variationsInput.InputText);
             presenter.SelectVariation(presenter.SelectedGrade.Variations.Count - 1);
+            RtxtPredefinedText.Focus();
         }
 
         private void RtxtPredefinedText_Leave(object sender, EventArgs e)
