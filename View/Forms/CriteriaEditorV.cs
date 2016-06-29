@@ -23,11 +23,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private ViewState viewState;
 
 
-        public CriteriaEditorV(Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex) 
+        public CriteriaEditorV(Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex) : this(shownCriteria, criteriaList, criteriaIndex, 0,0)
         {
-            InitializeComponent();
-            presenter = new CriteriaEditorP(this, shownCriteria, criteriaList, criteriaIndex);
-            RefreshView();
         }
 
         public CriteriaEditorV(Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex, int preselectedGrade, int preselectedVar)
@@ -185,6 +182,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
             if(variationsInput.ShowDialog() != DialogResult.Cancel && variationsInput.InputText != "")
             presenter.AddVariation(variationsInput.InputText);
+            presenter.SelectVariation(presenter.SelectedGrade.Variations.Count - 1);
         }
 
         private void RtxtPredefinedText_Leave(object sender, EventArgs e)

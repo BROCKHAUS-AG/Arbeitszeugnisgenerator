@@ -82,7 +82,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             if (preselectedGrade != -1)
             {
                 SelectGrade(preselectedGrade);
-                if (preselectedVariation != -1)
+                if (preselectedVariation != -1 && !(preselectedVariation >= SelectedGrade.Variations.Count))
                 {
                     SelectVariation(preselectedVariation);
                 }
