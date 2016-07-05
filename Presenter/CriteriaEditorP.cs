@@ -119,8 +119,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             }
             if (selectIndex == -1)
             {
-                SelectedGrade = null;
-                SelectedGradeBackup = null;
+                SelectedVariation = null;
+                SelectedVariationBackup = null;
             }
             else if (selectIndex < 0 || selectIndex >= SelectedGrade.Variations.Count)
             {

@@ -26,7 +26,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 
         public void GenerateWordDocument(
             InternDetails internDetails,
-            Dictionary<string, string> textParts)
+            Dictionary<string, string> textParts,
+            bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
             if (internDetails.DateOfBirth > internDetails.FromDate)
             {
@@ -42,14 +43,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             }
             try
             {
-                WordDocumentManipulater.WordReplacerInterop( internDetails, textParts);
+                WordDocumentManipulater.WordReplacerInterop( internDetails, textParts, PractExpBulletpoints, ExcercisesBulletPoints);
             }
             catch (FileNotFoundException)
             {
                 MessageDialog message = new MessageDialog(VORLAGE_NICHT_GEFUNDEN_TITLE, VORLAGE_NICHT_GEFUNDEN_TEXT);
                 message.ShowDialog();
                 SavepathSerializer.Instance.SavePath = "";
-                GenerateWordDocument(internDetails, textParts);
+                WordDocumentManipulater.WordReplacerInterop(internDetails, textParts, PractExpBulletpoints, ExcercisesBulletPoints);
             }
         }
     }

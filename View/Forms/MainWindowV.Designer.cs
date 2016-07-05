@@ -31,13 +31,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LblCriteriaCaption = new System.Windows.Forms.Label();
             this.BtnAddCriteria = new System.Windows.Forms.Button();
             this.TlpCriteriaButtonContainer = new System.Windows.Forms.TableLayoutPanel();
             this.BtnGenerate = new System.Windows.Forms.Button();
             this.BtnChooseTemplate = new System.Windows.Forms.Button();
             this.BtnSave = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.FlpMainContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.FlpCriteriaContainer = new System.Windows.Forms.FlowLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -47,9 +47,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.speichernToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.speichernUnterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kriterienBearbeitenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.datengrundlageErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.seriendruckfeldDateiErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vorlageAuswählenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hilfeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.informationenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.datengrundlageErstellenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolTipMailmerge = new System.Windows.Forms.ToolTip(this.components);
             this.IdInternDetails = new Brockhaus.PraktikumZeugnisGenerator.View.UC.InternDetailsV();
             this.TlpCriteriaButtonContainer.SuspendLayout();
             this.FlpMainContainer.SuspendLayout();
@@ -62,7 +65,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             | System.Windows.Forms.AnchorStyles.Left)));
             this.LblCriteriaCaption.AutoSize = true;
             this.LblCriteriaCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.LblCriteriaCaption.Location = new System.Drawing.Point(13, 326);
+            this.LblCriteriaCaption.Location = new System.Drawing.Point(30, 327);
             this.LblCriteriaCaption.Name = "LblCriteriaCaption";
             this.LblCriteriaCaption.Size = new System.Drawing.Size(204, 26);
             this.LblCriteriaCaption.TabIndex = 1;
@@ -149,8 +152,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.FlpMainContainer.Controls.Add(this.FlpCriteriaContainer);
             this.FlpMainContainer.Controls.Add(this.TlpCriteriaButtonContainer);
             this.FlpMainContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.FlpMainContainer.Location = new System.Drawing.Point(12, 355);
-            this.FlpMainContainer.MaximumSize = new System.Drawing.Size(666, 0);
+            this.FlpMainContainer.Location = new System.Drawing.Point(29, 356);
+            this.FlpMainContainer.MaximumSize = new System.Drawing.Size(666, 1200);
             this.FlpMainContainer.Name = "FlpMainContainer";
             this.FlpMainContainer.Size = new System.Drawing.Size(646, 89);
             this.FlpMainContainer.TabIndex = 5;
@@ -162,6 +165,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.FlpCriteriaContainer.Dock = System.Windows.Forms.DockStyle.Top;
             this.FlpCriteriaContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.FlpCriteriaContainer.Location = new System.Drawing.Point(3, 3);
+            this.FlpCriteriaContainer.MaximumSize = new System.Drawing.Size(666, 0);
             this.FlpCriteriaContainer.Name = "FlpCriteriaContainer";
             this.FlpCriteriaContainer.Size = new System.Drawing.Size(640, 0);
             this.FlpCriteriaContainer.TabIndex = 4;
@@ -171,10 +175,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dateiToolStripMenuItem,
             this.kriterienBearbeitenToolStripMenuItem,
+            this.datengrundlageErstellenToolStripMenuItem,
             this.hilfeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(684, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(714, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -224,11 +229,35 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.kriterienBearbeitenToolStripMenuItem.Text = "Kriterien bearbeiten";
             this.kriterienBearbeitenToolStripMenuItem.Click += new System.EventHandler(this.kriterienBearbeitenToolStripMenuItem_Click);
             // 
+            // datengrundlageErstellenToolStripMenuItem
+            // 
+            this.datengrundlageErstellenToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.seriendruckfeldDateiErstellenToolStripMenuItem,
+            this.vorlageAuswählenToolStripMenuItem});
+            this.datengrundlageErstellenToolStripMenuItem.Name = "datengrundlageErstellenToolStripMenuItem";
+            this.datengrundlageErstellenToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
+            this.datengrundlageErstellenToolStripMenuItem.Text = "Serienbrief";
+            // 
+            // seriendruckfeldDateiErstellenToolStripMenuItem
+            // 
+            this.seriendruckfeldDateiErstellenToolStripMenuItem.Name = "seriendruckfeldDateiErstellenToolStripMenuItem";
+            this.seriendruckfeldDateiErstellenToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.seriendruckfeldDateiErstellenToolStripMenuItem.Text = "Seriendruckfeld Datei erstellen";
+            this.seriendruckfeldDateiErstellenToolStripMenuItem.Click += new System.EventHandler(this.datengrundlageErstellenToolStripMenuItem_Click);
+            this.seriendruckfeldDateiErstellenToolStripMenuItem.MouseLeave += new System.EventHandler(this.seriendruckfeldDateiErstellenToolStripMenuItem_MouseLeave);
+            this.seriendruckfeldDateiErstellenToolStripMenuItem.MouseHover += new System.EventHandler(this.seriendruckfeldDateiErstellenToolStripMenuItem_MouseHover);
+            // 
+            // vorlageAuswählenToolStripMenuItem
+            // 
+            this.vorlageAuswählenToolStripMenuItem.Name = "vorlageAuswählenToolStripMenuItem";
+            this.vorlageAuswählenToolStripMenuItem.Size = new System.Drawing.Size(233, 22);
+            this.vorlageAuswählenToolStripMenuItem.Text = "Vorlage Auswählen";
+            this.vorlageAuswählenToolStripMenuItem.Click += new System.EventHandler(this.BtnChooseTemplate_Click);
+            // 
             // hilfeToolStripMenuItem
             // 
             this.hilfeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.informationenToolStripMenuItem,
-            this.datengrundlageErstellenToolStripMenuItem});
+            this.informationenToolStripMenuItem});
             this.hilfeToolStripMenuItem.Name = "hilfeToolStripMenuItem";
             this.hilfeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.hilfeToolStripMenuItem.Text = "Hilfe";
@@ -236,20 +265,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             // informationenToolStripMenuItem
             // 
             this.informationenToolStripMenuItem.Name = "informationenToolStripMenuItem";
-            this.informationenToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.informationenToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.informationenToolStripMenuItem.Text = "Informationen";
             this.informationenToolStripMenuItem.Click += new System.EventHandler(this.informationenToolStripMenuItem_Click);
             // 
-            // datengrundlageErstellenToolStripMenuItem
-            // 
-            this.datengrundlageErstellenToolStripMenuItem.Name = "datengrundlageErstellenToolStripMenuItem";
-            this.datengrundlageErstellenToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.datengrundlageErstellenToolStripMenuItem.Text = "Datengrundlage erstellen";
-            this.datengrundlageErstellenToolStripMenuItem.Click += new System.EventHandler(this.datengrundlageErstellenToolStripMenuItem_Click);
-            // 
             // IdInternDetails
             // 
-            this.IdInternDetails.Location = new System.Drawing.Point(0, 32);
+            this.IdInternDetails.Location = new System.Drawing.Point(15, 27);
             this.IdInternDetails.Name = "IdInternDetails";
             this.IdInternDetails.Size = new System.Drawing.Size(687, 297);
             this.IdInternDetails.TabIndex = 6;
@@ -260,7 +282,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(684, 456);
+            this.ClientSize = new System.Drawing.Size(714, 456);
             this.Controls.Add(this.IdInternDetails);
             this.Controls.Add(this.FlpMainContainer);
             this.Controls.Add(this.LblCriteriaCaption);
@@ -268,8 +290,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(700, 2000);
-            this.MinimumSize = new System.Drawing.Size(700, 456);
+            this.MaximumSize = new System.Drawing.Size(730, 2000);
+            this.MinimumSize = new System.Drawing.Size(730, 456);
             this.Name = "MainWindowV";
             this.Text = "Arbeitszeugnis-Generator";
             this.Load += new System.EventHandler(this.MainWindowView_Load);
@@ -289,7 +311,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private System.Windows.Forms.Button BtnAddCriteria;
         private System.Windows.Forms.TableLayoutPanel TlpCriteriaButtonContainer;
         private System.Windows.Forms.Button BtnGenerate;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.FlowLayoutPanel FlpMainContainer;
         private System.Windows.Forms.FlowLayoutPanel FlpCriteriaContainer;
         private InternDetailsV IdInternDetails;
@@ -302,8 +323,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private System.Windows.Forms.ToolStripMenuItem hilfeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem informationenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem neuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem datengrundlageErstellenToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kriterienBearbeitenToolStripMenuItem;
         private System.Windows.Forms.Button BtnSave;
+        private System.Windows.Forms.ToolStripMenuItem datengrundlageErstellenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem seriendruckfeldDateiErstellenToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vorlageAuswählenToolStripMenuItem;
+        private System.Windows.Forms.ToolTip ToolTipMailmerge;
     }
 }

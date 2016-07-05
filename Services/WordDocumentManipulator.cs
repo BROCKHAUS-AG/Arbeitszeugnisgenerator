@@ -18,7 +18,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         private const string WORDPROCESS_ERR_TITLE = "Fehler";
         private const string WORDPROCESS_ERR_TEXT = "Es ist ein Fehler aufgetreten. Bitte beachten Sie, dass die Vorlage eine Serienbriefvorlage sein muss.";
 
-        public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts)
+        public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts, bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
 
 
@@ -63,8 +63,18 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                             OpenXmlElement refParagraph;
                             for (refParagraph = mm; !(refParagraph is Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
                             if (refParagraph is Body) { continue; }
-                            ParagraphProperties prp = (ParagraphProperties)refParagraph.GetFirstChild<ParagraphProperties>().CloneNode(true);
-                            OverrideMailmergefield(refParagraph, praticalExp, prp);
+                            if (PractExpBulletpoints)
+                            {
+                                ParagraphProperties prp = (ParagraphProperties)refParagraph.GetFirstChild<ParagraphProperties>().CloneNode(true);
+                                OverrideMailmergefield(refParagraph, praticalExp, prp);
+                            }
+                            else
+                            {
+                                ParagraphProperties prp = new ParagraphProperties();
+                                OverrideMailmergefield(refParagraph, praticalExp, prp);
+
+                            }
+                           
                             wrdProssesDoc.MainDocumentPart.Document.Save();
                         }
                         if (mm.InnerText == " MERGEFIELD Aufgaben ")
@@ -72,8 +82,17 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                             OpenXmlElement refParagraph;
                             for (refParagraph = mm; !(refParagraph is Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
                             if (refParagraph is Body) { continue; }
-                            ParagraphProperties prp = (ParagraphProperties)refParagraph.GetFirstChild<ParagraphProperties>();
-                            OverrideMailmergefield(refParagraph, exercises, prp);
+                            if (ExcercisesBulletPoints)
+                            {
+                                ParagraphProperties prp = (ParagraphProperties)refParagraph.GetFirstChild<ParagraphProperties>();
+                                OverrideMailmergefield(refParagraph, exercises, prp);
+                            }
+                            else
+                            {
+                                ParagraphProperties prp = new ParagraphProperties();
+                                OverrideMailmergefield(refParagraph, exercises, prp);
+
+                            }
                             wrdProssesDoc.MainDocumentPart.Document.Save();
                         }
 

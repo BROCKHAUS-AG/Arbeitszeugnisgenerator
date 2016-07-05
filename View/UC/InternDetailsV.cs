@@ -7,6 +7,7 @@ using System;
 using Brockhaus.PraktikumZeugnisGenerator.Dialogs;
 using Brockhaus.PraktikumZeugnisGenerator.Exceptions;
 using Brockhaus.PraktikumZeugnisGenerator.View.Forms;
+using System.Collections.Generic;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 {
@@ -21,22 +22,24 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private const string INVALID_FILE_FORMAT_TITLE = "Ungültiges Dateiformat";
         private const string INVALID_FILE_FORMAT_TEXT = "Bitte nur Datein mit einem gültigen Dateiformat auswählen.";
         private const string SAVEDIALOG_TITLE = "Personendaten speichern untern";
-        public  InternDetailsP presenter;
+        public InternDetailsP presenter;
         private ViewState viewState;
         private MainWindowV Basis;
         public string LoadedDataPath;
+        public bool BulletpointsPractExp;
+        public bool BulletpointsExcercises;
 
 
-        public InternDetailsV() 
+        public InternDetailsV()
         {
             InitializeComponent();
-          
+
             presenter = new InternDetailsP(this);
             viewState = ViewState.WaitingForInput;
-            RtxtExercises.SelectionBullet = true;
-            RtxtPracticalExperience.SelectionBullet = true;
+            BulletpointsExcercises = false;
+            BulletpointsPractExp = false;
             LoadedDataPath = "";
-           
+
         }
 
         //Dies ist mit absicht nicht im Constructor enthalten, weil dies dafür sorgt, dass der MainWindowV.cs Designer nicht richtig angezeigt wird.
@@ -52,8 +55,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             Model.InternDetails curShowedInternDetails = presenter.CurShowedInternDetails;
             if (curShowedInternDetails == null) return;
             viewState = ViewState.IsRefreshing;
-            
-            
+
+
             TxtFirstName.Text = curShowedInternDetails.FirstName;
             TxtLastName.Text = curShowedInternDetails.LastName;
             DtpDateOfBirth.Value = curShowedInternDetails.DateOfBirth;
@@ -107,6 +110,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             RtxtExercises.Text = "";
             RtxtPracticalExperience.Text = "";
             presenter.savedChanges = false;
+            ChbxBulletPointsExcercises.Checked = false;
+            BulletpointsExcercises = false;
+            ChbxBulletPointsPractExp.Checked = false;
+            BulletpointsPractExp = false;
 
         }
 
@@ -118,45 +125,45 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             {
                 return;
             }
-                 UpdatePresenter();
-                SaveFileDialog saveFileDialog = new SaveFileDialog();
-                saveFileDialog.Title = SAVEDIALOG_TITLE;
-                saveFileDialog.Filter = "XML Files|*.xml";
-                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            UpdatePresenter();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = SAVEDIALOG_TITLE;
+            saveFileDialog.Filter = "XML Files|*.xml";
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string savePath = saveFileDialog.FileName;
+                LoadedDataPath = saveFileDialog.FileName;
+                try
                 {
-                    string savePath = saveFileDialog.FileName;
-                    LoadedDataPath = saveFileDialog.FileName;
-                    try
+
+                    if (Path.GetExtension(savePath) != ".xml")
                     {
-                        
-                        if (Path.GetExtension(savePath) != ".xml")
-                        {
-                            throw new InvalidFileFormatException();
-                        }
-                        if (!savePath.Contains(".xml") && savePath != "")
-                        {
-                            savePath += ".xml";
-                        }
-                        presenter.SaveInternDetails(savePath);
+                        throw new InvalidFileFormatException();
                     }
-                    catch (ArgumentException)
+                    if (!savePath.Contains(".xml") && savePath != "")
                     {
-                        ShowMessageDialog(NAME_INKORREKT_TITLE, NAME_INKORREKT_TEXT);
+                        savePath += ".xml";
                     }
-                    catch (SecurityException)
-                    {
-                        ShowMessageDialog(AUTHORIZATION_MISSING_TITLE, AUTHORIZATION_MISSING_TEXT);
-                    }
-                    catch (InvalidFileFormatException)
-                    {
-                        ShowMessageDialog(INVALID_FILE_FORMAT_TITLE, INVALID_FILE_FORMAT_TEXT);
-                    }
-                    catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
-                    {
-                        ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
-                    }
+                    presenter.SaveInternDetails(savePath);
                 }
-            
+                catch (ArgumentException)
+                {
+                    ShowMessageDialog(NAME_INKORREKT_TITLE, NAME_INKORREKT_TEXT);
+                }
+                catch (SecurityException)
+                {
+                    ShowMessageDialog(AUTHORIZATION_MISSING_TITLE, AUTHORIZATION_MISSING_TEXT);
+                }
+                catch (InvalidFileFormatException)
+                {
+                    ShowMessageDialog(INVALID_FILE_FORMAT_TITLE, INVALID_FILE_FORMAT_TEXT);
+                }
+                catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
+                {
+                    ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
+                }
+            }
+
         }
 
         public void LoadDetails()
@@ -166,35 +173,39 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 return;
             }
 
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Title = "Personendaten Öffnen";
-                openFileDialog.Filter = "XML Files|*.xml";
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Personendaten Öffnen";
+            openFileDialog.Filter = "XML Files|*.xml";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string loadPath = openFileDialog.FileName;
+                LoadedDataPath = openFileDialog.FileName;
+                try
                 {
-                    string loadPath = openFileDialog.FileName;
-                    LoadedDataPath = openFileDialog.FileName;
-                    try
+                    if (Path.GetExtension(loadPath) != ".xml")
                     {
-                        if (Path.GetExtension(loadPath) != ".xml")
-                        {
-                            throw new InvalidFileFormatException();
-                        }
-                        presenter.LoadInternDetails(loadPath);
+                        throw new InvalidFileFormatException();
                     }
-                    catch (SecurityException)
-                    {
-                        ShowMessageDialog(AUTHORIZATION_MISSING_TITLE, AUTHORIZATION_MISSING_TEXT);
-                    }
-                    catch (InvalidFileFormatException)
-                    {
-                        ShowMessageDialog(INVALID_FILE_FORMAT_TITLE, INVALID_FILE_FORMAT_TEXT);
-                    }
-                    catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
-                    {
-                        ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
-                    }
+                    presenter.LoadInternDetails(loadPath);
+                    ChbxBulletPointsExcercises.Checked = false;
+                    BulletpointsExcercises = false;
+                    ChbxBulletPointsPractExp.Checked = false;
+                    BulletpointsPractExp = false;
                 }
-            
+                catch (SecurityException)
+                {
+                    ShowMessageDialog(AUTHORIZATION_MISSING_TITLE, AUTHORIZATION_MISSING_TEXT);
+                }
+                catch (InvalidFileFormatException)
+                {
+                    ShowMessageDialog(INVALID_FILE_FORMAT_TITLE, INVALID_FILE_FORMAT_TEXT);
+                }
+                catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
+                {
+                    ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
+                }
+            }
+
         }
         internal void SaveDetails()
         {
@@ -202,28 +213,28 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             {
                 UpdatePresenter();
                 string savePath = LoadedDataPath;
-                    try
-                    {
-                        presenter.SaveInternDetails(savePath);
-                    }
-                    catch (ArgumentException)
-                    {
-                        ShowMessageDialog(NAME_INKORREKT_TITLE, NAME_INKORREKT_TEXT);
-                    }
-                    catch (SecurityException)
-                    {
-                        ShowMessageDialog(AUTHORIZATION_MISSING_TITLE, AUTHORIZATION_MISSING_TEXT);
-                    }
-                    catch (InvalidFileFormatException)
-                    {
-                        ShowMessageDialog(INVALID_FILE_FORMAT_TITLE, INVALID_FILE_FORMAT_TEXT);
-                    }
-                    catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
-                    {
-                        ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
-                    }
+                try
+                {
+                    presenter.SaveInternDetails(savePath);
+                }
+                catch (ArgumentException)
+                {
+                    ShowMessageDialog(NAME_INKORREKT_TITLE, NAME_INKORREKT_TEXT);
+                }
+                catch (SecurityException)
+                {
+                    ShowMessageDialog(AUTHORIZATION_MISSING_TITLE, AUTHORIZATION_MISSING_TEXT);
+                }
+                catch (InvalidFileFormatException)
+                {
+                    ShowMessageDialog(INVALID_FILE_FORMAT_TITLE, INVALID_FILE_FORMAT_TEXT);
+                }
+                catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
+                {
+                    ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
                 }
             }
+        }
 
         private void UpdatePresenter()
         {
@@ -311,7 +322,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 presenter.Sex = Sex.Female;
             }
         }
- 
+
         private void RtxtPracticalExperience_Leave(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
@@ -320,6 +331,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 
         private void All_KeyDown(object sender, KeyEventArgs e)
         {
+            if (viewState == ViewState.IsRefreshing) return;
             if (e.Control && e.KeyCode == Keys.S)
             {
                 if (LoadedDataPath != "")
@@ -329,9 +341,43 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 else
                 {
                     SaveDetailsAs();
-                       
+
                 }
             }
+        }
+
+        private void ChbxBulletPointsExcercises_CheckedChanged(object sender, EventArgs e)
+        {
+            if (viewState == ViewState.IsRefreshing) return;
+            RtxtExercises.SelectAll();
+            if (ChbxBulletPointsExcercises.Checked)
+            {
+                RtxtExercises.SelectionBullet = true;
+                BulletpointsExcercises = true;
+            }
+            else
+            {
+                RtxtExercises.SelectionBullet = false;
+                BulletpointsExcercises = false;
+            }
+            RtxtExercises.DeselectAll();
+        }
+
+        private void ChbxBulletPointsPractExp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (viewState == ViewState.IsRefreshing) return;
+            RtxtPracticalExperience.SelectAll();
+            if (ChbxBulletPointsPractExp.Checked)
+            {
+                RtxtPracticalExperience.SelectionBullet = true;
+                BulletpointsPractExp = true;
+            }
+            else
+            {
+                RtxtPracticalExperience.SelectionBullet = false;
+                BulletpointsPractExp = false;
+            }
+            RtxtPracticalExperience.DeselectAll();
         }
         #endregion
     }

@@ -28,58 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnAddCriteria = new System.Windows.Forms.Button();
-            this.BtnEditCriteria = new System.Windows.Forms.Button();
-            this.BtnRemoveCriteria = new System.Windows.Forms.Button();
-            this.LbxCriteria = new System.Windows.Forms.ListBox();
             this.BtnOk = new System.Windows.Forms.Button();
             this.BtnCancle = new System.Windows.Forms.Button();
+            this.LbxCriteria = new System.Windows.Forms.CheckedListBox();
+            this.lbxBackground = new System.Windows.Forms.ListBox();
+            this.ChbxAll = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
-            // 
-            // BtnAddCriteria
-            // 
-            this.BtnAddCriteria.Location = new System.Drawing.Point(12, 12);
-            this.BtnAddCriteria.Name = "BtnAddCriteria";
-            this.BtnAddCriteria.Size = new System.Drawing.Size(119, 23);
-            this.BtnAddCriteria.TabIndex = 0;
-            this.BtnAddCriteria.Text = "Kriterium hinzufügen";
-            this.BtnAddCriteria.UseVisualStyleBackColor = true;
-            this.BtnAddCriteria.Click += new System.EventHandler(this.BtnAddCriteria_Click);
-            // 
-            // BtnEditCriteria
-            // 
-            this.BtnEditCriteria.Location = new System.Drawing.Point(12, 70);
-            this.BtnEditCriteria.Name = "BtnEditCriteria";
-            this.BtnEditCriteria.Size = new System.Drawing.Size(119, 23);
-            this.BtnEditCriteria.TabIndex = 1;
-            this.BtnEditCriteria.Text = "Kriterium bearbeiten";
-            this.BtnEditCriteria.UseVisualStyleBackColor = true;
-            this.BtnEditCriteria.Click += new System.EventHandler(this.BtnEditCriteria_Click);
-            // 
-            // BtnRemoveCriteria
-            // 
-            this.BtnRemoveCriteria.Location = new System.Drawing.Point(12, 41);
-            this.BtnRemoveCriteria.Name = "BtnRemoveCriteria";
-            this.BtnRemoveCriteria.Size = new System.Drawing.Size(119, 23);
-            this.BtnRemoveCriteria.TabIndex = 2;
-            this.BtnRemoveCriteria.Text = "Kriterium löschen";
-            this.BtnRemoveCriteria.UseVisualStyleBackColor = true;
-            this.BtnRemoveCriteria.Click += new System.EventHandler(this.BtnRemoveCriteria_Click);
-            // 
-            // LbxCriteria
-            // 
-            this.LbxCriteria.FormattingEnabled = true;
-            this.LbxCriteria.HorizontalScrollbar = true;
-            this.LbxCriteria.Location = new System.Drawing.Point(137, 12);
-            this.LbxCriteria.Name = "LbxCriteria";
-            this.LbxCriteria.Size = new System.Drawing.Size(243, 160);
-            this.LbxCriteria.TabIndex = 3;
-            this.LbxCriteria.SelectedIndexChanged += new System.EventHandler(this.LbxCriteria_SelectedIndexChanged);
-            this.LbxCriteria.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LbxCriteria_MouseDoubleClick);
             // 
             // BtnOk
             // 
-            this.BtnOk.Location = new System.Drawing.Point(224, 178);
+            this.BtnOk.Location = new System.Drawing.Point(111, 174);
             this.BtnOk.Name = "BtnOk";
             this.BtnOk.Size = new System.Drawing.Size(75, 23);
             this.BtnOk.TabIndex = 4;
@@ -89,7 +47,7 @@
             // 
             // BtnCancle
             // 
-            this.BtnCancle.Location = new System.Drawing.Point(305, 178);
+            this.BtnCancle.Location = new System.Drawing.Point(192, 174);
             this.BtnCancle.Name = "BtnCancle";
             this.BtnCancle.Size = new System.Drawing.Size(75, 23);
             this.BtnCancle.TabIndex = 5;
@@ -97,17 +55,49 @@
             this.BtnCancle.UseVisualStyleBackColor = true;
             this.BtnCancle.Click += new System.EventHandler(this.BtnCancle_Click);
             // 
+            // LbxCriteria
+            // 
+            this.LbxCriteria.CheckOnClick = true;
+            this.LbxCriteria.FormattingEnabled = true;
+            this.LbxCriteria.Location = new System.Drawing.Point(12, 33);
+            this.LbxCriteria.Name = "LbxCriteria";
+            this.LbxCriteria.Size = new System.Drawing.Size(256, 139);
+            this.LbxCriteria.TabIndex = 6;
+            this.LbxCriteria.MouseUp += new System.Windows.Forms.MouseEventHandler(this.LbxCriteria_MouseUp);
+            // 
+            // lbxBackground
+            // 
+            this.lbxBackground.FormattingEnabled = true;
+            this.lbxBackground.Items.AddRange(new object[] {
+            " "});
+            this.lbxBackground.Location = new System.Drawing.Point(12, 4);
+            this.lbxBackground.Name = "lbxBackground";
+            this.lbxBackground.SelectionMode = System.Windows.Forms.SelectionMode.None;
+            this.lbxBackground.Size = new System.Drawing.Size(256, 30);
+            this.lbxBackground.TabIndex = 8;
+            // 
+            // ChbxAll
+            // 
+            this.ChbxAll.AutoSize = true;
+            this.ChbxAll.BackColor = System.Drawing.Color.White;
+            this.ChbxAll.Location = new System.Drawing.Point(15, 11);
+            this.ChbxAll.Name = "ChbxAll";
+            this.ChbxAll.Size = new System.Drawing.Size(43, 17);
+            this.ChbxAll.TabIndex = 9;
+            this.ChbxAll.Text = "Alle";
+            this.ChbxAll.UseVisualStyleBackColor = false;
+            this.ChbxAll.CheckedChanged += new System.EventHandler(this.ChbxAll_CheckedChanged);
+            // 
             // ChooseCriteriaManagerV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(392, 209);
+            this.ClientSize = new System.Drawing.Size(279, 209);
+            this.Controls.Add(this.ChbxAll);
+            this.Controls.Add(this.lbxBackground);
+            this.Controls.Add(this.LbxCriteria);
             this.Controls.Add(this.BtnCancle);
             this.Controls.Add(this.BtnOk);
-            this.Controls.Add(this.LbxCriteria);
-            this.Controls.Add(this.BtnRemoveCriteria);
-            this.Controls.Add(this.BtnEditCriteria);
-            this.Controls.Add(this.BtnAddCriteria);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.KeyPreview = true;
             this.Name = "ChooseCriteriaManagerV";
@@ -115,16 +105,15 @@
             this.Text = "Kriterium Auswahl";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseCriteriaManagerV_KeyDown);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BtnAddCriteria;
-        private System.Windows.Forms.Button BtnEditCriteria;
-        private System.Windows.Forms.Button BtnRemoveCriteria;
-        private System.Windows.Forms.ListBox LbxCriteria;
         public System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.Button BtnCancle;
+        private System.Windows.Forms.CheckedListBox LbxCriteria;
+        private System.Windows.Forms.ListBox lbxBackground;
+        private System.Windows.Forms.CheckBox ChbxAll;
     }
 }

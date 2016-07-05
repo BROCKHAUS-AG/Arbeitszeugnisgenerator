@@ -13,18 +13,21 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private const string NAME_WÄHLEN_MESSAGE = "Name des Kriteriums:";
         private const string NAME_WÄHLEN_TITLE = "Eingabe für Kriteriumsname";
         private const string KRITERIUM_LOESCHEN_TITLE = "Löschen des Kriteriums bestätigen";
-        private const string KRITERIUM_LOESCHEN_MESSAGE = "Wollen sie das Kriterium wirklich löschen?";
+        private const string KRITERIUM_LOESCHEN_MESSAGE = "Wollen Sie die ausgewählten Elemente wirklich löschen?";
 
         private List<Criteria> CriteriaList;
         public ChooseCriteriaManagerP presenter;
         private ViewState viewState;
-        public int criteriaIndex;
+        public List<int> SelectedItemsIndexes = new List<int>();
+        private CheckListboxWorkState Checkstate = CheckListboxWorkState.isWaiting;
+
+
 
         public ChooseCriteriaManagerV(List<Criteria> criteriaList)
         {
             InitializeComponent();
             CriteriaList = criteriaList;
-            presenter = new ChooseCriteriaManagerP(this,criteriaList);
+            presenter = new ChooseCriteriaManagerP(this, criteriaList);
             RefreshView();
         }
 
@@ -32,9 +35,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         {
             viewState = ViewState.IsRefreshing;
             RefreshLbxCriteria();
-            RefreshBtnEditCriteria();
-            RefreshBtnRemoveCriteria();
-            RefreshBtnOk();
             viewState = ViewState.WaitingForInput;
         }
 
@@ -53,42 +53,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
         }
 
-        private void RefreshBtnEditCriteria()
-        {
-            if (LbxCriteria.SelectedIndex == -1)
-            {
-                BtnEditCriteria.Enabled = false;
-            }
-            else
-            {
-                BtnEditCriteria.Enabled = true;
-            }
-        }
-
-        private void RefreshBtnRemoveCriteria()
-        {
-            if (LbxCriteria.SelectedIndex == -1)
-            {
-                BtnRemoveCriteria.Enabled = false;
-            }
-            else
-            {
-                BtnRemoveCriteria.Enabled = true;
-            }
-        }
-
-        private void RefreshBtnOk()
-        {
-            if (LbxCriteria.SelectedIndex == -1)
-            {
-                BtnOk.Enabled = false;
-            }
-            else
-            {
-                BtnOk.Enabled = true;
-            }
-        }
-
         #endregion
 
         #region Windows Forms Control EventHandler
@@ -96,7 +60,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private void BtnOk_Click(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
-            criteriaIndex = LbxCriteria.SelectedIndex;
+
+            foreach (int index in LbxCriteria.CheckedIndices)
+            {
+                SelectedItemsIndexes.Add(index);
+            }
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -118,7 +86,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 presenter.AddCriteria(chooseCriteriaName.InputText);
                 BtnEditCriteria_Click(sender, e);
-            }       
+            }
         }
 
         private void BtnRemoveCriteria_Click(object sender, EventArgs e)
@@ -128,13 +96,17 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             ConfirmationDialog confirmation = new ConfirmationDialog(KRITERIUM_LOESCHEN_TITLE, KRITERIUM_LOESCHEN_MESSAGE);
             if (confirmation.ShowDialog() == DialogResult.Yes)
             {
-                presenter.RemoveCriteria(LbxCriteria.SelectedIndex);
+                foreach (int index in LbxCriteria.SelectedIndices)
+                {
+                    presenter.RemoveCriteria(index);
+                }
+
             }
         }
 
         private void BtnEditCriteria_Click(object sender, EventArgs e)
         {
-            if (viewState == ViewState.IsRefreshing ) return;
+            if (viewState == ViewState.IsRefreshing) return;
             int criteriaIndex = CriteriaList.IndexOf(presenter.SelectedCriteria);
             CriteriaEditorV criteriaEditorV = new CriteriaEditorV(presenter.SelectedCriteria, CriteriaList, criteriaIndex);
             criteriaEditorV.ShowDialog();
@@ -147,20 +119,54 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             presenter.SelectCriteria(LbxCriteria.SelectedIndex);
         }
 
-        private void LbxCriteria_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (LbxCriteria.SelectedIndex != -1)
-                BtnOk_Click(sender, e);
-        }
-
         private void ChooseCriteriaManagerV_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Escape)
             {
-                
+
                 BtnCancle_Click(sender, e);
             }
         }
+
+        private void ChbxAll_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Checkstate == CheckListboxWorkState.IsWorking) return;
+            if (ChbxAll.Checked)
+            {
+                for (int i = 0; i < LbxCriteria.Items.Count; i++)
+                {
+                    LbxCriteria.SetItemCheckState(i, CheckState.Checked);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < LbxCriteria.Items.Count; i++)
+                {
+                    LbxCriteria.SetItemCheckState(i, CheckState.Unchecked);
+                }
+            }
+        }
+
+        private void LbxCriteria_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (Checkstate == CheckListboxWorkState.IsWorking) return;
+            Checkstate = CheckListboxWorkState.IsWorking;
+            if (LbxCriteria.CheckedIndices.Count == 0)
+            {
+                ChbxAll.Checked = false;
+            }
+            if (LbxCriteria.CheckedIndices.Count == LbxCriteria.Items.Count && LbxCriteria.Items.Count >0)
+            {
+                ChbxAll.Checked = true;
+            }
+            else
+            {
+                ChbxAll.Checked = false;
+            }
+            LbxCriteria.ClearSelected();
+            Checkstate = CheckListboxWorkState.isWaiting;
+        }
         #endregion
     }
+    public enum CheckListboxWorkState { IsWorking, isWaiting }
 }

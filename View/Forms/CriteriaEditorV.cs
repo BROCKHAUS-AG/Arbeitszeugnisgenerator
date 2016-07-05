@@ -31,7 +31,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         {
             InitializeComponent();
             presenter = new CriteriaEditorP(this, shownCriteria, criteriaList, criteriaIndex, preselectedGrade, preselectedVar);
-           
+            radioButton1.Checked = true;
+            presenter.SelectGrade(0);
             RefreshView();
         }
 
@@ -44,7 +45,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         public void RefreshView()
         {
             viewState = ViewState.IsRefreshing;
-            RefreshLbxGrade();
             RefreshLbxVariation();
             RefreshRtxtPredefinedText();
             RefreshTxtCriteriaName();
@@ -58,19 +58,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private void RefreshTxtCriteriaName()
         {
             TxtCriteriaName.Text = presenter.CriteriaName;
-        }
-
-        private void RefreshLbxGrade()
-        {
-            LbxGrade.Items.Clear();
-            foreach (Grade grade in presenter.CurShowedCriteria.Grades)
-            {
-                LbxGrade.Items.Add(grade.Name);
-            }
-            if (presenter.SelectedGrade != null)
-            {
-                LbxGrade.SelectedItem = presenter.SelectedGrade.Name;
-            }
         }
 
         private void RefreshLbxVariation()
@@ -103,7 +90,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             else
             {
                 RtxtPredefinedText.Enabled = false;
-                RtxtPredefinedText.Text = "Keine Note/Variante Ausgewählt";
+                RtxtPredefinedText.Text = "Keine Variante ausgewählt";
             }
         }
 
@@ -159,13 +146,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             DialogResult = DialogResult.OK;
 
             Close();
-        }
-
-        private void LbxGrade_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (viewState == ViewState.IsRefreshing) return;
-
-            presenter.SelectGrade(LbxGrade.SelectedIndex);
         }
 
         private void LbxVariation_SelectedIndexChanged(object sender, EventArgs e)
@@ -237,5 +217,58 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         }
 
         #endregion
+
+        private void RadioGroup_ChecktChange(object sender, EventArgs e)
+        {
+            if (viewState == ViewState.IsRefreshing) return;
+            viewState = ViewState.IsRefreshing;
+
+            List<RadioButton> radiobuttons = new List<RadioButton>();
+
+            radiobuttons.Add(radioButton1);
+            radiobuttons.Add(radioButton2);
+            radiobuttons.Add(radioButton3);
+            radiobuttons.Add(radioButton4);
+            radiobuttons.Add(radioButton5);
+            radiobuttons.Add(radioButton6);
+
+            foreach (RadioButton r in radiobuttons)
+            {
+                RadioButton sen = (RadioButton)sender;
+                if (sen.Text == r.Text)
+                {
+                    r.Checked = true;
+                    switch (sen.Text)
+                    {
+                        case "Sehr Gut":
+                            presenter.SelectGrade(0);
+                            break;
+                        case "Gut":
+                            presenter.SelectGrade(1);
+                            break;
+                        case "Befriedigend":
+                            presenter.SelectGrade(2);
+                            break;
+                        case "Ausreichend":
+                            presenter.SelectGrade(3);
+                            break;
+                        case "Mangelhaft":
+                            presenter.SelectGrade(4);
+                            break;
+                        case "Ungenügend":
+                            presenter.SelectGrade(5);
+                            break;
+                    }
+                   
+                }
+                else
+                {
+                    r.Checked = false;
+                }
+            
+            }
+            viewState = ViewState.WaitingForInput;
+        }
+
     }
 }

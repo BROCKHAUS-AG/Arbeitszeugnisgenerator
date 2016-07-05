@@ -10,18 +10,19 @@ using System.IO;
 using System.Windows.Forms;
 using Brockhaus.PraktikumZeugnisGenerator.Exceptions;
 using System.Security;
+using Brockhaus.Arbeitszeugnisgenerator.View.Forms;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 {
     public partial class MainWindowV : Form
     {
         private const string IOEXCEPTION_DIALOG_TITLE = "Ein Fehler ist Aufgetreten";
-        private const string IOEXCEPTION_DIALOG_TEXT = "Die Datei konnte nicht erstellt werden. \n Bitte beachten Sie, dass die ausgewählte Datei nicht geöffnet sein darf.";
+        private const string IOEXCEPTION_DIALOG_TEXT = "Fehler: Die Datei konnte nicht erstellt werden.";
         private const string INVALIDE_FILE_FORMAT_TITLE = "Ungültiges Dateiformat";
         private const string INVALIDE_FILE_FORMAT_TEXT = "Bitte nur Dateien mit einem gültigen Dateiformat auswählen.";
         private const string FILE_NOT_FOUND_TITLE = "Datei nicht Gefunden";
-        private const string FILE_NOT_FOUN_TEXT = "Die angegebene Datei konnte nicht gefunden werden.";
-        private const string DEFAULT_TEMPLATE_NOT_FOUND_TEXT = "Die Standardvorlage wurde nicht gefunden.";
+        private const string FILE_NOT_FOUND_TEXT = "Die angegebene Datei konnte nicht gefunden werden.";
+        private const string DEFAULT_TEMPLATE_NOT_FOUND_TEXT = "Die Standardvorlage wurde nicht gefunden. Bitte wählen Sie eine Vorlage aus.";
         private const string SAVE_NOTIFICATION_TITLE = "Daten sind nicht gespeichert";
         private const string SAVE_NOTIFICATION_TEXT = "Wollen sie die Daten voher speichern?";
         private const string CHOOSE_TEMPLATE_TITLE = "Vorlage ausgewählt";
@@ -32,12 +33,15 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private const string AUTHORIZATION_MISSING_TEXT = "Sie haben nicht genügend Berechtigungen.";
         private const string CREATE_NEW_DOC_TITLE = "Neues Dokument erstellen";
         private const string CREATE_NEW_DOC_TEXT = "Wollen Sie die Daten voher Speichern?";
+        private const string TOOLTIP_TEXT = "Es wird eine Excel Datei erstellt, die Sie benötigen um Zugriff auf die Seriendruckfelder in Word zu bekommen."
+                                              + "\nMehr Informationen finden Sie, wenn sie F1 Drücken, unter dem Punkt \"2.1 die Vorlage erstellen.\"";
         public MainWindowP Presenter;
         private ViewState ViewState;
         private List<Criteria> CriteriaList;
         public InternDetails InternDetails;
 
         private List<CriteriaTextSelectionV> textPartSelectionList;
+    
 
         public MainWindowV(List<Criteria> criteriaList)
         {
@@ -47,6 +51,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             textPartSelectionList = new List<CriteriaTextSelectionV>();
             IdInternDetails.SetBasis(this);
             InternDetails = IdInternDetails.presenter.CurShowedInternDetails;
+            FlpCriteriaContainer.HorizontalScroll.Enabled = false;
+            FlpCriteriaContainer.VerticalScroll.Enabled = true;
             RefreshToolStripMenu();
             ViewState = ViewState.WaitingForInput;
         }
@@ -113,7 +119,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
             try
             {
-                Presenter.GenerateWordDocument(IdInternDetails.presenter.CurShowedInternDetails, textParts);
+                Presenter.GenerateWordDocument(IdInternDetails.presenter.CurShowedInternDetails, textParts,IdInternDetails.BulletpointsPractExp, IdInternDetails.BulletpointsExcercises);
             }
             catch (FileNotFoundException)
             {
@@ -127,26 +133,28 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
             catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
             {
-                OpenMessageDialog(INVALID_PATH_TITLE, INVALID_PATH_TEXT + "(Datei.xml)");
+                OpenMessageDialog(INVALID_PATH_TITLE, INVALID_PATH_TEXT);
             }
-
-
-
         }
 
         private void BtnAddCriteria_Click(object sender, EventArgs e)
         {
+            this.SuspendLayout();
             ChooseCriteriaManagerV chooseCriteriaManager = new ChooseCriteriaManagerV(CriteriaList);
 
             if (chooseCriteriaManager.ShowDialog() == DialogResult.OK)
             {
 
-                int criteriaIndex = chooseCriteriaManager.criteriaIndex;
-                CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(chooseCriteriaManager.presenter.SelectedCriteria, IdInternDetails.presenter.Sex, CriteriaList, criteriaIndex, this);
-                criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
-                FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
-                textPartSelectionList.Add(criteriaTextSelection);
+                for(int i = 0; i < chooseCriteriaManager.SelectedItemsIndexes.Count ;i++)
+                {
+                    int criteriaIndex = chooseCriteriaManager.SelectedItemsIndexes[i];
+                    CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(CriteriaList[criteriaIndex], IdInternDetails.presenter.Sex, CriteriaList, criteriaIndex, this);
+                    criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
+                    FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
+                    textPartSelectionList.Add(criteriaTextSelection);
+                }
             }
+            this.ResumeLayout();
         }
 
         private void BtnRemoveCriteria_Click(object sender, EventArgs e)
@@ -178,7 +186,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
             catch (FileNotFoundException)
             {
-                OpenMessageDialog(FILE_NOT_FOUND_TITLE, FILE_NOT_FOUN_TEXT);
+                OpenMessageDialog(FILE_NOT_FOUND_TITLE, FILE_NOT_FOUND_TEXT);
             }
             catch (InvalidFileFormatException)
             {
@@ -214,8 +222,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 Process.Start(Path.GetFullPath(@"Files\Benutzerhilfe.htm"));
             }
-            catch (FileNotFoundException)
-            { }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                OpenMessageDialog(FILE_NOT_FOUND_TITLE, FILE_NOT_FOUND_TEXT);
+            }
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
@@ -242,13 +252,25 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         private void datengrundlageErstellenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            SaveFileDialog folderBrowserDialog = new SaveFileDialog();
+            folderBrowserDialog.Filter = "Excel Dateien | *xlsx";
             folderBrowserDialog.ShowDialog();
             try
             {
-                if (folderBrowserDialog.SelectedPath != "" && folderBrowserDialog.SelectedPath != null)
+                if (folderBrowserDialog.FileName != "" && folderBrowserDialog.FileName != null)
                 {
-                    File.Copy(Path.GetFullPath(@"Files\Daten.xlsx"), folderBrowserDialog.SelectedPath + @"\Daten.xlsx");
+                    if (Path.GetExtension(folderBrowserDialog.FileName) != ".xlsx")
+                    {
+                        folderBrowserDialog.FileName += ".xlsx";
+                    } 
+                    try
+                    {
+                        File.Copy(Path.GetFullPath(@"Files\Daten.xlsx"), folderBrowserDialog.FileName);
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        OpenMessageDialog(FILE_NOT_FOUND_TITLE, FILE_NOT_FOUND_TEXT);
+                    }
                 }
             }
             catch (SecurityException)
@@ -261,11 +283,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
 
         }
-       
+
 
         private void kriterienBearbeitenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ChooseCriteriaManagerV chooseCriteriaManager = new ChooseCriteriaManagerV(CriteriaList);
+            ChooseCriteriaEditorV chooseCriteriaManager = new ChooseCriteriaEditorV(CriteriaList);
             chooseCriteriaManager.BtnOk.Enabled = true;
             chooseCriteriaManager.ShowDialog();
             RefreshView();
@@ -284,6 +306,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                     IdInternDetails.SaveDetailsAs();
                 }
             }
+            if (e.KeyCode == Keys.F1)
+            {
+                informationenToolStripMenuItem_Click(sender, e);
+            }
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -299,6 +325,25 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
 
         }
+
+        private void seriendruckfeldDateiErstellenToolStripMenuItem_MouseHover(object sender, EventArgs e)
+        {
+            IWin32Window win = menuStrip1;
+            ToolTipMailmerge.Show(TOOLTIP_TEXT, win);
+            
+        }
+
+        private void seriendruckfeldDateiErstellenToolStripMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            IWin32Window win = menuStrip1;
+            ToolTipMailmerge.Hide(win);
+        }
+
+        private void menuStrip1_KeyDown(object sender, KeyEventArgs e)
+        {
+            MainWindowV_KeyDown(sender, e);
+        }
+
         #endregion
     }
 }

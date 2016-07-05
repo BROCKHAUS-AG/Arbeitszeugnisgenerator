@@ -60,6 +60,7 @@
     <Compile Include="Model\Criteria.cs" />
     <Compile Include="Model\Grade.cs" />
     <Compile Include="Model\InternDetails.cs" />
+    <Compile Include="Presenter\ChooseCriteriaEditorP.cs" />
     <Compile Include="Services\CriteriasWrapper.cs" />
     <Compile Include="Model\Variation.cs" />
     <Compile Include="Presenter\ChooseCriteriaManagerP.cs" />
@@ -84,6 +85,12 @@
     </Compile>
     <Compile Include="View\Forms\ChooseCriteriaManagerV.Designer.cs">
       <DependentUpon>ChooseCriteriaManagerV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\ChooseCriteriaEditorV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\ChooseCriteriaEditorV.Designer.cs">
+      <DependentUpon>ChooseCriteriaEditorV.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Forms\CriteriaEditorV.cs">
       <SubType>Form</SubType>
@@ -133,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\ChooseCriteriaManagerV.resx">
       <DependentUpon>ChooseCriteriaManagerV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\ChooseCriteriaEditorV.resx">
+      <DependentUpon>ChooseCriteriaEditorV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\CriteriaEditorV.resx">
       <DependentUpon>CriteriaEditorV.cs</DependentUpon>
