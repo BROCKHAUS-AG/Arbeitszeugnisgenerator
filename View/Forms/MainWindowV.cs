@@ -41,7 +41,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         public InternDetails InternDetails;
 
         private List<CriteriaTextSelectionV> textPartSelectionList;
-    
+
 
         public MainWindowV(List<Criteria> criteriaList)
         {
@@ -86,6 +86,30 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
         }
 
+        public void SwitchElements(CriteriaTextSelectionV cri, Direction direction)
+        {
+            if (direction == Direction.Up)
+            {
+                if (cri.Position > 0)
+                {
+                    (textPartSelectionList.Find(c => c.Position == cri.Position - 1)).Position++;
+                    FlpCriteriaContainer.Controls.SetChildIndex(cri, cri.Position - 1);
+                    cri.Position--;
+                }
+            }
+            else if (direction == Direction.Down)
+            {
+                if (cri.Position < FlpCriteriaContainer.Controls.Count)
+                {
+                    (textPartSelectionList.Find(c => c.Position == cri.Position + 1)).Position--;
+                    FlpCriteriaContainer.Controls.SetChildIndex(cri, cri.Position + 1);
+                    cri.Position++;
+                }
+            }
+
+        }
+
+
         #region Windows Forms Control EventHandler
 
         private void MainWindowView_Load(object sender, EventArgs e)
@@ -106,20 +130,27 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
             }
             Dictionary<string, string> textParts = new Dictionary<string, string>();
-            foreach (CriteriaTextSelectionV singleTextPartSelection in textPartSelectionList)
+            for (int i = 0; i < textPartSelectionList.Count; i++)
             {
-                if (singleTextPartSelection.presenter.SelectedVariation != null)
+                foreach (CriteriaTextSelectionV singleTextPartSelection in textPartSelectionList)
                 {
-                    textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = singleTextPartSelection.presenter.SelectedVariation.PredifinedText;
-                }
-                else
-                {
-                    textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = "";
+
+                    if (i == singleTextPartSelection.Position)
+                    {
+                        if (singleTextPartSelection.presenter.SelectedVariation != null)
+                        {
+                            textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = singleTextPartSelection.presenter.SelectedVariation.PredifinedText;
+                        }
+                        else
+                        {
+                            textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = "";
+                        }
+                    }
                 }
             }
             try
             {
-                Presenter.GenerateWordDocument(IdInternDetails.presenter.CurShowedInternDetails, textParts,IdInternDetails.BulletpointsPractExp, IdInternDetails.BulletpointsExcercises);
+                Presenter.GenerateWordDocument(IdInternDetails.presenter.CurShowedInternDetails, textParts, IdInternDetails.BulletpointsPractExp, IdInternDetails.BulletpointsExcercises);
             }
             catch (FileNotFoundException)
             {
@@ -145,10 +176,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             if (chooseCriteriaManager.ShowDialog() == DialogResult.OK)
             {
 
-                for(int i = 0; i < chooseCriteriaManager.SelectedItemsIndexes.Count ;i++)
+                for (int i = 0; i < chooseCriteriaManager.SelectedItemsIndexes.Count; i++)
                 {
                     int criteriaIndex = chooseCriteriaManager.SelectedItemsIndexes[i];
-                    CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(CriteriaList[criteriaIndex], IdInternDetails.presenter.Sex, CriteriaList, criteriaIndex, this);
+                    CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(CriteriaList[criteriaIndex], IdInternDetails.presenter.Sex, CriteriaList, criteriaIndex, this, FlpCriteriaContainer.Controls.Count);
                     criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
                     FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
                     textPartSelectionList.Add(criteriaTextSelection);
@@ -262,7 +293,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                     if (Path.GetExtension(folderBrowserDialog.FileName) != ".xlsx")
                     {
                         folderBrowserDialog.FileName += ".xlsx";
-                    } 
+                    }
                     try
                     {
                         File.Copy(Path.GetFullPath(@"Files\Daten.xlsx"), folderBrowserDialog.FileName);
@@ -330,7 +361,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         {
             IWin32Window win = menuStrip1;
             ToolTipMailmerge.Show(TOOLTIP_TEXT, win);
-            
+
         }
 
         private void seriendruckfeldDateiErstellenToolStripMenuItem_MouseLeave(object sender, EventArgs e)
@@ -346,4 +377,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         #endregion
     }
+
+    public enum Direction { Up, Down }
 }

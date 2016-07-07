@@ -37,6 +37,8 @@
             this.BtnExtend = new System.Windows.Forms.Button();
             this.BtnEdit = new System.Windows.Forms.Button();
             this.BtnRemove = new System.Windows.Forms.Button();
+            this.BtnUp = new System.Windows.Forms.Button();
+            this.BtnDown = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblCurEvaluationCriteria
@@ -52,7 +54,7 @@
             // 
             this.CbxGrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbxGrade.FormattingEnabled = true;
-            this.CbxGrade.Location = new System.Drawing.Point(26, 59);
+            this.CbxGrade.Location = new System.Drawing.Point(79, 59);
             this.CbxGrade.Name = "CbxGrade";
             this.CbxGrade.Size = new System.Drawing.Size(121, 21);
             this.CbxGrade.TabIndex = 1;
@@ -62,7 +64,7 @@
             // 
             this.CbxVariation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.CbxVariation.FormattingEnabled = true;
-            this.CbxVariation.Location = new System.Drawing.Point(178, 59);
+            this.CbxVariation.Location = new System.Drawing.Point(209, 59);
             this.CbxVariation.Name = "CbxVariation";
             this.CbxVariation.Size = new System.Drawing.Size(121, 21);
             this.CbxVariation.TabIndex = 2;
@@ -71,7 +73,7 @@
             // LblGradeCaption
             // 
             this.LblGradeCaption.AutoSize = true;
-            this.LblGradeCaption.Location = new System.Drawing.Point(23, 43);
+            this.LblGradeCaption.Location = new System.Drawing.Point(76, 43);
             this.LblGradeCaption.Name = "LblGradeCaption";
             this.LblGradeCaption.Size = new System.Drawing.Size(33, 13);
             this.LblGradeCaption.TabIndex = 3;
@@ -80,7 +82,7 @@
             // LblVariationCaption
             // 
             this.LblVariationCaption.AutoSize = true;
-            this.LblVariationCaption.Location = new System.Drawing.Point(175, 43);
+            this.LblVariationCaption.Location = new System.Drawing.Point(206, 43);
             this.LblVariationCaption.Name = "LblVariationCaption";
             this.LblVariationCaption.Size = new System.Drawing.Size(49, 13);
             this.LblVariationCaption.TabIndex = 4;
@@ -132,12 +134,34 @@
             this.BtnRemove.UseVisualStyleBackColor = true;
             this.BtnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
             // 
+            // BtnUp
+            // 
+            this.BtnUp.Location = new System.Drawing.Point(13, 30);
+            this.BtnUp.Name = "BtnUp";
+            this.BtnUp.Size = new System.Drawing.Size(29, 23);
+            this.BtnUp.TabIndex = 9;
+            this.BtnUp.Text = "/\\";
+            this.BtnUp.UseVisualStyleBackColor = true;
+            this.BtnUp.Click += new System.EventHandler(this.BtnUp_Click);
+            // 
+            // BtnDown
+            // 
+            this.BtnDown.Location = new System.Drawing.Point(13, 59);
+            this.BtnDown.Name = "BtnDown";
+            this.BtnDown.Size = new System.Drawing.Size(29, 23);
+            this.BtnDown.TabIndex = 10;
+            this.BtnDown.Text = "\\/";
+            this.BtnDown.UseVisualStyleBackColor = true;
+            this.BtnDown.Click += new System.EventHandler(this.BtnDown_Click);
+            // 
             // CriteriaTextSelectionV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Controls.Add(this.BtnDown);
+            this.Controls.Add(this.BtnUp);
             this.Controls.Add(this.BtnRemove);
             this.Controls.Add(this.BtnEdit);
             this.Controls.Add(this.BtnExtend);
@@ -149,7 +173,7 @@
             this.Controls.Add(this.LblCurEvaluationCriteria);
             this.Margin = new System.Windows.Forms.Padding(0);
             this.MaximumSize = new System.Drawing.Size(660, 0);
-            this.MinimumSize = new System.Drawing.Size(660, 93);
+            this.MinimumSize = new System.Drawing.Size(660, 100);
             this.Name = "CriteriaTextSelectionV";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(660, 108);
@@ -169,5 +193,7 @@
         private System.Windows.Forms.Button BtnExtend;
         private System.Windows.Forms.Button BtnEdit;
         private System.Windows.Forms.Button BtnRemove;
+        private System.Windows.Forms.Button BtnUp;
+        private System.Windows.Forms.Button BtnDown;
     }
 }

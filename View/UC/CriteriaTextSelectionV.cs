@@ -21,10 +21,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         MainWindowV View;
         private bool GradeSelectedByUser;
         private bool VariationSelectedByUser;
+        public int Position;
 
         public EventHandler DeleteButtonClicked;
 
-        public CriteriaTextSelectionV(Criteria selectedCriteria, Sex sex, List<Criteria> criteriaList, int criteriaIndex , MainWindowV view)
+        public CriteriaTextSelectionV(Criteria selectedCriteria, Sex sex, List<Criteria> criteriaList, int criteriaIndex , MainWindowV view, int position)
         {
             InitializeComponent();
             CriteriaList = criteriaList;
@@ -35,6 +36,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             GradeSelectedByUser = false;
             VariationSelectedByUser = false;
             View = view;
+            Position = position;
             RefreshView();
         }
 
@@ -223,6 +225,17 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 
 
 
+
+
+        private void BtnUp_Click(object sender, EventArgs e)
+        {
+            View.SwitchElements(presenter.view, Direction.Up);
+        }
+
+        private void BtnDown_Click(object sender, EventArgs e)
+        {
+            View.SwitchElements(presenter.view, Direction.Down);
+        }
         #endregion
     }
 }
