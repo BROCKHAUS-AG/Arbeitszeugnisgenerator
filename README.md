@@ -31,6 +31,19 @@ Sie könne alle Textvorlagen zu den Bewertungskritieren, aus denen der Fließtext 
 Die Textvorlagen, sowie das Word Template, werden beim Generieren so angepasst, dass Wörter wie z.B. 'Herr' zu 'Frau' werden, wenn das
 Geschlecht der Person auf weiblich gestellt wird.
 
+| Original   | Groß/Klein beachtet | Ausgetauscht |
+| ---------- |:-------------------:| ------------ |
+| Er         | :white_check_mark:  | Sie          |
+| Ihm        | :white_check_mark:  | Ihr          |
+| Seine      | :white_check_mark:  | Ihre         |
+| Seinen     | :white_check_mark:  | Ihren        |
+| Seiner     | :white_check_mark:  | Ihrer        |
+| Herr       | :no_entry_sign:     | Frau         |
+| Herrn      | :no_entry_sign:     | Frau         |
+| Seinem     | :white_check_mark:  | Ihrem        |
+| Arbeiter   | :no_entry_sign:     | Arbeiterin   |
+| Praktikant | :no_entry_sign:     | Praktikantin |
+
 ##Template
 Eine Standardvorlage finden Sie unter Files/Vorlage.docx. Auf diese wird zurückgegriffen, wenn die von Ihnen ausgewählte Vorlage nicht mehr zu finden ist.
 Diese Vorlage können Sie benutzen oder Verändern aber bitte nicht entfernen.
