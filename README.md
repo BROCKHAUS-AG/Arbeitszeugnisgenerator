@@ -57,12 +57,13 @@ Sie benötigen Microsoft Word um alle Features nutzen zu können.
 
 Die Vorlagen für die Zeugnisse müssen im .docx Format vorliegen, damit das Programm diese erkennt.
 
-##Für Entwickler
+## Kompilieren
 
 Benutzte IDE: Visual Studio 2015
 
 Benötigte Referenzen: DocumentFormat.OpenXml
 
+Installieren:
 ```sh
 PM> Install-Package DocumentFormat.OpenXml
 ```
