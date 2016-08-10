@@ -88,23 +88,28 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         public void SwitchElements(CriteriaTextSelectionV cri, Direction direction)
         {
-            if (direction == Direction.Up)
+            /* Kleiner als 2 == Kein Bewegen möglich */
+            if (FlpCriteriaContainer.Controls.Count < 2) return;
+
+            switch (direction)
             {
-                if (cri.Position > 0)
-                {
+                case Direction.Up:
+                    /* Den ersten View nicht nach oben verschieben */
+                    if (cri.Position == 0) return;
+
                     (textPartSelectionList.Find(c => c.Position == cri.Position - 1)).Position++;
                     FlpCriteriaContainer.Controls.SetChildIndex(cri, cri.Position - 1);
                     cri.Position--;
-                }
-            }
-            else if (direction == Direction.Down)
-            {
-                if (cri.Position < FlpCriteriaContainer.Controls.Count)
-                {
+
+                    break;
+                case Direction.Down:
+                    /* Den letzen View nicht nach unten verschieben */
+                    if (cri.Position + 1 == FlpCriteriaContainer.Controls.Count) return;
+
                     (textPartSelectionList.Find(c => c.Position == cri.Position + 1)).Position--;
                     FlpCriteriaContainer.Controls.SetChildIndex(cri, cri.Position + 1);
                     cri.Position++;
-                }
+                    break;
             }
 
         }
