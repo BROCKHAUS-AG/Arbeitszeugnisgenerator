@@ -1,65 +1,145 @@
 ﻿using Brockhaus.PraktikumZeugnisGenerator.Model;
+using DocumentFormat.OpenXml;
+using Novacode;
+using System.Text;
 using System.Text.RegularExpressions;
 
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
-    class StringEditor
+    public class StringEditor
     {
-
-        public static string ReplaceSexDependendWordsRegex(InternDetails internDetails, string text)
-        {
-            if (internDetails.Sex == Sex.Female)
-            {
-
-                Regex er_small = new Regex(@"\bEr\b");
-                Regex er_big = new Regex(@"\ber\b");
-                Regex herr_big = new Regex(@"\bHerr\b");
-                Regex ihm_small = new Regex(@"\bihm\b");
-                Regex ihm_Big = new Regex(@"\bIhm\b");
-                Regex seiner_small = new Regex(@"\bseiner\b");
-                Regex seiner_big = new Regex(@"\bsSeiner\b");
-                Regex herrn_big = new Regex(@"\bHerrn\b");
-                Regex seine_small = new Regex(@"\bseine\b");
-                Regex seine_big = new Regex(@"\bSeine\b");
-                Regex Praktikan_big = new Regex(@"\bPraktikant\b");
-                Regex Arbeiter_big = new Regex(@"\bArbeiter\b");
-                Regex sein_small = new Regex(@"\bsein\b");
-                Regex sein_big = new Regex(@"\bSein\b");
-                Regex seinem_small = new Regex(@"\bseinem\b");
-                Regex seinem_big = new Regex(@"\bSeinem\b");
-                Regex seinen_small = new Regex(@"\bseinen\b");
-                Regex seinen_big = new Regex(@"\bSeinen\b");
-
-                text = er_small.Replace(text, "Sie");
-                text = er_big.Replace(text, "sie");
-                text = herr_big.Replace(text, "Frau");
-                text = ihm_small.Replace(text, "ihr");
-                text = ihm_Big.Replace(text, "Ihr");
-                text = seiner_small.Replace(text, "ihrer");
-                text = seiner_big.Replace(text, "Ihrer");
-                text = herrn_big.Replace(text, "Frau");
-                text = seine_small.Replace(text, "ihre");
-                text = seine_big.Replace(text, "Ihre");
-                text = Praktikan_big.Replace(text, "Praktikantin");
-                text = Arbeiter_big.Replace(text, "Arbeiterin");
-                text = sein_small.Replace(text, "ihr");
-                text = seinem_small.Replace(text, "ihrem");
-                text = seinem_big.Replace(text, "Ihrem");
-                text = seinen_small.Replace(text, "ihren");
-                text = seinen_big.Replace(text, "Ihren");
-                text += " ";
-            }
-
-            return text;
-
-        }
-
         public static string replaceMuster(InternDetails internDetails, string docText)
         {
-            Regex replaceMuster = new Regex("Muster");
-            docText = replaceMuster.Replace(docText, internDetails.LastName != null ? internDetails.LastName : "");
+            Regex regExMuster = new Regex(@"(<<NACHNAME>>)",RegexOptions.IgnoreCase);
+            docText = regExMuster.Replace(docText, internDetails.LastName != null ? internDetails.LastName : "");
             return docText;
+        }
+
+        public static void replaceMuster(InternDetails internDetails, DocX document,string path)
+        {
+            Regex regExMuster = new Regex(@"(<<NACHNAME>>)", RegexOptions.IgnoreCase);
+            string text = document.Text.ToString();
+            MatchCollection mc = regExMuster.Matches(text);
+            var matches = new string[mc.Count];
+            for (int i = 0; i < matches.Length; i++)
+            {
+                document.ReplaceText(mc[i].ToString(), internDetails.LastName != null ? internDetails.LastName : "");
+            }
+            document.SaveAs(path);
+        }
+
+        public static void replaceWordsBasedOnGender(DocX document, InternDetails internDetails, string path)
+        {
+            string text = document.Text.ToString();
+            replaceWordsBasedOnGender(document, internDetails);
+            document.SaveAs(path);
+        }
+
+        public static void replaceWordsBasedOnGender(DocX document, InternDetails internDetails)
+        {
+            Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
+            Regex reg_male = new Regex(@"(<<.*?\/)");
+            Regex reg_female = new Regex(@"(\/.*?>>)");
+            string word = "DUMMY/FEHLER";
+            string text = document.Text.ToString();
+
+            MatchCollection mc = replaceTag.Matches(text);
+            var matches = new string[mc.Count];
+            for (int i = 0; i < matches.Length; i++)
+            {
+                matches[i] = mc[i].ToString();
+
+                if (internDetails.Sex == Sex.Male)
+                {
+                    string tempMale = reg_male.Match(matches[i].ToString()).ToString();
+                    word = tempMale.Substring(2, tempMale.Length - 3);
+                    document.ReplaceText(mc[i].ToString(), word);
+                }
+                else
+                {
+                    string tempFemale = reg_female.Match(matches[i].ToString()).ToString();
+                    word = tempFemale.Substring(1, tempFemale.Length - 3);
+                    document.ReplaceText(mc[i].ToString(), word);
+                }
+            }
+        }
+
+        public static string replaceWordsBasedOnGender(InternDetails internDetails, string doctText)
+        {
+            Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
+            Regex reg_male = new Regex(@"(<<.*?\/)");
+            Regex reg_female = new Regex(@"(\/.*?>>)");
+            string word = "DUMMY/FEHLER";
+
+            MatchCollection mc = Regex.Matches(doctText, @"(<<.*?\/.*?>>)");
+            var matches = new string[mc.Count];
+            for (int i = 0; i < matches.Length; i++)
+            {
+                matches[i] = mc[i].ToString();
+
+                if (internDetails.Sex == Sex.Male)
+                {
+                    string tempMale = reg_male.Match(matches[i].ToString()).ToString();
+                    word = tempMale.Substring(2, tempMale.Length - 3);
+                    doctText = doctText.Replace(mc[i].ToString(), word);
+                }
+                else
+                {
+                    string tempFemale = reg_female.Match(matches[i].ToString()).ToString();
+                    word = tempFemale.Substring(1, tempFemale.Length - 3);
+                    doctText = doctText.Replace(mc[i].ToString(), word);
+                }
+            }
+            return doctText;
+        }
+
+        public static string getFirstOccuringGenderWord(string doctText)
+        {
+            Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
+            Match mc = Regex.Match(doctText, @"(<<.*?\/.*?>>)");
+
+            return mc.ToString();
+        }
+
+        private static string GetPlainText(OpenXmlElement element)
+        {
+            System.Text.StringBuilder PlainTextInWord = new StringBuilder();
+            foreach (OpenXmlElement section in element.Elements())
+            {
+                switch (section.LocalName)
+                {
+                    // Text 
+                    case "t":
+                        PlainTextInWord.Append(section.InnerText);
+                        break;
+
+
+                    case "cr":                          // Carriage return 
+                    case "br":                          // Page break 
+                        PlainTextInWord.Append(System.Environment.NewLine);
+                        break;
+
+
+                    // Tab 
+                    case "tab":
+                        PlainTextInWord.Append("\t");
+                        break;
+
+
+                    // Paragraph 
+                    case "p":
+                        PlainTextInWord.Append(GetPlainText(section));
+                        PlainTextInWord.AppendLine(System.Environment.NewLine);
+                        break;
+
+
+                    default:
+                        PlainTextInWord.Append(GetPlainText(section));
+                        break;
+                }
+            }
+            return PlainTextInWord.ToString();
         }
     }
 }

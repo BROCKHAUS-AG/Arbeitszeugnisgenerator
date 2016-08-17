@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using Word = Microsoft.Office.Interop.Word;
 using System.Linq;
 using Brockhaus.PraktikumZeugnisGenerator.Dialogs;
+using Novacode;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
@@ -44,7 +45,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 criteriaEvaluation += text.Value + " ";
             }
             criteriaEvaluation = StringEditor.replaceMuster(internDetails, criteriaEvaluation);
-            criteriaEvaluation = StringEditor.ReplaceSexDependendWordsRegex(internDetails, criteriaEvaluation);
+            criteriaEvaluation = StringEditor.replaceWordsBasedOnGender(internDetails, criteriaEvaluation);
             Regex backSlashN = new Regex(@"\n");
             criteriaEvaluation = backSlashN.Replace(criteriaEvaluation, " ");
 
@@ -61,7 +62,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                         if (mm.InnerText == " MERGEFIELD PraktischeErfahrung ")
                         {
                             OpenXmlElement refParagraph;
-                            for (refParagraph = mm; !(refParagraph is Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
+                            for (refParagraph = mm; !(refParagraph is DocumentFormat.OpenXml.Wordprocessing.Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
                             if (refParagraph is Body) { continue; }
                             if (PractExpBulletpoints)
                             {
@@ -80,7 +81,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                         if (mm.InnerText == " MERGEFIELD Aufgaben ")
                         {
                             OpenXmlElement refParagraph;
-                            for (refParagraph = mm; !(refParagraph is Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
+                            for (refParagraph = mm; !(refParagraph is DocumentFormat.OpenXml.Wordprocessing.Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
                             if (refParagraph is Body) { continue; }
                             if (ExcercisesBulletPoints)
                             {
@@ -148,31 +149,20 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
         {
             string tempTemplatePath = @"Files\TempVorlage.docx";
-            string docText = "";
+            DocX document;
             if (SavepathSerializer.Instance.SavePath != "")
             {
                 File.Copy(SavepathSerializer.Instance.SavePath, tempTemplatePath, true);
+                document = DocX.Load(tempTemplatePath);
             }
             else
             {
                 File.Copy(@"Files/Vorlage.docx",tempTemplatePath, true);
+                document = DocX.Load(tempTemplatePath);
             }
 
-            if (s == Sex.Female)
-            {
-                using (WordprocessingDocument wrdProssesDoc = WordprocessingDocument.Open(tempTemplatePath, true))
-                {
-                    using (StreamReader sr = new StreamReader(wrdProssesDoc.MainDocumentPart.GetStream()))
-                    {
-                        docText = sr.ReadToEnd();
-                        docText = StringEditor.ReplaceSexDependendWordsRegex(internDetails, docText);
-                    }
-                    using (StreamWriter sw = new StreamWriter(wrdProssesDoc.MainDocumentPart.GetStream(FileMode.Create)))
-                    {
-                        sw.Write(docText);
-                    }
-                }
-            }
+            StringEditor.replaceWordsBasedOnGender(document, internDetails,tempTemplatePath);
+            StringEditor.replaceMuster(internDetails, document,tempTemplatePath);
             return tempTemplatePath;
         }
 
