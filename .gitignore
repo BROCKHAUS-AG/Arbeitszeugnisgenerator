@@ -272,3 +272,5 @@ paket-files/
 __pycache__/
 *.pyc
 
+/packages
+/packages/DocX.1.0.0.22/*.nupkg
