@@ -44,8 +44,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             {
                 criteriaEvaluation += text.Value + " ";
             }
-            criteriaEvaluation = StringEditor.replaceMuster(internDetails, criteriaEvaluation);
-            criteriaEvaluation = StringEditor.replaceWordsBasedOnGender(internDetails, criteriaEvaluation);
+            criteriaEvaluation = StringEditor.ReplaceMuster(internDetails, criteriaEvaluation);
+            criteriaEvaluation = StringEditor.ReplaceWordsBasedOnGender(internDetails, criteriaEvaluation);
             Regex backSlashN = new Regex(@"\n");
             criteriaEvaluation = backSlashN.Replace(criteriaEvaluation, " ");
 
@@ -148,7 +148,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 
         private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
         {
-            string tempTemplatePath = @"Files\TempVorlage.docx";
+            string tempTemplatePath = @"Files\Vorlage.docx";
             DocX document;
             if (SavepathSerializer.Instance.SavePath != "")
             {
@@ -161,8 +161,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 document = DocX.Load(tempTemplatePath);
             }
 
-            StringEditor.replaceWordsBasedOnGender(document, internDetails,tempTemplatePath);
-            StringEditor.replaceMuster(internDetails, document,tempTemplatePath);
+            StringEditor.ReplaceWordsBasedOnGender(document, internDetails,tempTemplatePath);
+            StringEditor.ReplaceMuster(internDetails, document,tempTemplatePath);
             return tempTemplatePath;
         }
 

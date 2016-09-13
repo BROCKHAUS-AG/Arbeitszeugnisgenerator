@@ -9,14 +9,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
     public class StringEditor
     {
-        public static string replaceMuster(InternDetails internDetails, string docText)
+        public static string ReplaceMuster(InternDetails internDetails, string docText)
         {
             Regex regExMuster = new Regex(@"(<<NACHNAME>>)",RegexOptions.IgnoreCase);
             docText = regExMuster.Replace(docText, internDetails.LastName != null ? internDetails.LastName : "");
             return docText;
         }
 
-        public static void replaceMuster(InternDetails internDetails, DocX document,string path)
+        public static void ReplaceMuster(InternDetails internDetails, DocX document,string path)
         {
             Regex regExMuster = new Regex(@"(<<NACHNAME>>)", RegexOptions.IgnoreCase);
             string text = document.Text.ToString();
@@ -29,14 +29,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             document.SaveAs(path);
         }
 
-        public static void replaceWordsBasedOnGender(DocX document, InternDetails internDetails, string path)
+        public static void ReplaceWordsBasedOnGender(DocX document, InternDetails internDetails, string path)
         {
             string text = document.Text.ToString();
-            replaceWordsBasedOnGender(document, internDetails);
+            ReplaceWordsBasedOnGender(document, internDetails);
             document.SaveAs(path);
         }
 
-        public static void replaceWordsBasedOnGender(DocX document, InternDetails internDetails)
+        public static void ReplaceWordsBasedOnGender(DocX document, InternDetails internDetails)
         {
             Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
             Regex reg_male = new Regex(@"(<<.*?\/)");
@@ -65,7 +65,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
         }
 
-        public static string replaceWordsBasedOnGender(InternDetails internDetails, string doctText)
+        public static string ReplaceWordsBasedOnGender(InternDetails internDetails, string doctText)
         {
             Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
             Regex reg_male = new Regex(@"(<<.*?\/)");
@@ -94,7 +94,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             return doctText;
         }
 
-        public static string getFirstOccuringGenderWord(string doctText)
+        public static string GetFirstOccuringGenderWord(string doctText)
         {
             Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
             Match mc = Regex.Match(doctText, @"(<<.*?\/.*?>>)");
@@ -113,27 +113,19 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                     case "t":
                         PlainTextInWord.Append(section.InnerText);
                         break;
-
-
                     case "cr":                          // Carriage return 
                     case "br":                          // Page break 
                         PlainTextInWord.Append(System.Environment.NewLine);
                         break;
-
-
                     // Tab 
                     case "tab":
                         PlainTextInWord.Append("\t");
                         break;
-
-
                     // Paragraph 
                     case "p":
                         PlainTextInWord.Append(GetPlainText(section));
                         PlainTextInWord.AppendLine(System.Environment.NewLine);
                         break;
-
-
                     default:
                         PlainTextInWord.Append(GetPlainText(section));
                         break;

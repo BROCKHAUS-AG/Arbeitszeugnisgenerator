@@ -14,7 +14,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Male;
 
             string doctText = "<<Er/Sie>>";
-            string word = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string word = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
             string replaceString = Regex.Match(doctText, @"(<<.*?\/.*?>>)").ToString();
 
             string ergebnis = doctText.Replace(replaceString, word);
@@ -28,7 +28,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Female;
 
             string doctText = "<<Er/Sie>>";
-            string word = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string word = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
             string replaceString = Regex.Match(doctText, @"(<<.*?\/.*?>>)").ToString();
 
             string ergebnis = doctText.Replace(replaceString, word);
@@ -42,7 +42,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Male;
 
             string doctText = "<<Er/Sie>> hat gute Arbeit geleistet";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Er hat gute Arbeit geleistet", ergebnis);
         }
@@ -54,7 +54,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Female;
 
             string doctText = "<<Er/Sie>> hat gute Arbeit geleistet";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Sie hat gute Arbeit geleistet",ergebnis);
         }
@@ -66,7 +66,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Male;
 
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Er ist ein guter Softwareentwickler", ergebnis);
         }
@@ -78,7 +78,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Female;
 
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Sie ist eine gute Softwareentwicklerin", ergebnis);
         }
@@ -93,7 +93,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.FromDate = System.DateTime.Now;
 
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Er ist ein guter Softwareentwickler", ergebnis);
         }
@@ -108,7 +108,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.FromDate = System.DateTime.Now;
 
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Sie ist eine gute Softwareentwicklerin", ergebnis);
         }
@@ -123,7 +123,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.FromDate = new System.DateTime(2016,04,27);
 
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Er ist ein guter Softwareentwickler", ergebnis);
         }
@@ -138,7 +138,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.FromDate = System.DateTime.Now;
 
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Sie ist eine gute Softwareentwicklerin", ergebnis);
         }
@@ -151,7 +151,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Male;
 
             string doctText = "<<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("<Er ist ein guter Softwareentwickler", ergebnis);
         }
@@ -163,7 +163,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Female;
 
             string doctText = "<<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("Sie ist eine gute Softwareentwicklerin", ergebnis);
         }
@@ -175,7 +175,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Male;
 
             string doctText = "<<<Er/Sie>>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("<Er> ist ein guter Softwareentwickler", ergebnis);
         }
@@ -187,7 +187,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Female;
 
             string doctText = "<<<Er/Sie>>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.replaceWordsBasedOnGender(internDetails, doctText);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
 
             Assert.AreEqual("<Sie> ist eine gute Softwareentwicklerin", ergebnis);
         }
@@ -200,7 +200,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
         {
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
 
-            string ergebnis = StringEditor.getFirstOccuringGenderWord(doctText);
+            string ergebnis = StringEditor.GetFirstOccuringGenderWord(doctText);
             Assert.AreEqual("<<Er/Sie>>", ergebnis);
         }
     }

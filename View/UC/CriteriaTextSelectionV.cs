@@ -114,8 +114,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             if (presenter.SelectedVariation != null)
             {
                 string showText = presenter.SelectedVariation.PredifinedText != null ? presenter.SelectedVariation.PredifinedText.Replace("Muster", View.InternDetails.LastName) : "";
-                showText = StringEditor.replaceWordsBasedOnGender(View.InternDetails, showText);
-                showText = StringEditor.replaceMuster(View.InternDetails, showText);
+                showText = StringEditor.ReplaceWordsBasedOnGender(View.InternDetails, showText);
+                showText = StringEditor.ReplaceMuster(View.InternDetails, showText);
                 LblPredefinedText.Text = showText;
             }
             else
