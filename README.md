@@ -33,7 +33,7 @@ Die Textvorlagen, sowie das Word Template, werden beim Generieren so angepasst, 
 Geschlecht der Person auf weiblich gestellt wird.
 
 Dafür muss die Vorlage geschlechtsabhängige Wörter in folgendem Format schreiben: <\<MÄNNLICHE/WEIBLICHE>>
-Beispiel: <Er/Sie> hat gut mitgearbeitet.
+Beispiel: <\<Er/Sie>> hat gut mitgearbeitet.
 Oder:
 <\<Er/Sie>> ist <\<ein/eine>> <\<guter/gute>> <\<Softwareentwickler/Softwareentwicklerin>>.
 Falls männlich eingestellt ist: Er ist ein guter Softwareentwickler.
