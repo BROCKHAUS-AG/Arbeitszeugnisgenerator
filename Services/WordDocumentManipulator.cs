@@ -9,26 +9,22 @@ using System.Text.RegularExpressions;
 using Word = Microsoft.Office.Interop.Word;
 using System.Linq;
 using Brockhaus.PraktikumZeugnisGenerator.Dialogs;
+using Novacode;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
-
-    class WordDocumentManipulater
+    public class WordDocumentManipulater
     {
         private const string WORDPROCESS_ERR_TITLE = "Fehler";
         private const string WORDPROCESS_ERR_TEXT = "Es ist ein Fehler aufgetreten. Bitte beachten Sie, dass die Vorlage eine Serienbriefvorlage sein muss.";
 
         public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts, bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
-
-
-            //Erstelle nötige Pfade
             string csvFileName = "csvTempFile.csv";
             string fullCsvFilePath = Path.GetFullPath(csvFileName);
             string tempTemplatePath = CreateDocumentWithSexDependendwords(internDetails.Sex, internDetails);
             string fullTemplatePath = Path.GetFullPath(tempTemplatePath);
-
-            //Erstelle nötige Strings
+            
             string lastname = internDetails.LastName != null ? internDetails.LastName : "";
             string firstname = internDetails.FirstName != null ? internDetails.FirstName : "";
             string dateOfBirth = internDetails.DateOfBirth.Date.ToString().Replace(" 00:00:00", "");
@@ -39,12 +35,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             string praticalExp = internDetails.PracitcalExperience != null ? internDetails.PracitcalExperience : "";
             string today = DateTime.Now.Date.ToString().Replace(" 00:00:00", "");
             string criteriaEvaluation = "";
+
             foreach (KeyValuePair<string, string> text in textParts)
             {
                 criteriaEvaluation += text.Value + " ";
             }
+
             criteriaEvaluation = StringEditor.replaceMuster(internDetails, criteriaEvaluation);
-            criteriaEvaluation = StringEditor.ReplaceSexDependendWordsRegex(internDetails, criteriaEvaluation);
+            criteriaEvaluation = StringEditor.replaceWordsBasedOnGender(internDetails, criteriaEvaluation);
             Regex backSlashN = new Regex(@"\n");
             criteriaEvaluation = backSlashN.Replace(criteriaEvaluation, " ");
 
@@ -61,7 +59,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                         if (mm.InnerText == " MERGEFIELD PraktischeErfahrung ")
                         {
                             OpenXmlElement refParagraph;
-                            for (refParagraph = mm; !(refParagraph is Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
+                            for (refParagraph = mm; !(refParagraph is DocumentFormat.OpenXml.Wordprocessing.Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
                             if (refParagraph is Body) { continue; }
                             if (PractExpBulletpoints)
                             {
@@ -80,7 +78,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                         if (mm.InnerText == " MERGEFIELD Aufgaben ")
                         {
                             OpenXmlElement refParagraph;
-                            for (refParagraph = mm; !(refParagraph is Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
+                            for (refParagraph = mm; !(refParagraph is DocumentFormat.OpenXml.Wordprocessing.Paragraph) && !(refParagraph is Body); refParagraph = refParagraph.Parent) ;
                             if (refParagraph is Body) { continue; }
                             if (ExcercisesBulletPoints)
                             {
@@ -104,8 +102,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 MessageDialog msg = new MessageDialog(WORDPROCESS_ERR_TITLE, WORDPROCESS_ERR_TEXT);
             }
 
-
-
             //Erstelle .csv Datei für Serienbrief
             using (FileStream csvFileStream = new FileStream(csvFileName, FileMode.Create))
             {
@@ -120,6 +116,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             Word.Application wrdApp = new Word.Application();
             Word._Document wrdDoc = null;
             wrdApp.Visible = true;
+
             try
             {
                 wrdDoc = wrdApp.Documents.Open(fullTemplatePath);
@@ -128,12 +125,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 wrdDoc.MailMerge.Destination = Word.WdMailMergeDestination.wdSendToNewDocument;
                 wrdDoc.MailMerge.Execute();
             }
-
             finally
             {
 
                 if (wrdDoc != null)
+                {
                     wrdDoc.Close(false);
+                }
                 wrdApp = null;
             }
             DeleteUsedFiles(csvFileName, tempTemplatePath);
@@ -148,31 +146,20 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
         {
             string tempTemplatePath = @"Files\TempVorlage.docx";
-            string docText = "";
+            DocX document;
             if (SavepathSerializer.Instance.SavePath != "")
             {
                 File.Copy(SavepathSerializer.Instance.SavePath, tempTemplatePath, true);
+                document = DocX.Load(tempTemplatePath);
             }
             else
             {
                 File.Copy(@"Files/Vorlage.docx",tempTemplatePath, true);
+                document = DocX.Load(tempTemplatePath);
             }
 
-            if (s == Sex.Female)
-            {
-                using (WordprocessingDocument wrdProssesDoc = WordprocessingDocument.Open(tempTemplatePath, true))
-                {
-                    using (StreamReader sr = new StreamReader(wrdProssesDoc.MainDocumentPart.GetStream()))
-                    {
-                        docText = sr.ReadToEnd();
-                        docText = StringEditor.ReplaceSexDependendWordsRegex(internDetails, docText);
-                    }
-                    using (StreamWriter sw = new StreamWriter(wrdProssesDoc.MainDocumentPart.GetStream(FileMode.Create)))
-                    {
-                        sw.Write(docText);
-                    }
-                }
-            }
+            StringEditor.replaceWordsBasedOnGender(document, internDetails,tempTemplatePath);
+            StringEditor.replaceMuster(internDetails, document,tempTemplatePath);
             return tempTemplatePath;
         }
 
