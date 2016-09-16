@@ -181,27 +181,36 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
         }
 
         [TestMethod]
-        public void TestReplaceGenderWords_ThreeOpenTagButClosedError_FEMALE()
-        {
-            InternDetails internDetails = new InternDetails();
-            internDetails.Sex = Sex.Female;
-
-            string doctText = "<<<Er/Sie>>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
-            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
-
-            Assert.AreEqual("<Sie> ist eine gute Softwareentwicklerin", ergebnis);
-        }
-
-        
-        //getFirstOccuringGenderWord
-
-        [TestMethod]
         public void TestGetFirstOccuringGenderWord()
         {
             string doctText = "<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>";
 
             string ergebnis = StringEditor.GetFirstOccuringGenderWord(doctText);
             Assert.AreEqual("<<Er/Sie>>", ergebnis);
+        }
+
+        [TestMethod]
+        public void TestLastName_MALE()
+        {
+            InternDetails internDetails = new InternDetails();
+            internDetails.Sex = Sex.Male;
+            internDetails.LastName = "Schmidt";
+            string doctText = "<<Herr/Frau>> <<Nachname>> hat die <<ihm/ihr>> übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.";
+
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails,doctText);
+            Assert.AreEqual("Herr Schmidt hat die ihm übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.", ergebnis);
+        }
+
+        [TestMethod]
+        public void TestLastName_FEMALE()
+        {
+            InternDetails internDetails = new InternDetails();
+            internDetails.Sex = Sex.Female;
+            internDetails.LastName = "Schmidt";
+            string doctText = "<<Herr/Frau>> <<Nachname>> hat die <<ihm/ihr>> übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.";
+
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
+            Assert.AreEqual("Frau Schmidt hat die ihr übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.", ergebnis);
         }
     }
 }

@@ -67,28 +67,35 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 
         public static string ReplaceWordsBasedOnGender(InternDetails internDetails, string doctText)
         {
-            Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
+            Regex replaceTag = new Regex(@"(<<.*?>>)");
             Regex reg_male = new Regex(@"(<<.*?\/)");
             Regex reg_female = new Regex(@"(\/.*?>>)");
             string word = "DUMMY/FEHLER";
 
-            MatchCollection mc = Regex.Matches(doctText, @"(<<.*?\/.*?>>)");
+            MatchCollection mc = replaceTag.Matches(doctText);
             var matches = new string[mc.Count];
             for (int i = 0; i < matches.Length; i++)
             {
                 matches[i] = mc[i].ToString();
 
-                if (internDetails.Sex == Sex.Male)
+                if (Regex.IsMatch(matches[i], @"(<<.*?\/.*?>>)")) //MW Wenn Geschlechtsanhängiges Wort
                 {
-                    string tempMale = reg_male.Match(matches[i].ToString()).ToString();
-                    word = tempMale.Substring(2, tempMale.Length - 3);
-                    doctText = doctText.Replace(mc[i].ToString(), word);
+                    if (internDetails.Sex == Sex.Male)
+                    {
+                        string tempMale = reg_male.Match(matches[i]).ToString();
+                        word = tempMale.Substring(2, tempMale.Length - 3);
+                        doctText = doctText.Replace(mc[i].ToString(), word);
+                    }
+                    else
+                    {
+                        string tempFemale = reg_female.Match(matches[i]).ToString();
+                        word = tempFemale.Substring(1, tempFemale.Length - 3);
+                        doctText = doctText.Replace(mc[i].ToString(), word);
+                    }
                 }
                 else
                 {
-                    string tempFemale = reg_female.Match(matches[i].ToString()).ToString();
-                    word = tempFemale.Substring(1, tempFemale.Length - 3);
-                    doctText = doctText.Replace(mc[i].ToString(), word);
+                    doctText = doctText.Replace(mc[i].ToString(),ReplaceMuster(internDetails, matches[i]));
                 }
             }
             return doctText;
