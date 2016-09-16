@@ -44,7 +44,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             {
                 criteriaEvaluation += text.Value + " ";
             }
-            criteriaEvaluation = StringEditor.ReplaceMuster(internDetails, criteriaEvaluation);
+            criteriaEvaluation = StringEditor.ReplaceDatesAndNames(internDetails, criteriaEvaluation);
             criteriaEvaluation = StringEditor.ReplaceWordsBasedOnGender(internDetails, criteriaEvaluation);
             Regex backSlashN = new Regex(@"\n");
             criteriaEvaluation = backSlashN.Replace(criteriaEvaluation, " ");
@@ -162,7 +162,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
 
             StringEditor.ReplaceWordsBasedOnGender(document, internDetails,tempTemplatePath);
-            StringEditor.ReplaceMuster(internDetails, document,tempTemplatePath);
+            StringEditor.ReplaceDatesAndNames(document, internDetails, tempTemplatePath);
             return tempTemplatePath;
         }
 

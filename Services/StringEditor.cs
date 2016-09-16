@@ -49,14 +49,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             return docText;
         }
 
-        public static string ReplaceMuster(InternDetails internDetails, string docText)
-        {
-            Regex regExMuster = new Regex(@"(<<NACHNAME>>)",RegexOptions.IgnoreCase);
-            docText = regExMuster.Replace(docText, internDetails.LastName != null ? internDetails.LastName : "");
-            return docText;
-        }
-
-        public static void ReplaceMuster(InternDetails internDetails, DocX document,string path)
+        public static void ReplaceDatesAndNames(DocX document, InternDetails internDetails,string path)
         {
             Regex regExMuster = new Regex(@"(<<NACHNAME>>)", RegexOptions.IgnoreCase);
             string text = document.Text.ToString();
@@ -135,7 +128,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 }
                 else
                 {
-                    doctText = doctText.Replace(mc[i].ToString(),ReplaceMuster(internDetails, matches[i]));
+                    doctText = doctText.Replace(mc[i].ToString(),ReplaceDatesAndNames(internDetails, matches[i]));
                 }
             }
             return doctText;
@@ -144,7 +137,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         public static string GetNextGenderWord(string doctText)
         {
             Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
-            Match mc = Regex.Match(doctText, @"(<<.*?\/.*?>>)");
+            Match mc = replaceTag.Match(doctText);
 
             return mc.ToString();
         }
@@ -152,7 +145,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         public static string GetNextDateOrName(string doctText)
         {
             Regex replaceTag = new Regex(@"(<<[a-zA-Z]*\/.*?>>)");
-            Match mc = Regex.Match(doctText, @"(<<[a-zA-Z]*\/.*?>>)");
+            Match mc = replaceTag.Match(doctText);
 
             return mc.ToString();
         }
