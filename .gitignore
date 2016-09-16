@@ -276,3 +276,5 @@ __pycache__/
 /packages/DocX.1.0.0.22/*.nupkg
 /Files/SavePath.xml
 /UnitTestProject1/Settings.StyleCop
+/Files/B_Vorlage.docx
+/Settings.StyleCop

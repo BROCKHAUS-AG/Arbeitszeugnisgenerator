@@ -9,6 +9,46 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
     public class StringEditor
     {
+        public static string ReplaceDatesAndNames(InternDetails internDetails, string docText)
+        {
+            Regex regExTag = new Regex(@"(<<.*?>>)");
+
+            Regex regExNachname = new Regex(@"(<<NACHNAME>>)", RegexOptions.IgnoreCase);
+            Regex regExVorname = new Regex(@"(<<VORNAME>>)", RegexOptions.IgnoreCase);
+            Regex regExGeburtsdatum = new Regex(@"(<<GEBURTSDATUM>>)", RegexOptions.IgnoreCase);
+            Regex regExAnfangsdatum = new Regex(@"(<<ANFANGSDATUM>>)", RegexOptions.IgnoreCase);
+            Regex regExEnddatum = new Regex(@"(<<ENDDATUM>>)", RegexOptions.IgnoreCase);
+
+            MatchCollection mc = regExTag.Matches(docText);
+            for (int i = 0; i < mc.Count; i++)
+            {
+                if (regExNachname.IsMatch(mc[i].ToString()))
+                {
+                    docText = docText.Replace(mc[i].ToString(), internDetails.LastName != null ? internDetails.LastName : "");
+                }
+                if (regExVorname.IsMatch(mc[i].ToString()))
+                {
+                    docText = docText.Replace(mc[i].ToString(), internDetails.FirstName != null ? internDetails.FirstName : "");
+                }
+
+                if (regExGeburtsdatum.IsMatch(mc[i].ToString()))
+                {
+                    docText = docText.Replace(mc[i].ToString(), internDetails.DateOfBirth.ToString("dd.MM.yyyy"));
+                }
+
+                if (regExAnfangsdatum.IsMatch(mc[i].ToString()))
+                {
+                    docText = docText.Replace(mc[i].ToString(), internDetails.FromDate.ToString("dd.MM.yyyy"));
+                }
+
+                if (regExEnddatum.IsMatch(mc[i].ToString()))
+                {
+                    docText = docText.Replace(mc[i].ToString(), internDetails.UntilDate.ToString("dd.MM.yyyy"));
+                }
+            }
+            return docText;
+        }
+
         public static string ReplaceMuster(InternDetails internDetails, string docText)
         {
             Regex regExMuster = new Regex(@"(<<NACHNAME>>)",RegexOptions.IgnoreCase);
@@ -101,13 +141,22 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             return doctText;
         }
 
-        public static string GetFirstOccuringGenderWord(string doctText)
+        public static string GetNextGenderWord(string doctText)
         {
             Regex replaceTag = new Regex(@"(<<.*?\/.*?>>)");
             Match mc = Regex.Match(doctText, @"(<<.*?\/.*?>>)");
 
             return mc.ToString();
         }
+
+        public static string GetNextDateOrName(string doctText)
+        {
+            Regex replaceTag = new Regex(@"(<<[a-zA-Z]*\/.*?>>)");
+            Match mc = Regex.Match(doctText, @"(<<[a-zA-Z]*\/.*?>>)");
+
+            return mc.ToString();
+        }
+        
 
         private static string GetPlainText(OpenXmlElement element)
         {

@@ -218,6 +218,7 @@
     </Content>
     <Content Include="Files\CriteriasWrapper.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
