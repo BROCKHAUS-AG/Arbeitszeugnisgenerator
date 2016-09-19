@@ -14,10 +14,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Male;
 
             string doctText = "<<Er/Sie>>";
-            string word = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
-            string replaceString = Regex.Match(doctText, @"(<<.*?\/.*?>>)").ToString();
 
-            string ergebnis = doctText.Replace(replaceString, word);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
             Assert.AreEqual("Er",ergebnis);
         }
 
@@ -28,10 +26,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             internDetails.Sex = Sex.Female;
 
             string doctText = "<<Er/Sie>>";
-            string word = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
-            string replaceString = Regex.Match(doctText, @"(<<.*?\/.*?>>)").ToString();
 
-            string ergebnis = doctText.Replace(replaceString, word);
+            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
+
             Assert.AreEqual("Sie",ergebnis);
         }
 
@@ -204,10 +201,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             InternDetails internDetails = new InternDetails();
             internDetails.Sex = Sex.Male;
             internDetails.LastName = "Schmidt";
-            string doctText = "<<Herr/Frau>> <<Nachname>> hat die <<ihm/ihr>> übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.";
+            string doctText = "Herr <<Nachname>> hat die ihm übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.";
 
-            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails,doctText);
-            ergebnis = StringEditor.ReplaceDatesAndNames(internDetails, ergebnis);
+            string ergebnis = StringEditor.ReplaceDatesAndNames(internDetails, doctText);
 
             Assert.AreEqual("Herr Schmidt hat die ihm übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.", ergebnis);
         }
@@ -218,16 +214,15 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
             InternDetails internDetails = new InternDetails();
             internDetails.Sex = Sex.Female;
             internDetails.LastName = "Schmidt";
-            string doctText = "<<Herr/Frau>> <<Nachname>> hat die <<ihm/ihr>> übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.";
+            string doctText = "Frau <<Nachname>> hat die ihr übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.";
 
-            string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
-            ergebnis = StringEditor.ReplaceDatesAndNames(internDetails, ergebnis);
+            string ergebnis = StringEditor.ReplaceDatesAndNames(internDetails, doctText);
 
             Assert.AreEqual("Frau Schmidt hat die ihr übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.", ergebnis);
         }
 
         [TestMethod]
-        public void TestReplaceDates_REALISTIC_MALE()
+        public void TestReplaceAllTags_REALISTIC_MALE()
         {
             InternDetails internDetails = new InternDetails();
             internDetails.Sex = Sex.Male;
@@ -246,7 +241,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
         }
 
         [TestMethod]
-        public void TestReplaceDates_REALISTIC_FEMALE()
+        public void TestReplaceAllTags_REALISTIC_FEMALE()
         {
             InternDetails internDetails = new InternDetails();
             internDetails.Sex = Sex.Female;
@@ -260,6 +255,42 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services.Tests
 
             string ergebnis = StringEditor.ReplaceWordsBasedOnGender(internDetails, doctText);
             ergebnis = StringEditor.ReplaceDatesAndNames(internDetails, ergebnis);
+
+            Assert.AreEqual("Frau Hans Franz, geboren am 26.04.1997 war vom 27.04.2016 bis zum 28.06.2016 als Praktikantin für uns tätig.", ergebnis);
+        }
+
+        [TestMethod]
+        public void TestReplaceDates_REALISTIC_MALE()
+        {
+            InternDetails internDetails = new InternDetails();
+            internDetails.Sex = Sex.Male;
+            internDetails.DateOfBirth = new System.DateTime(1997, 04, 26);
+            internDetails.UntilDate = new System.DateTime(2016, 06, 28);
+            internDetails.FromDate = new System.DateTime(2016, 04, 27);
+            internDetails.FirstName = "Hans";
+            internDetails.LastName = "Franz";
+
+            string doctText = "Herr Hans Franz, geboren am <<Geburtsdatum>> war vom <<Anfangsdatum>> bis zum <<Enddatum>> als Praktikant für uns tätig.";
+
+            string ergebnis = StringEditor.ReplaceDatesAndNames(internDetails, doctText);
+
+            Assert.AreEqual("Herr Hans Franz, geboren am 26.04.1997 war vom 27.04.2016 bis zum 28.06.2016 als Praktikant für uns tätig.", ergebnis);
+        }
+
+        [TestMethod]
+        public void TestReplaceDates_REALISTIC_FEMALE()
+        {
+            InternDetails internDetails = new InternDetails();
+            internDetails.Sex = Sex.Female;
+            internDetails.DateOfBirth = new System.DateTime(1997, 04, 26);
+            internDetails.UntilDate = new System.DateTime(2016, 06, 28);
+            internDetails.FromDate = new System.DateTime(2016, 04, 27);
+            internDetails.FirstName = "Hans";
+            internDetails.LastName = "Franz";
+
+            string doctText = "Frau Hans Franz, geboren am <<Geburtsdatum>> war vom <<Anfangsdatum>> bis zum <<Enddatum>> als Praktikantin für uns tätig.";
+
+            string ergebnis = StringEditor.ReplaceDatesAndNames(internDetails, doctText);
 
             Assert.AreEqual("Frau Hans Franz, geboren am 26.04.1997 war vom 27.04.2016 bis zum 28.06.2016 als Praktikantin für uns tätig.", ergebnis);
         }
