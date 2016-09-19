@@ -18,6 +18,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             Regex regExGeburtsdatum = new Regex(@"(<<GEBURTSDATUM>>)", RegexOptions.IgnoreCase);
             Regex regExAnfangsdatum = new Regex(@"(<<ANFANGSDATUM>>)", RegexOptions.IgnoreCase);
             Regex regExEnddatum = new Regex(@"(<<ENDDATUM>>)", RegexOptions.IgnoreCase);
+            Regex regExHeutigesDatum = new Regex(@"(<<HEUTIGESDATUM>>)", RegexOptions.IgnoreCase);
 
             MatchCollection mc = regExTag.Matches(docText);
             for (int i = 0; i < mc.Count; i++)
@@ -45,6 +46,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 {
                     docText = docText.Replace(mc[i].ToString(), internDetails.UntilDate.ToString("dd.MM.yyyy"));
                 }
+
+                if (regExHeutigesDatum.IsMatch(mc[i].ToString()))
+                {
+                    docText = docText.Replace(mc[i].ToString(), DateTime.Now.ToString("dd.MM.yyyy"));
+                }
             }
             return docText;
         }
@@ -65,6 +71,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             Regex regExGeburtsdatum = new Regex(@"(<<GEBURTSDATUM>>)", RegexOptions.IgnoreCase);
             Regex regExAnfangsdatum = new Regex(@"(<<ANFANGSDATUM>>)", RegexOptions.IgnoreCase);
             Regex regExEnddatum = new Regex(@"(<<ENDDATUM>>)", RegexOptions.IgnoreCase);
+            Regex regExHeutigesDatum = new Regex(@"(<<HEUTIGESDATUM>>)", RegexOptions.IgnoreCase);
+
             string text = document.Text.ToString();
 
             MatchCollection mc = regExTag.Matches(text);
@@ -93,6 +101,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 if (regExEnddatum.IsMatch(mc[i].ToString()))
                 {
                     document.ReplaceText(mc[i].ToString(), internDetails.UntilDate.ToString("dd.MM.yyyy"));
+                }
+                if (regExHeutigesDatum.IsMatch(mc[i].ToString()))
+                {
+                    document.ReplaceText(mc[i].ToString(), DateTime.Now.ToString("dd.MM.yyyy"));
                 }
             }
         }
@@ -135,7 +147,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 
         public static string ReplaceWordsBasedOnGender(InternDetails internDetails, string doctText)
         {
-            Regex replaceTag = new Regex(@"(<<.*?>>)");
+            Regex replaceTag = new Regex(@"(<<[a-zA-Z]*\/.*?>>)");
             Regex reg_male = new Regex(@"(<<.*?\/)");
             Regex reg_female = new Regex(@"(\/.*?>>)");
             string word = "DUMMY/FEHLER";
