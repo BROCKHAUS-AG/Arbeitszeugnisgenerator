@@ -26,18 +26,18 @@ Die Noten werden dann mithilfe von Textvorlagen in Fließtext verwandelt.
 Eine Vorlage ist unter /Files als "CriteriasWrapper" vorhanden. Diese im \bin\Debug\Files ersetzen.
 
 #### :pencil2: Anpassen der Textvorlagen
-Sie k�nne alle Textvorlagen zu den Bewertungskritieren, aus denen der Fließtext ensteht, selber verändern.
+Sie können alle Textvorlagen zu den Bewertungskritieren, aus denen der Fließtext ensteht, selber verändern.
 
 #### :pencil: Textanpassung abhängig von dem Geschlecht der Person
 Die Textvorlagen, sowie das Word Template, werden beim Generieren so angepasst, dass Wörter wie z.B. 'Herr' zu 'Frau' werden, wenn das
 Geschlecht der Person auf weiblich gestellt wird.
 
-Dafür muss die Vorlage solche Geschlechtsabhängige Wörter in folgendem Format Schreiben: <<MÄNNLICHE/WEIBLICHE>>
-Beispiel: <Er/Sie> hat gut mitgearbeitet.
+Dafür muss die Vorlage geschlechtsabhängige Wörter in folgendem Format geschrieben werden: <\<MÄNNLICHE/WEIBLICHE>>
+Beispiel: <\<Er/Sie>> hat gut mitgearbeitet.
 Oder:
-<<Er/Sie>> ist <<ein/eine>> <<guter/gute>> <<Softwareentwickler/Softwareentwicklerin>>.
-Falls männlich eingestellt: Er ist ein guter Softwareentwickler.
-Falls weiblich eingestellt: Sie ist eine gute Softwareentwicklerin.
+<\<Er/Sie>> ist <\<ein/eine>> <\<guter/gute>> <\<Softwareentwickler/Softwareentwicklerin>>.
+Falls männlich eingestellt ist: Er ist ein guter Softwareentwickler.
+Falls weiblich eingestellt ist: Sie ist eine gute Softwareentwicklerin.
 
 
 

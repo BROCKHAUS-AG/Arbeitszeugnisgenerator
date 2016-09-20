@@ -13,11 +13,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 {
     public partial class InternDetailsV : UserControl
     {
-        private const string NAME_INKORREKT_TITLE = "Ungültiger Name";
-        private const string NAME_INKORREKT_TEXT = "Es muss ein Name für die Datei vergeben werden.";
+        private const string NAME_INCORRECT_TITLE = "Ungültiger Name";
+        private const string NAME_INCORRECT_TEXT = "Es muss ein Name für die Datei vergeben werden.";
         private const string AUTHORIZATION_MISSING_TITLE = "Fehler mit der Berechtigung";
         private const string AUTHORIZATION_MISSING_TEXT = "Sie haben nicht genügend Berechtigungen.";
-        private const string WROONG_PATH_TITLE = "Fehler bei der Verzeichniswahl";
+        private const string WRONG_PATH_TITLE = "Fehler bei der Verzeichniswahl";
         private const string WRONG_PATH_TEXT = "Der Pfad konnte nicht gefunden werden.";
         private const string INVALID_FILE_FORMAT_TITLE = "Ungültiges Dateiformat";
         private const string INVALID_FILE_FORMAT_TEXT = "Bitte nur Datein mit einem gültigen Dateiformat auswählen.";
@@ -148,7 +148,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 }
                 catch (ArgumentException)
                 {
-                    ShowMessageDialog(NAME_INKORREKT_TITLE, NAME_INKORREKT_TEXT);
+                    ShowMessageDialog(NAME_INCORRECT_TITLE, NAME_INCORRECT_TEXT);
                 }
                 catch (SecurityException)
                 {
@@ -160,7 +160,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 }
                 catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
                 {
-                    ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
+                    ShowMessageDialog(WRONG_PATH_TITLE, WRONG_PATH_TEXT);
                 }
             }
 
@@ -202,7 +202,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 }
                 catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
                 {
-                    ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
+                    ShowMessageDialog(WRONG_PATH_TITLE, WRONG_PATH_TEXT);
                 }
             }
 
@@ -219,7 +219,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 }
                 catch (ArgumentException)
                 {
-                    ShowMessageDialog(NAME_INKORREKT_TITLE, NAME_INKORREKT_TEXT);
+                    ShowMessageDialog(NAME_INCORRECT_TITLE, NAME_INCORRECT_TEXT);
                 }
                 catch (SecurityException)
                 {
@@ -231,7 +231,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 }
                 catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
                 {
-                    ShowMessageDialog(WROONG_PATH_TITLE, WRONG_PATH_TEXT);
+                    ShowMessageDialog(WRONG_PATH_TITLE, WRONG_PATH_TEXT);
                 }
             }
         }

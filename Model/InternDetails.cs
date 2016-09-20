@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Xml.Serialization;
+using System.Collections.Generic;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Model
 {
@@ -20,11 +21,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
         public string Exercises { get; set; }
 
         public string PracitcalExperience { get; set; }
+        public List<Criteria> Criterias { get; set; }
 
         public InternDetails() {
             DateOfBirth = DateTime.Now;
             FromDate = DateTime.Now;
             UntilDate = DateTime.Now;
+            Criterias = new List<Criteria>();
         }
 
         public void Serialize(string savePath)

@@ -1,6 +1,7 @@
 ﻿using Brockhaus.PraktikumZeugnisGenerator.Model;
 using Brockhaus.PraktikumZeugnisGenerator.View.UC;
 using System;
+using System.Collections.Generic;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 {
@@ -142,7 +143,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         public void LoadInternDetails(string loadPath)
         {
             CurShowedInternDetails = InternDetails.Deserialize(loadPath);
-           
+            //List<Criteria> CriteriaList = CurShowedInternDetails.Criterias;
+
             view.RefreshView();
             emptyFile = false;
             savedChanges = true;

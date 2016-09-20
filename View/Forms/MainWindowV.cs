@@ -150,6 +150,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                     int criteriaIndex = chooseCriteriaManager.SelectedItemsIndexes[i];
                     CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(CriteriaList[criteriaIndex], IdInternDetails.presenter.Sex, CriteriaList, criteriaIndex, this, FlpCriteriaContainer.Controls.Count);
                     criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
+                    InternDetails.Criterias.Add(CriteriaList[criteriaIndex]);
                     FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
                     textPartSelectionList.Add(criteriaTextSelection);
                 }

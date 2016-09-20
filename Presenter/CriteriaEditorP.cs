@@ -37,7 +37,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             }
             get
             {
-             
                 return SelectedVariation.PredifinedText;
             }
         }
@@ -57,11 +56,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                     view.RefreshView();
                     return;
                 }
-               
-                
+
+
 
                 CurShowedCriteria.Name = value;
-               
+
             }
         }
 
@@ -69,13 +68,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         {
             CriteriaList = criteriaList;
             CriteriaIndex = criteriaIndex;
-            CurShowedCriteria = shownCriteria;    
+            CurShowedCriteria = shownCriteria;
             CriteriaBackup = shownCriteria.CreateBackup();
-                       
+
             this.view = view;
         }
 
-        public CriteriaEditorP(CriteriaEditorV view, Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex, int preselectedGrade, int preselectedVariation) : 
+        public CriteriaEditorP(CriteriaEditorV view, Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex, int preselectedGrade, int preselectedVariation) :
             this(view, shownCriteria, criteriaList, criteriaIndex)
         {
             Viewstate = ViewState.IsRefreshing;
@@ -107,8 +106,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 SelectedGradeBackup = CurShowedCriteria.Grades[selectIndex].CreateBackup();
             }
             SelectedVariation = null;
-            if(Viewstate != ViewState.IsRefreshing)
-            view.RefreshView();
+            if (Viewstate != ViewState.IsRefreshing)
+                view.RefreshView();
         }
 
         public void SelectVariation(int selectIndex)
@@ -138,14 +137,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         public void AddVariation(string name)
         {
             if (SelectedGrade == null) return;
-            if (SelectedGrade.Variations.FindAll(v => v.Name == name).Count == 0)
+            if (SelectedGrade.Variations.FindAll(variation => variation.Name == name).Count == 0)
             {
                 SelectedGrade.Variations.Add(new Variation(name));
-              
+
                 view.RefreshView();
                 return;
             }
-            view.InvalidNameChange();            
+            view.InvalidNameChange();
         }
 
         public void RemoveVariation(int index)
@@ -160,7 +159,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             if (SelectedGrade.Variations.FindAll(v => v.Name == name && v != SelectedVariation).Count == 0)
             {
                 SelectedVariation.Name = name;
-             
+
                 view.RefreshView();
                 return;
             }
@@ -172,18 +171,18 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 
         public void RestoreBackup()
         {
-             CurShowedCriteria.Grades = CriteriaBackup.Grades;
-              CurShowedCriteria.Name = CriteriaBackup.Name;
-              if (SelectedGrade != null && SelectedGradeBackup != null)
-              {
-                  SelectedGrade.Name = SelectedGradeBackup.Name;
-                  SelectedGrade.Variations = SelectedGradeBackup.Variations;
-              }
-              if (SelectedVariation != null && SelectedVariationBackup != null)
-              {
-                  SelectedVariation.Name = SelectedVariationBackup.Name;
-                  SelectedVariation.PredifinedText = SelectedVariationBackup.PredifinedText;
-              }
+            CurShowedCriteria.Grades = CriteriaBackup.Grades;
+            CurShowedCriteria.Name = CriteriaBackup.Name;
+            if (SelectedGrade != null && SelectedGradeBackup != null)
+            {
+                SelectedGrade.Name = SelectedGradeBackup.Name;
+                SelectedGrade.Variations = SelectedGradeBackup.Variations;
+            }
+            if (SelectedVariation != null && SelectedVariationBackup != null)
+            {
+                SelectedVariation.Name = SelectedVariationBackup.Name;
+                SelectedVariation.PredifinedText = SelectedVariationBackup.PredifinedText;
+            }
         }
 
         public void UpdateBackup()

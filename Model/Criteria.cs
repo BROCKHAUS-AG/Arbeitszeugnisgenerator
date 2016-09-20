@@ -4,10 +4,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
 {
     public class Criteria
     {
-        Guid guid = new Guid();
-
         public string Name { get; set; }
         public Grade[] Grades { get; set; }
+        public Guid guid { get; set; }
 
         public Criteria() : this(null)
         {
@@ -22,6 +21,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
             Grades[3] = new Grade("Ausreichend");
             Grades[4] = new Grade("Mangelhaft");
             Grades[5] = new Grade("Ungenügend");
+            guid = Guid.NewGuid();
         }
 
         internal Criteria CreateBackup()
