@@ -6,8 +6,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 {
     public class InternDetailsP //Presenter
     {
-        private InternDetailsV view;
         public InternDetails CurShowedInternDetails { get; set; }
+
+        public bool savedChanges = true;
+        public bool emptyFile = true;
+
+        private InternDetailsV view;
 
         public Sex Sex
         {
@@ -121,8 +125,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 }
             }
         }
-        public bool savedChanges = true;
-        public bool emptyFile = true;
 
         public InternDetailsP(InternDetailsV view)
         {

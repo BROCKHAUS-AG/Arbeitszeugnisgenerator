@@ -4,6 +4,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
 {
     public class Criteria
     {
+        Guid guid = new Guid();
+
         public string Name { get; set; }
         public Grade[] Grades { get; set; }
 

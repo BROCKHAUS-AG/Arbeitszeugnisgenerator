@@ -294,7 +294,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.MinimumSize = new System.Drawing.Size(730, 456);
             this.Name = "MainWindowV";
             this.Text = "Arbeitszeugnis-Generator";
-            this.Load += new System.EventHandler(this.MainWindowView_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowV_KeyDown);
             this.TlpCriteriaButtonContainer.ResumeLayout(false);
             this.FlpMainContainer.ResumeLayout(false);

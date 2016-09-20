@@ -21,7 +21,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         MainWindowV View;
         private bool GradeSelectedByUser;
         private bool VariationSelectedByUser;
-        public int Position;
 
         public EventHandler DeleteButtonClicked;
 
@@ -36,7 +35,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             GradeSelectedByUser = false;
             VariationSelectedByUser = false;
             View = view;
-            Position = position;
             RefreshView();
         }
 
@@ -229,12 +227,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 
         private void BtnUp_Click(object sender, EventArgs e)
         {
-            View.SwitchElements(presenter.view, Direction.Up);
+            View.SwitchElements(this, Direction.Up);
         }
 
         private void BtnDown_Click(object sender, EventArgs e)
         {
-            View.SwitchElements(presenter.view, Direction.Down);
+            View.SwitchElements(this, Direction.Down);
         }
         #endregion
     }

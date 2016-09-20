@@ -42,7 +42,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         private List<CriteriaTextSelectionV> textPartSelectionList;
 
-
         public MainWindowV(List<Criteria> criteriaList)
         {
             InitializeComponent();
@@ -75,15 +74,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         private void RefreshToolStripMenu()
         {
-            if (IdInternDetails.presenter.emptyFile)
-            {
-                speichernToolStripMenuItem.Enabled = false;
-
-            }
-            else
-            {
-                speichernToolStripMenuItem.Enabled = true;
-            }
+            speichernToolStripMenuItem.Enabled = !IdInternDetails.presenter.emptyFile;
         }
 
         public void SwitchElements(CriteriaTextSelectionV cri, Direction direction)
@@ -95,32 +86,15 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 case Direction.Up:
                     /* Den ersten View nicht nach oben verschieben */
-                    if (cri.Position == 0) return;
-
-                    (textPartSelectionList.Find(c => c.Position == cri.Position - 1)).Position++;
-                    FlpCriteriaContainer.Controls.SetChildIndex(cri, cri.Position - 1);
-                    cri.Position--;
-
+                    FlpCriteriaContainer.Controls.SetChildIndex(cri, FlpCriteriaContainer.Controls.IndexOf(cri) - 1);
                     break;
                 case Direction.Down:
                     /* Den letzen View nicht nach unten verschieben */
-                    if (cri.Position + 1 == FlpCriteriaContainer.Controls.Count) return;
-
-                    (textPartSelectionList.Find(c => c.Position == cri.Position + 1)).Position--;
-                    FlpCriteriaContainer.Controls.SetChildIndex(cri, cri.Position + 1);
-                    cri.Position++;
+                    FlpCriteriaContainer.Controls.SetChildIndex(cri, FlpCriteriaContainer.Controls.IndexOf(cri) + 1);
                     break;
             }
-
         }
 
-
-        #region Windows Forms Control EventHandler
-
-        private void MainWindowView_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void BtnGenerate_Click(object sender, EventArgs e)
         {
@@ -132,25 +106,18 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 {
                     speichernToolStripMenuItem_Click(sender, e);
                 }
-
             }
-            Dictionary<string, string> textParts = new Dictionary<string, string>();
-            for (int i = 0; i < textPartSelectionList.Count; i++)
-            {
-                foreach (CriteriaTextSelectionV singleTextPartSelection in textPartSelectionList)
-                {
 
-                    if (i == singleTextPartSelection.Position)
-                    {
-                        if (singleTextPartSelection.presenter.SelectedVariation != null)
-                        {
-                            textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = singleTextPartSelection.presenter.SelectedVariation.PredifinedText;
-                        }
-                        else
-                        {
-                            textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = "";
-                        }
-                    }
+            Dictionary<string, string> textParts = new Dictionary<string, string>();
+            foreach (CriteriaTextSelectionV singleTextPartSelection in textPartSelectionList)
+            {
+                if (singleTextPartSelection.presenter.SelectedVariation != null)
+                {
+                    textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = singleTextPartSelection.presenter.SelectedVariation.PredifinedText;
+                }
+                else
+                {
+                    textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = "";
                 }
             }
             try
@@ -160,12 +127,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             catch (FileNotFoundException)
             {
                 OpenMessageDialog(FILE_NOT_FOUND_TITLE, DEFAULT_TEMPLATE_NOT_FOUND_TEXT);
-
             }
             catch (IOException)
             {
                 OpenMessageDialog(IOEXCEPTION_DIALOG_TITLE, IOEXCEPTION_DIALOG_TEXT);
-
             }
             catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
             {
@@ -180,7 +145,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
             if (chooseCriteriaManager.ShowDialog() == DialogResult.OK)
             {
-
                 for (int i = 0; i < chooseCriteriaManager.SelectedItemsIndexes.Count; i++)
                 {
                     int criteriaIndex = chooseCriteriaManager.SelectedItemsIndexes[i];
@@ -217,7 +181,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
                     SavepathSerializer.Instance.SaveSavepath(newSavepath.FileName);
                     OpenMessageDialog(CHOOSE_TEMPLATE_TITLE, CHOOSE_TEMPLATE_TEXT);
-
                 }
             }
             catch (FileNotFoundException)
@@ -283,7 +246,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
             IdInternDetails.CleanUI();
             RefreshView();
-
         }
 
         private void datengrundlageErstellenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -317,9 +279,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 OpenMessageDialog(INVALID_PATH_TITLE, INVALID_PATH_TEXT + "(Datei.xml)");
             }
-
         }
-
 
         private void kriterienBearbeitenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -350,7 +310,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-
             if (IdInternDetails.LoadedDataPath != "")
             {
                 IdInternDetails.SaveDetails();
@@ -359,14 +318,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 IdInternDetails.SaveDetailsAs();
             }
-
         }
 
         private void seriendruckfeldDateiErstellenToolStripMenuItem_MouseHover(object sender, EventArgs e)
         {
             IWin32Window win = menuStrip1;
             ToolTipMailmerge.Show(TOOLTIP_TEXT, win);
-
         }
 
         private void seriendruckfeldDateiErstellenToolStripMenuItem_MouseLeave(object sender, EventArgs e)
@@ -379,8 +336,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         {
             MainWindowV_KeyDown(sender, e);
         }
-
-        #endregion
     }
 
     public enum Direction { Up, Down }
