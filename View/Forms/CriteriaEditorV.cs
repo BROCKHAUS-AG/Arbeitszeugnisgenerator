@@ -30,7 +30,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         public CriteriaEditorV(Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex, int preselectedGrade, int preselectedVar)
         {
             InitializeComponent();
-            presenter = new CriteriaEditorP(this, shownCriteria, criteriaList, criteriaIndex, preselectedGrade, preselectedVar);
+            presenter = new CriteriaEditorP(this, shownCriteria, preselectedGrade, preselectedVar);
             radioButton1.Checked = true;
             presenter.SelectGrade(0);
             RefreshView();

@@ -148,9 +148,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 for (int i = 0; i < chooseCriteriaManager.SelectedItemsIndexes.Count; i++)
                 {
                     int criteriaIndex = chooseCriteriaManager.SelectedItemsIndexes[i];
-                    CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(CriteriaList[criteriaIndex], IdInternDetails.presenter.Sex, CriteriaList, criteriaIndex, this, FlpCriteriaContainer.Controls.Count);
-                    criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
                     InternDetails.Criterias.Add(CriteriaList[criteriaIndex]);
+                    CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(CriteriaList[criteriaIndex], IdInternDetails.presenter.Sex, this, FlpCriteriaContainer.Controls.Count);
+                    criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;;
                     FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
                     textPartSelectionList.Add(criteriaTextSelection);
                 }

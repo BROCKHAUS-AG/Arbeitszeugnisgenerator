@@ -24,11 +24,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 
         public EventHandler DeleteButtonClicked;
 
-        public CriteriaTextSelectionV(Criteria selectedCriteria, Sex sex, List<Criteria> criteriaList, int criteriaIndex , MainWindowV view, int position)
+        public CriteriaTextSelectionV(Criteria selectedCriteria, Sex sex, MainWindowV view, int position)
         {
             InitializeComponent();
-            CriteriaList = criteriaList;
-            CriteriaIndex = criteriaIndex;
             presenter = new CriteriaTextSelectionP(this, selectedCriteria);
             viewState = ViewState.WaitingForInput;
             this.sex = sex;

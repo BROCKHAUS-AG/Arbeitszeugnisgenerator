@@ -1,4 +1,5 @@
-﻿using Brockhaus.PraktikumZeugnisGenerator.Model;
+﻿using Brockhaus.PraktikumZeugnisGenerator.Dialogs;
+using Brockhaus.PraktikumZeugnisGenerator.Model;
 using Brockhaus.PraktikumZeugnisGenerator.View.Forms;
 using Brockhaus.PraktikumZeugnisGenerator.View.UC;
 using System;
@@ -14,7 +15,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         public Grade SelectedGrade;
         public Variation SelectedVariation;
         private List<Criteria> CriteriaList;
-
 
         private Criteria CriteriaBackup;
         private Grade SelectedGradeBackup;
@@ -49,33 +49,23 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             }
             set
             {
-                if (value == "") return;
-                if (CriteriaList.FindAll(c => c.Name == value && c != CurShowedCriteria).Count != 0)
+                if (!(value == ""))
                 {
-                    view.InvalidNameChange();
-                    view.RefreshView();
-                    return;
+                    CurShowedCriteria.Name = value;
                 }
-
-
-
-                CurShowedCriteria.Name = value;
-
             }
         }
 
-        public CriteriaEditorP(CriteriaEditorV view, Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex)
+        public CriteriaEditorP(CriteriaEditorV view, Criteria shownCriteria)
         {
-            CriteriaList = criteriaList;
-            CriteriaIndex = criteriaIndex;
             CurShowedCriteria = shownCriteria;
             CriteriaBackup = shownCriteria.CreateBackup();
 
             this.view = view;
         }
 
-        public CriteriaEditorP(CriteriaEditorV view, Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex, int preselectedGrade, int preselectedVariation) :
-            this(view, shownCriteria, criteriaList, criteriaIndex)
+        public CriteriaEditorP(CriteriaEditorV view, Criteria shownCriteria, int preselectedGrade, int preselectedVariation) :
+            this(view, shownCriteria)
         {
             Viewstate = ViewState.IsRefreshing;
             if (preselectedGrade != -1)
