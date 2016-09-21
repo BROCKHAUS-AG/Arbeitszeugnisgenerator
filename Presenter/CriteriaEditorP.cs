@@ -14,12 +14,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         public Criteria CurShowedCriteria;
         public Grade SelectedGrade;
         public Variation SelectedVariation;
-        private List<Criteria> CriteriaList;
 
         private Criteria CriteriaBackup;
         private Grade SelectedGradeBackup;
         private Variation SelectedVariationBackup;
-        private int CriteriaIndex;
         private ViewState Viewstate = ViewState.WaitingForInput;
 
 

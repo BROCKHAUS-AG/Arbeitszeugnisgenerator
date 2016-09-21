@@ -13,11 +13,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
     {
         private const string KEINE_AUSWAHL = "";
         private bool isExtended = false;
-        private List<Criteria> CriteriaList;
         public CriteriaTextSelectionP presenter;
         ViewState viewState;
         Sex sex;
-        private int CriteriaIndex;
         MainWindowV View;
         private bool GradeSelectedByUser;
         private bool VariationSelectedByUser;
@@ -205,7 +203,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             int selectedGrade = CbxGrade.SelectedIndex;
             int selectedVariation = CbxVariation.SelectedIndex;
 
-            CriteriaEditorV criteriaEditor = new CriteriaEditorV(presenter.CurShowedCriteria, CriteriaList, CriteriaIndex,selectedGrade,selectedVariation);
+            CriteriaEditorV criteriaEditor = new CriteriaEditorV(presenter.CurShowedCriteria,selectedGrade,selectedVariation);
             
             criteriaEditor.ShowDialog();
             

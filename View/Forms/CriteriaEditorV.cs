@@ -23,11 +23,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private ViewState viewState;
 
 
-        public CriteriaEditorV(Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex) : this(shownCriteria, criteriaList, criteriaIndex, 0,0)
+        public CriteriaEditorV(Criteria shownCriteria) : this(shownCriteria,0,0)
         {
         }
 
-        public CriteriaEditorV(Criteria shownCriteria, List<Criteria> criteriaList, int criteriaIndex, int preselectedGrade, int preselectedVar)
+        public CriteriaEditorV(Criteria shownCriteria, int preselectedGrade, int preselectedVar)
         {
             InitializeComponent();
             presenter = new CriteriaEditorP(this, shownCriteria, preselectedGrade, preselectedVar);

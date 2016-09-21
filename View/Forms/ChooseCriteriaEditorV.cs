@@ -144,7 +144,7 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
         {
             if (viewState == ViewState.IsRefreshing) return;
             int criteriaIndex = CriteriaList.IndexOf(presenter.SelectedCriteria);
-            CriteriaEditorV criteriaEditorV = new CriteriaEditorV(presenter.SelectedCriteria, CriteriaList, criteriaIndex);
+            CriteriaEditorV criteriaEditorV = new CriteriaEditorV(presenter.SelectedCriteria);
             criteriaEditorV.ShowDialog();
             RefreshView();
         }
