@@ -148,7 +148,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 
         private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
         {
-            string tempTemplatePath = @"Files\Vorlage.docx";
+            string tempTemplatePath = @"Files\temp.docx";
             DocX document;
             if (SavepathSerializer.Instance.SavePath != "")
             {

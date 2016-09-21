@@ -164,6 +164,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 CriteriaTextSelectionV castedSender = (CriteriaTextSelectionV)sender;
                 textPartSelectionList.Remove(castedSender);
+                InternDetails.Criterias.Remove(castedSender.presenter.CurShowedCriteria);
                 (castedSender).DeleteButtonClicked -= this.BtnRemoveCriteria_Click;
                 FlpCriteriaContainer.Controls.Remove(castedSender);
             }
