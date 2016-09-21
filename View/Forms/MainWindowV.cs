@@ -148,13 +148,29 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 for (int i = 0; i < chooseCriteriaManager.SelectedItemsIndexes.Count; i++)
                 {
                     int criteriaIndex = chooseCriteriaManager.SelectedItemsIndexes[i];
-                    InternDetails.Criterias.Add(CriteriaList[criteriaIndex]);
+                    InternDetails.Criterias.Add(CriteriaList[criteriaIndex].guid);
                     CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(CriteriaList[criteriaIndex], IdInternDetails.presenter.Sex, this, FlpCriteriaContainer.Controls.Count);
+                    InternDetails.Variations.Add(criteriaTextSelection.presenter.SelectedVariation.guid); 
                     criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;;
                     FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
                     textPartSelectionList.Add(criteriaTextSelection);
                 }
             }
+            this.ResumeLayout();
+        }
+
+        private void AddCriteriaOnLoad()
+        {
+            this.SuspendLayout();
+            List<Criteria> tempList = InternDetails.GetOpenCriterias(CriteriaList);
+            foreach(Criteria criteria in tempList)
+            {
+                CriteriaTextSelectionV criteriaTextSelection = new CriteriaTextSelectionV(criteria, IdInternDetails.presenter.Sex, this, FlpCriteriaContainer.Controls.Count);
+                criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click; ;
+                FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
+                textPartSelectionList.Add(criteriaTextSelection);
+            }
+
             this.ResumeLayout();
         }
 
@@ -164,7 +180,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 CriteriaTextSelectionV castedSender = (CriteriaTextSelectionV)sender;
                 textPartSelectionList.Remove(castedSender);
-                InternDetails.Criterias.Remove(castedSender.presenter.CurShowedCriteria);
+                InternDetails.Variations.Remove(castedSender.presenter.SelectedVariation.guid);
+                InternDetails.Criterias.Remove(castedSender.presenter.CurShowedCriteria.guid);
                 (castedSender).DeleteButtonClicked -= this.BtnRemoveCriteria_Click;
                 FlpCriteriaContainer.Controls.Remove(castedSender);
             }
@@ -209,6 +226,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private void öffnenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             IdInternDetails.LoadDetails();
+            AddCriteriaOnLoad();
             RefreshView();
         }
 

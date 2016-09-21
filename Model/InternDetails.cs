@@ -21,13 +21,16 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
         public string Exercises { get; set; }
 
         public string PracitcalExperience { get; set; }
-        public List<Criteria> Criterias { get; set; }
+        public List<Guid> Criterias { get; set; }
+
+        public List<Guid> Variations { get; set; }
 
         public InternDetails() {
             DateOfBirth = DateTime.Now;
             FromDate = DateTime.Now;
             UntilDate = DateTime.Now;
-            Criterias = new List<Criteria>();
+            Criterias = new List<Guid>();
+            Variations = new List<Guid>();
         }
 
         public void Serialize(string savePath)
@@ -71,6 +74,25 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
         {
             MessageDialog messagedialog = new MessageDialog(INVALID_FILE_TITLE, INVALID_FILE_TEXT);
             messagedialog.ShowDialog();
+        }
+
+        public List<Criteria> GetOpenCriterias(List<Criteria> allCriterias)
+        {
+
+            List<Criteria> tempList = new List<Criteria>();
+
+            foreach(Guid id in Criterias)
+            {
+                foreach(Criteria crit in allCriterias)
+                {
+                    if(id == crit.guid)
+                    {
+                        tempList.Add(crit);
+                    }
+                }
+            }
+
+            return tempList;
         }
     }
     public enum Sex
