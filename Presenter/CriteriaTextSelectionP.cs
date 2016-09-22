@@ -2,6 +2,7 @@
 using Brockhaus.PraktikumZeugnisGenerator.View.UC;
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 {
@@ -63,6 +64,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             curShowedCriteria = shownCriteria;
         }
 
+        public CriteriaTextSelectionP(CriteriaTextSelectionV view, Criteria shownCriteria, List<Guid> savedVariations):this(view, shownCriteria)
+        {
+            SelectVariationBySavedVariations(savedVariations);
+        }
+
         public void SelectGrade(int selectIndex) {
             if (selectIndex == -1) return;
             if (selectIndex < 0 || selectIndex >= CurShowedCriteria.Grades.Length)
@@ -93,6 +99,25 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         {
             SelectedVariation = selectedGrade.Variations.Find(c => c.Name == variation);
             view.RefreshView();
+        }
+
+        private void SelectVariationBySavedVariations(List<Guid> SavedVariations)
+        {
+            SelectedVariation = null;
+            Variation tempVariation;
+            foreach(Guid variationID in SavedVariations)
+            {
+                foreach(Grade usedGrades in CurShowedCriteria.Grades)
+                {
+                    tempVariation = usedGrades.Variations.Find(variation => variation.guid == variationID);
+                    if (tempVariation != null)
+                    {
+                        SelectedGrade = usedGrades;
+                        SelectedVariation = tempVariation;
+                        return;
+                    }
+                }
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private const string KRITERIUM_LOESCHEN_MESSAGE = "Wollen Sie die ausgewählten Elemente wirklich löschen?";
 
         private List<Criteria> CriteriaList;
-        public ChooseCriteriaManagerP presenter;
+        public ChooseCriteriaManagerPresenter presenter;
         private ViewState viewState;
         public List<int> SelectedItemsIndexes = new List<int>();
         private CheckListboxWorkState Checkstate = CheckListboxWorkState.isWaiting;
@@ -27,7 +27,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         {
             InitializeComponent();
             CriteriaList = criteriaList;
-            presenter = new ChooseCriteriaManagerP(this, criteriaList);
+            presenter = new ChooseCriteriaManagerPresenter(this, criteriaList);
             RefreshView();
         }
 

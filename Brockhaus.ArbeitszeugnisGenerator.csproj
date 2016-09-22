@@ -64,12 +64,12 @@
     <Compile Include="Model\Criteria.cs" />
     <Compile Include="Model\Grade.cs" />
     <Compile Include="Model\InternDetails.cs" />
-    <Compile Include="Presenter\ChooseCriteriaEditorP.cs" />
+    <Compile Include="Presenter\ChooseCriteriaEditorPresenter.cs" />
     <Compile Include="Services\CriteriasWrapper.cs" />
     <Compile Include="Model\Variation.cs" />
-    <Compile Include="Presenter\ChooseCriteriaManagerP.cs" />
+    <Compile Include="Presenter\ChooseCriteriaManagerPresenter.cs" />
     <Compile Include="Presenter\CriteriaTextSelectionP.cs" />
-    <Compile Include="Presenter\CriteriaEditorP.cs" />
+    <Compile Include="Presenter\CriteriaEditorPresenter.cs" />
     <Compile Include="Presenter\InternDetailsP.cs" />
     <Compile Include="Presenter\MainWindowP.cs" />
     <Compile Include="Program.cs" />

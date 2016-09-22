@@ -19,7 +19,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private const string RENAME_VARIATION_TEXT = "Bitte neuen Namen eingeben.";
         private const string REMOVE_VARIATION_TITLE = "Variation löschen";
         private const string REMOVE_VARIATION_TEXT = "Wollen sie diese Variation wirklich löschen?";
-        public CriteriaEditorP presenter;
+        public CriteriaEditorPresenter presenter;
         private ViewState viewState;
 
 
@@ -30,7 +30,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         public CriteriaEditorV(Criteria shownCriteria, int preselectedGrade, int preselectedVar)
         {
             InitializeComponent();
-            presenter = new CriteriaEditorP(this, shownCriteria, preselectedGrade, preselectedVar);
+            presenter = new CriteriaEditorPresenter(this, shownCriteria, preselectedGrade, preselectedVar);
             radioButton1.Checked = true;
             presenter.SelectGrade(0);
             RefreshView();

@@ -4,8 +4,8 @@ using System.Windows.Forms;
 using Brockhaus.PraktikumZeugnisGenerator.Presenter;
 using Brockhaus.PraktikumZeugnisGenerator.Model;
 using Brockhaus.PraktikumZeugnisGenerator.View.Forms;
-using System.Collections.Generic;
 using Brockhaus.PraktikumZeugnisGenerator.Services;
+using System.Collections.Generic;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 {
@@ -19,17 +19,27 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         MainWindowV View;
         private bool GradeSelectedByUser;
         private bool VariationSelectedByUser;
-
         public EventHandler DeleteButtonClicked;
 
-        public CriteriaTextSelectionV(Criteria selectedCriteria, Sex sex, MainWindowV view, int position)
+        public CriteriaTextSelectionV(Criteria selectedCriteria, Sex sex, MainWindowV view, int position, List<Guid> savedVariations)
         {
             InitializeComponent();
-            presenter = new CriteriaTextSelectionP(this, selectedCriteria);
+
+            if(savedVariations == null)
+            {
+                presenter = new CriteriaTextSelectionP(this, selectedCriteria);
+                GradeSelectedByUser = false;
+                VariationSelectedByUser = false;
+            }
+            else
+            {
+                presenter = new CriteriaTextSelectionP(this, selectedCriteria, savedVariations);
+                GradeSelectedByUser = true;
+                VariationSelectedByUser = true;
+            }
+
             viewState = ViewState.WaitingForInput;
             this.sex = sex;
-            GradeSelectedByUser = false;
-            VariationSelectedByUser = false;
             View = view;
             RefreshView();
         }
@@ -48,7 +58,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         }
 
         #region Refresh Methoden
-
         private void RefreshSelectedGrade()
         {
             Criteria curShowedCriteria = presenter.CurShowedCriteria;
@@ -145,9 +154,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             else
             {
                 return false;
-            }
-
-            
+            }            
         }
 
         #endregion
@@ -159,7 +166,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             if (viewState == ViewState.IsRefreshing) return;
             GradeSelectedByUser = true;
             VariationSelectedByUser = false;
+            if(presenter.SelectedVariation != null)
+            {
+                View.InternDetails.SavedVariations.Remove(presenter.SelectedVariation.guid);
+            }
             presenter.SelectGrade(CbxGrade.SelectedIndex);
+            View.InternDetails.SavedVariations.Add(presenter.SelectedVariation.guid);
         }
 
         private void CbxVariation_SelectedIndexChanged(object sender, EventArgs e)
@@ -167,7 +179,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             if (viewState == ViewState.IsRefreshing) return;
             GradeSelectedByUser = true;
             VariationSelectedByUser = true;
-          presenter.SelectVariationByReference(CbxVariation.SelectedItem.ToString());
+            if (presenter.SelectedVariation != null)
+            {
+                View.InternDetails.SavedVariations.Remove(presenter.SelectedVariation.guid);
+            }
+            presenter.SelectVariationByReference(CbxVariation.SelectedItem.ToString());
+            View.InternDetails.SavedVariations.Add(presenter.SelectedVariation.guid);
         }
 
         private void BtnExtend_Click(object sender, EventArgs e)
@@ -216,10 +233,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             Refresh();
            
         }
-
-
-
-
 
         private void BtnUp_Click(object sender, EventArgs e)
         {

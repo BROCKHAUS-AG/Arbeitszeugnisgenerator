@@ -24,7 +24,7 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
         private const string KRITERIUM_LOESCHEN_MESSAGE = "Wollen sie das Kriterium wirklich löschen?";
 
         private List<Criteria> CriteriaList;
-        public ChooseCriteriaEditorP presenter;
+        public ChooseCriteriaEditorPresenter presenter;
         private ViewState viewState;
         public int criteriaIndex;
 
@@ -32,7 +32,7 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
         {
             InitializeComponent();
             CriteriaList = criteriaList;
-            presenter = new ChooseCriteriaEditorP(this, criteriaList);
+            presenter = new ChooseCriteriaEditorPresenter(this, criteriaList);
             RefreshView();
         }
 

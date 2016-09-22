@@ -17,7 +17,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
             Variations = new List<Variation>();
             Name = name;
         }
-
+        
         internal Grade CreateBackup()
         {
             Grade newGrade = new Grade(Name);

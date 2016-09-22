@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Model
 {
@@ -19,22 +20,21 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
         public DateTime FromDate { get; set; }
         public DateTime UntilDate { get; set; }
         public string Exercises { get; set; }
-
         public string PracitcalExperience { get; set; }
-        public List<Guid> Criterias { get; set; }
-
-        public List<Guid> Variations { get; set; }
-
+        public List<Guid> SavedVariations { get; set; }
+        public List<Guid> SavedCriterias { get; set; }
+       
         public InternDetails() {
             DateOfBirth = DateTime.Now;
             FromDate = DateTime.Now;
             UntilDate = DateTime.Now;
-            Criterias = new List<Guid>();
-            Variations = new List<Guid>();
+            SavedVariations = new List<Guid>();
+            SavedCriterias = new List<Guid>();
         }
 
         public void Serialize(string savePath)
         {
+
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(InternDetails));
@@ -48,6 +48,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
            {
                 OpenMessageDialog();
            }
+        }
+
+        public List<Criteria> GetLastSessionCriterias(List<Criteria> allCriterias)
+        {
+            return allCriterias.Where(criteria => SavedCriterias.Contains(criteria.guid)).ToList();
         }
 
         public static InternDetails Deserialize(string loadPath)
@@ -75,26 +80,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
             MessageDialog messagedialog = new MessageDialog(INVALID_FILE_TITLE, INVALID_FILE_TEXT);
             messagedialog.ShowDialog();
         }
-
-        public List<Criteria> GetOpenCriterias(List<Criteria> allCriterias)
-        {
-
-            List<Criteria> tempList = new List<Criteria>();
-
-            foreach(Guid id in Criterias)
-            {
-                foreach(Criteria crit in allCriterias)
-                {
-                    if(id == crit.guid)
-                    {
-                        tempList.Add(crit);
-                    }
-                }
-            }
-
-            return tempList;
-        }
     }
+
     public enum Sex
     {
         Male,Female
