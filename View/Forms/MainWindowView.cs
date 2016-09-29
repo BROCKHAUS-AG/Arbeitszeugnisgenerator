@@ -172,18 +172,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 for (int i = 0; i < chooseCriteriaManager.SelectedItemsIndexes.Count; i++)
                 {
-
                     int criteriaIndex = chooseCriteriaManager.SelectedItemsIndexes[i];
-                    CurrentlyShownCriterias.Add(CurrentlyNotShownCriterias[criteriaIndex]);
-                    CriteriaTextSelectionView criteriaTextSelection = new CriteriaTextSelectionView(CurrentlyNotShownCriterias[criteriaIndex], IdInternDetails.presenter.Sex, this, FlpCriteriaContainer.Controls.Count, null);
-                    if(criteriaTextSelection.presenter.SelectedVariation != null)
-                    {
-                        InternDetails.SavedVariations.Add(criteriaTextSelection.presenter.SelectedVariation.guid);
-                    }
-                    InternDetails.SavedCriterias.Add(CurrentlyNotShownCriterias[criteriaIndex].guid);
-                    criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
-                    FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
-                    textPartSelectionList.Add(criteriaTextSelection);
+                    AddCriteria(CurrentlyNotShownCriterias[criteriaIndex], null, false);
                 }
             }
             this.ResumeLayout();
@@ -195,14 +185,32 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             List<Criteria> tempList = InternDetails.GetLastSessionCriterias(CriteriaList);
             foreach (Criteria criteria in tempList)
             {
-                CurrentlyShownCriterias.Add(criteria);
-                CriteriaTextSelectionView criteriaTextSelection = new CriteriaTextSelectionView(criteria, IdInternDetails.presenter.Sex, this, FlpCriteriaContainer.Controls.Count, InternDetails.SavedVariations);
-                criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
-                FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
-                textPartSelectionList.Add(criteriaTextSelection);
+                AddCriteria(criteria, InternDetails.SavedVariations, true);
+            }
+            this.ResumeLayout();
+        }
+
+        private void AddCriteria(Criteria criteria, List<Guid> savedVariations, Boolean isLoading)
+        {
+
+            CriteriaTextSelectionView criteriaTextSelection = new CriteriaTextSelectionView(criteria, IdInternDetails.presenter.Sex, this, FlpCriteriaContainer.Controls.Count, savedVariations);
+
+            CurrentlyShownCriterias.Add(criteria);
+
+            //not on loading profile
+            if (!isLoading)
+            {
+                InternDetails.SavedCriterias.Add(criteria.guid);
+                if(criteriaTextSelection.presenter.SelectedVariation != null)
+                {
+                    InternDetails.SavedVariations.Add(criteriaTextSelection.presenter.SelectedVariation.guid);
+                }               
             }
 
-            this.ResumeLayout();
+            //add the views
+            criteriaTextSelection.DeleteButtonClicked += this.BtnRemoveCriteria_Click;
+            FlpCriteriaContainer.Controls.Add(criteriaTextSelection);
+            textPartSelectionList.Add(criteriaTextSelection);
         }
 
         private void RemoveCriteria(CriteriaTextSelectionView removedCriteria)

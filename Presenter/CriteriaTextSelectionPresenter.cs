@@ -101,11 +101,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             view.RefreshView();
         }
 
-        private void SelectVariationBySavedVariations(List<Guid> SavedVariations)
+        private void SelectVariationBySavedVariations(List<Guid> savedVariations)
         {
             SelectedVariation = null;
             Variation tempVariation;
-            foreach(Guid variationID in SavedVariations)
+            foreach(Guid variationID in savedVariations)
             {
                 foreach(Grade usedGrades in CurShowedCriteria.Grades)
                 {
