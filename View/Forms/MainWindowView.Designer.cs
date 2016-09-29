@@ -235,7 +235,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.datengrundlageErstellenToolStripMenuItem.Name = "datengrundlageErstellenToolStripMenuItem";
             this.datengrundlageErstellenToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.datengrundlageErstellenToolStripMenuItem.Text = "Vorlage";
-            this.datengrundlageErstellenToolStripMenuItem.Click += new System.EventHandler(this.datengrundlageErstellenToolStripMenuItem_Click_1);
             // 
             // vorlageAuswählenToolStripMenuItem
             // 

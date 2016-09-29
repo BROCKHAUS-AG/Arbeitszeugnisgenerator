@@ -77,33 +77,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             Close();
         }
 
-        private void BtnAddCriteria_Click(object sender, EventArgs e)
-        {
-            if (viewState == ViewState.IsRefreshing) return;
-
-            InputDialog chooseCriteriaName = new InputDialog(NAME_WÄHLEN_TITLE, NAME_WÄHLEN_MESSAGE);
-            if (chooseCriteriaName.ShowDialog() == DialogResult.OK)
-            {
-                presenter.AddCriteria(chooseCriteriaName.InputText);
-                BtnEditCriteria_Click(sender, e);
-            }
-        }
-
-        private void BtnRemoveCriteria_Click(object sender, EventArgs e)
-        {
-            if (viewState == ViewState.IsRefreshing) return;
-
-            ConfirmationDialog confirmation = new ConfirmationDialog(KRITERIUM_LOESCHEN_TITLE, KRITERIUM_LOESCHEN_MESSAGE);
-            if (confirmation.ShowDialog() == DialogResult.Yes)
-            {
-                foreach (int index in LbxCriteria.SelectedIndices)
-                {
-                    presenter.RemoveCriteria(index);
-                }
-
-            }
-        }
-
         private void BtnEditCriteria_Click(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;

@@ -1,17 +1,10 @@
 ﻿using Brockhaus.Arbeitszeugnisgenerator.Presenter;
 using Brockhaus.PraktikumZeugnisGenerator.Dialogs;
 using Brockhaus.PraktikumZeugnisGenerator.Model;
-using Brockhaus.PraktikumZeugnisGenerator.Presenter;
 using Brockhaus.PraktikumZeugnisGenerator.View.Forms;
 using Brockhaus.PraktikumZeugnisGenerator.View.UC;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
@@ -109,7 +102,7 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
             Close();
         }
 
-        private void BtnCancle_Click(object sender, EventArgs e)
+        private void BtnCancel_Click(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
 
@@ -173,7 +166,7 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
             if (e.KeyData == Keys.Escape)
             {
 
-                BtnCancle_Click(sender, e);
+                BtnCancel_Click(sender, e);
             }
         }
         #endregion

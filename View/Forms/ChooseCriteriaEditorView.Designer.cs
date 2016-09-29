@@ -74,7 +74,7 @@
             this.BtnCancle.TabIndex = 8;
             this.BtnCancle.Text = "Abbrechen";
             this.BtnCancle.UseVisualStyleBackColor = true;
-            this.BtnCancle.Click += new System.EventHandler(this.BtnCancle_Click);
+            this.BtnCancle.Click += new System.EventHandler(this.BtnCancel_Click);
             // 
             // BtnOk
             // 

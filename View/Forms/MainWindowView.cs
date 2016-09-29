@@ -329,39 +329,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             RefreshView();
         }
 
-        private void datengrundlageErstellenToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog folderBrowserDialog = new SaveFileDialog();
-            folderBrowserDialog.Filter = "Excel Dateien | *xlsx";
-            folderBrowserDialog.ShowDialog();
-            try
-            {
-                if (folderBrowserDialog.FileName != "" && folderBrowserDialog.FileName != null)
-                {
-                    if (Path.GetExtension(folderBrowserDialog.FileName) != ".xlsx")
-                    {
-                        folderBrowserDialog.FileName += ".xlsx";
-                    }
-                    try
-                    {
-                        File.Copy(Path.GetFullPath(@"Files\Daten.xlsx"), folderBrowserDialog.FileName);
-                    }
-                    catch (FileNotFoundException)
-                    {
-                        OpenMessageDialog(FILE_NOT_FOUND_TITLE, FILE_NOT_FOUND_TEXT);
-                    }
-                }
-            }
-            catch (SecurityException)
-            {
-                OpenMessageDialog(AUTHORIZATION_MISSING_TITLE, AUTHORIZATION_MISSING_TEXT);
-            }
-            catch (Exception ex) when (ex is DirectoryNotFoundException || ex is PathTooLongException)
-            {
-                OpenMessageDialog(INVALID_PATH_TITLE, INVALID_PATH_TEXT + "(Datei.xml)");
-            }
-        }
-
         private void kriterienBearbeitenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ChooseCriteriaEditorView chooseCriteriaManager = new ChooseCriteriaEditorView(CriteriaList);
@@ -399,33 +366,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 IdInternDetails.SaveDetailsAs();
             }
-        }
-
-        private void seriendruckfeldDateiErstellenToolStripMenuItem_MouseHover(object sender, EventArgs e)
-        {
-            IWin32Window win = menuStrip1;
-            ToolTipMailmerge.Show(TOOLTIP_TEXT, win);
-        }
-
-        private void seriendruckfeldDateiErstellenToolStripMenuItem_MouseLeave(object sender, EventArgs e)
-        {
-            IWin32Window win = menuStrip1;
-            ToolTipMailmerge.Hide(win);
-        }
-
-        private void menuStrip1_KeyDown(object sender, KeyEventArgs e)
-        {
-            MainWindowV_KeyDown(sender, e);
-        }
-
-        private void vScrollBar1_Scroll(object sender, ScrollEventArgs e)
-        {
-
-        }
-
-        private void datengrundlageErstellenToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-
         }
     }
 

@@ -16,8 +16,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
             this.Name = name;
             guid = Guid.NewGuid();
         }
-
-
+        
         internal Variation CreateBackup()
         {
             Variation newVariation = new Variation();
