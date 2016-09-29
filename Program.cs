@@ -19,7 +19,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainWindowV(CriteriasWrapper.Instance.Criterias));
+            Application.Run(new MainWindowView(CriteriasWrapper.Instance.Criterias));
             CriteriasWrapper.Instance.SaveCriteriaWrapper();
         }
     }

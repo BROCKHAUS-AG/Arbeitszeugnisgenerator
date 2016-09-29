@@ -22,9 +22,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private const string INVALID_FILE_FORMAT_TITLE = "Ungültiges Dateiformat";
         private const string INVALID_FILE_FORMAT_TEXT = "Bitte nur Datein mit einem gültigen Dateiformat auswählen.";
         private const string SAVEDIALOG_TITLE = "Personendaten speichern untern";
-        public InternDetailsP presenter;
+        public InternDetailsPresenter presenter;
         private ViewState viewState;
-        private MainWindowV Basis;
+        private MainWindowView Basis;
         public string LoadedDataPath;
         public bool BulletpointsPractExp;
         public bool BulletpointsExcercises;
@@ -34,7 +34,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         {
             InitializeComponent();
 
-            presenter = new InternDetailsP(this);
+            presenter = new InternDetailsPresenter(this);
             viewState = ViewState.WaitingForInput;
             BulletpointsExcercises = false;
             BulletpointsPractExp = false;
@@ -44,7 +44,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 
         //Dies ist mit absicht nicht im Constructor enthalten, weil dies dafür sorgt, dass der MainWindowV.cs Designer nicht richtig angezeigt wird.
         //Es muss trotzdem die Basis gesetzt werden, damit das Updaten richtig funktioniert
-        public void SetBasis(MainWindowV basis)
+        public void SetBasis(MainWindowView basis)
         {
             Basis = basis;
         }
