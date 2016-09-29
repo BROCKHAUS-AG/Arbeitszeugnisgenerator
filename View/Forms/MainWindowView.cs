@@ -79,14 +79,22 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         public void SwitchElements(CriteriaTextSelectionView cri, Direction direction)
         {
+
+            int count = FlpCriteriaContainer.Controls.Count;
+            int index = FlpCriteriaContainer.Controls.IndexOf(cri);
+
+
             /* Kleiner als 2 == Kein Bewegen möglich */
-            if (FlpCriteriaContainer.Controls.Count < 2) return;
+            if (count < 2) return;
 
             switch (direction)
             {
                 case Direction.Up:
                     /* Den ersten View nicht nach oben verschieben */
-                    FlpCriteriaContainer.Controls.SetChildIndex(cri, FlpCriteriaContainer.Controls.IndexOf(cri) - 1);
+                    if(index > 0)
+                    {
+                        FlpCriteriaContainer.Controls.SetChildIndex(cri, FlpCriteriaContainer.Controls.IndexOf(cri) - 1);
+                    }
                     break;
                 case Direction.Down:
                     /* Den letzen View nicht nach unten verschieben */

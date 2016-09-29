@@ -265,7 +265,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             // informationenToolStripMenuItem
             // 
             this.informationenToolStripMenuItem.Name = "informationenToolStripMenuItem";
-            this.informationenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.informationenToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.informationenToolStripMenuItem.Text = "Informationen";
             this.informationenToolStripMenuItem.Click += new System.EventHandler(this.informationenToolStripMenuItem_Click);
             // 
@@ -291,7 +291,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(730, 1000);
+            this.MaximumSize = new System.Drawing.Size(730, 800);
             this.MinimumSize = new System.Drawing.Size(730, 456);
             this.Name = "MainWindowView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
