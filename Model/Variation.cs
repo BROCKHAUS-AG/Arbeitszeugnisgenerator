@@ -6,7 +6,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
     {
         public string Name { get; set; }
         public string PredifinedText { get; set; }
-
         public Guid guid { get; set; }
 
         public Variation() : this(null)
