@@ -18,6 +18,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
     {
         private const string WORDPROCESS_ERR_TITLE = "Fehler";
         private const string WORDPROCESS_ERR_TEXT = "Es ist ein Fehler aufgetreten. Bitte beachten Sie, dass die Vorlage eine Serienbriefvorlage sein muss.";
+        private const string WORDPROCESS_ERR_EMPTY_FILE = "Das Dokument darf nicht leer sein.";
 
         public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts, bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
@@ -26,7 +27,15 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             //Erstelle nötige Pfade
             string csvFileName = "csvTempFile.csv";
             string fullCsvFilePath = Path.GetFullPath(csvFileName);
-            string tempTemplatePath = CreateDocumentWithSexDependendwords(internDetails.Sex, internDetails);
+            string tempTemplatePath = "";
+            try
+            {
+                tempTemplatePath = CreateDocumentWithSexDependendwords(internDetails.Sex, internDetails);
+            }
+            catch (FileFormatException)
+            {
+                return;
+            }
             string fullTemplatePath = Path.GetFullPath(tempTemplatePath);
 
             //Erstelle nötige Strings
@@ -149,11 +158,20 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
         {
             string tempTemplatePath = @"Files\temp.docx";
-            DocX document;
+            DocX document = null;
             if (SavepathSerializer.Instance.SavePath != "")
             {
                 File.Copy(SavepathSerializer.Instance.SavePath, tempTemplatePath, true);
-                document = DocX.Load(tempTemplatePath);
+                try
+                {
+                    document = DocX.Load(tempTemplatePath);
+                }
+                catch(FileFormatException)
+                {
+                    MessageDialog Dialog = new MessageDialog(WORDPROCESS_ERR_TITLE, WORDPROCESS_ERR_EMPTY_FILE);
+                    Dialog.ShowDialog();
+                    throw new FileFormatException();
+                }
             }
             else
             {
