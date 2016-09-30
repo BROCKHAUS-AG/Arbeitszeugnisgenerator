@@ -34,7 +34,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
 
         public void Serialize(string savePath)
         {
-
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(InternDetails));

@@ -58,6 +58,7 @@
             this.CbxGrade.Name = "CbxGrade";
             this.CbxGrade.Size = new System.Drawing.Size(121, 21);
             this.CbxGrade.TabIndex = 1;
+            this.CbxGrade.SelectedIndexChanged += new System.EventHandler(this.CbxGrade_SelectedIndexChanged_1);
             this.CbxGrade.SelectionChangeCommitted += new System.EventHandler(this.CbxGrade_SelectedIndexChanged);
             // 
             // CbxVariation
@@ -154,7 +155,7 @@
             this.BtnDown.UseVisualStyleBackColor = true;
             this.BtnDown.Click += new System.EventHandler(this.BtnDown_Click);
             // 
-            // CriteriaTextSelectionV
+            // CriteriaTextSelectionView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -174,7 +175,7 @@
             this.Margin = new System.Windows.Forms.Padding(0);
             this.MaximumSize = new System.Drawing.Size(660, 0);
             this.MinimumSize = new System.Drawing.Size(660, 100);
-            this.Name = "CriteriaTextSelectionV";
+            this.Name = "CriteriaTextSelectionView";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(660, 108);
             this.ResumeLayout(false);

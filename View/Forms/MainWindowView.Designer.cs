@@ -178,7 +178,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.hilfeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(714, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(734, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -272,7 +272,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.AutoScroll = true;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(714, 456);
+            this.ClientSize = new System.Drawing.Size(734, 456);
             this.Controls.Add(this.IdInternDetails);
             this.Controls.Add(this.FlpMainContainer);
             this.Controls.Add(this.LblCriteriaCaption);
@@ -280,8 +280,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(730, 800);
-            this.MinimumSize = new System.Drawing.Size(730, 456);
+            this.MaximumSize = new System.Drawing.Size(750, 800);
+            this.MinimumSize = new System.Drawing.Size(750, 456);
             this.Name = "MainWindowView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Arbeitszeugnis-Generator";

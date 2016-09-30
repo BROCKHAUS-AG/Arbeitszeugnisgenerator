@@ -25,7 +25,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
             {
                 newVariation.PredifinedText = (string)this.PredifinedText.Clone();
             }
-            else {
+            else
+            {
                 newVariation.PredifinedText = null;
             }
             return newVariation;

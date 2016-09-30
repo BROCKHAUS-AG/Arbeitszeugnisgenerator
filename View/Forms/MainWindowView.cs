@@ -33,8 +33,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private const string AUTHORIZATION_MISSING_TEXT = "Sie haben nicht genügend Berechtigungen.";
         private const string CREATE_NEW_DOC_TITLE = "Neues Dokument erstellen";
         private const string CREATE_NEW_DOC_TEXT = "Wollen Sie die Daten voher Speichern?";
-        private const string TOOLTIP_TEXT = "Es wird eine Excel Datei erstellt, die Sie benötigen um Zugriff auf die Seriendruckfelder in Word zu bekommen."
-                                              + "\nMehr Informationen finden Sie, wenn sie F1 Drücken, unter dem Punkt \"2.1 die Vorlage erstellen.\"";
+
         public MainWindowPresenter Presenter;
         private ViewState ViewState;
         private List<Criteria> CriteriaList;

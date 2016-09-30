@@ -3,7 +3,6 @@ using Brockhaus.PraktikumZeugnisGenerator.Model;
 using Brockhaus.PraktikumZeugnisGenerator.View.Forms;
 using Brockhaus.PraktikumZeugnisGenerator.View.UC;
 using System;
-using System.Collections.Generic;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 {

@@ -64,7 +64,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 
             LblCurEvaluationCriteria.Text = curShowedCriteria.Name;
             CbxGrade.Items.Clear();
-            foreach (Grade grade in curShowedCriteria.Grades)
+            foreach (Grade grade in curShowedCriteria.GetUsedGrades())
             {
                 CbxGrade.Items.Add(grade.Name);
             }
@@ -72,11 +72,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             {
                 presenter.SelectGrade(0);
             }
-                if (presenter.SelectedGrade != null)
-                {
+            if (presenter.SelectedGrade != null)
+            {
                     CbxGrade.SelectedItem = presenter.SelectedGrade.Name;
-                }
-            
+            }            
         }
 
         private void RefreshVariations()
@@ -248,5 +247,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             View.SwitchElements(this, Direction.Down);
         }
         #endregion
+
+        private void CbxGrade_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
