@@ -97,7 +97,7 @@
             this.LblPredefinedText.MaximumSize = new System.Drawing.Size(250, 70);
             this.LblPredefinedText.MinimumSize = new System.Drawing.Size(250, 70);
             this.LblPredefinedText.Name = "LblPredefinedText";
-            this.LblPredefinedText.Padding = new System.Windows.Forms.Padding(5);
+            this.LblPredefinedText.Padding = new System.Windows.Forms.Padding(5, 5, 5, 10);
             this.LblPredefinedText.Size = new System.Drawing.Size(250, 70);
             this.LblPredefinedText.TabIndex = 5;
             this.LblPredefinedText.Text = "\r\n";
@@ -107,9 +107,9 @@
             this.BtnExtend.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.BtnExtend.Enabled = false;
             this.BtnExtend.Font = new System.Drawing.Font("Microsoft Sans Serif", 5.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnExtend.Location = new System.Drawing.Point(335, 77);
+            this.BtnExtend.Location = new System.Drawing.Point(336, 80);
             this.BtnExtend.Name = "BtnExtend";
-            this.BtnExtend.Size = new System.Drawing.Size(252, 15);
+            this.BtnExtend.Size = new System.Drawing.Size(250, 17);
             this.BtnExtend.TabIndex = 6;
             this.BtnExtend.Text = "\\/";
             this.BtnExtend.UseVisualStyleBackColor = true;

@@ -12,7 +12,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
     public partial class CriteriaTextSelectionView : UserControl
     {
         private const string KEINE_AUSWAHL = "";
-        private bool isExtended = false;
+        private bool isNotExtended = false;
         public CriteriaTextSelectionPresenter presenter;
         ViewState viewState;
         Sex sex;
@@ -129,7 +129,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private void RefreshBtnExtend()
         {
 
-            if (presenter.SelectedVariation != null && CheckLabelHeightToSmall() )
+            if ((presenter.SelectedVariation != null && CheckLabelHeightToSmall()))
             {
                 BtnExtend.Enabled = true;
             }
@@ -146,7 +146,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
 
 
             SizeF extent = graphics.MeasureString(LblPredefinedText.Text, LblPredefinedText.Font, LblPredefinedText.Width);
-            if (extent.Height > LblPredefinedText.Height)
+            if (extent.Height > LblPredefinedText.Height-15)
             {
                return true;
             }
@@ -188,13 +188,22 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             }
             presenter.SelectVariationByReference(CbxVariation.SelectedItem.ToString());
             View.InternDetails.SavedVariations.Add(presenter.SelectedVariation.guid);
+
+            //reset extended labels
+            LblPredefinedText.MaximumSize = new Size(250, 70);
+            isNotExtended = false;
+            BtnExtend.Text = @"\/";
+            if (CheckLabelHeightToSmall())
+            {
+                BtnExtend.Enabled = true;
+            }
         }
 
         private void BtnExtend_Click(object sender, EventArgs e)
         {
             if (viewState == ViewState.IsRefreshing) return;
 
-            if (!isExtended)
+            if (!isNotExtended)
             {
                 LblPredefinedText.MaximumSize = new Size(250, 0);
                 BtnExtend.Text = @"/\";
@@ -204,7 +213,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 LblPredefinedText.MaximumSize = new Size(250, 70);
                 BtnExtend.Text = @"\/";
             }
-            isExtended = !isExtended;
+            isNotExtended = !isNotExtended;
         }
 
         private void BtnRemove_Click(object sender, EventArgs e)
