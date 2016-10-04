@@ -168,6 +168,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 }
                 catch(FileFormatException)
                 {
+                    SavepathSerializer.Instance.SavePath = "";
                     MessageDialog Dialog = new MessageDialog(WORDPROCESS_ERR_TITLE, WORDPROCESS_ERR_EMPTY_FILE);
                     Dialog.ShowDialog();
                     throw new FileFormatException();
