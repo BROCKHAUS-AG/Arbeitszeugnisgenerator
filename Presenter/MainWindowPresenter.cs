@@ -47,6 +47,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             }
             catch (FileNotFoundException)
             {
+                SavepathSerializer.Instance.SaveSavepath("");
                 MessageDialog message = new MessageDialog(VORLAGE_NICHT_GEFUNDEN_TITLE, VORLAGE_NICHT_GEFUNDEN_TEXT);
                 message.ShowDialog();
                 SavepathSerializer.Instance.SavePath = "";
