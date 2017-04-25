@@ -2,6 +2,8 @@
 using System;
 using System.IO;
 using System.Xml.Serialization;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Model
 {
@@ -13,18 +15,23 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
         public Sex Sex { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime DateNow { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Department { get; set; }
         public DateTime FromDate { get; set; }
         public DateTime UntilDate { get; set; }
         public string Exercises { get; set; }
-
         public string PracitcalExperience { get; set; }
+        public List<Guid> SavedVariations { get; set; }
+        public List<Guid> SavedCriterias { get; set; }
 
         public InternDetails() {
+            DateNow = DateTime.Now;
             DateOfBirth = DateTime.Now;
             FromDate = DateTime.Now;
             UntilDate = DateTime.Now;
+            SavedVariations = new List<Guid>();
+            SavedCriterias = new List<Guid>();
         }
 
         public void Serialize(string savePath)
@@ -42,6 +49,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
            {
                 OpenMessageDialog();
            }
+        }
+
+        public List<Criteria> GetLastSessionCriterias(List<Criteria> allCriterias)
+        {
+            return allCriterias.Where(criteria => SavedCriterias.Contains(criteria.guid)).ToList();
         }
 
         public static InternDetails Deserialize(string loadPath)
@@ -70,6 +82,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
             messagedialog.ShowDialog();
         }
     }
+
     public enum Sex
     {
         Male,Female

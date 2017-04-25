@@ -13,18 +13,32 @@ using Novacode;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
-    public class WordDocumentManipulater
+
+    class WordDocumentManipulater
     {
         private const string WORDPROCESS_ERR_TITLE = "Fehler";
         private const string WORDPROCESS_ERR_TEXT = "Es ist ein Fehler aufgetreten. Bitte beachten Sie, dass die Vorlage eine Serienbriefvorlage sein muss.";
+        private const string WORDPROCESS_ERR_EMPTY_FILE = "Das Dokument darf nicht leer sein.";
 
         public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts, bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
+
+
+            //Erstelle nötige Pfade
             string csvFileName = "csvTempFile.csv";
             string fullCsvFilePath = Path.GetFullPath(csvFileName);
-            string tempTemplatePath = CreateDocumentWithSexDependendwords(internDetails.Sex, internDetails);
+            string tempTemplatePath = "";
+            try
+            {
+                tempTemplatePath = CreateDocumentWithSexDependendwords(internDetails.Sex, internDetails);
+            }
+            catch (FileFormatException)
+            {
+                return;
+            }
             string fullTemplatePath = Path.GetFullPath(tempTemplatePath);
-            
+
+            //Erstelle nötige Strings
             string lastname = internDetails.LastName != null ? internDetails.LastName : "";
             string firstname = internDetails.FirstName != null ? internDetails.FirstName : "";
             string dateOfBirth = internDetails.DateOfBirth.Date.ToString().Replace(" 00:00:00", "");
@@ -35,14 +49,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             string praticalExp = internDetails.PracitcalExperience != null ? internDetails.PracitcalExperience : "";
             string today = DateTime.Now.Date.ToString().Replace(" 00:00:00", "");
             string criteriaEvaluation = "";
-
             foreach (KeyValuePair<string, string> text in textParts)
             {
                 criteriaEvaluation += text.Value + " ";
             }
-
-            criteriaEvaluation = StringEditor.replaceMuster(internDetails, criteriaEvaluation);
-            criteriaEvaluation = StringEditor.replaceWordsBasedOnGender(internDetails, criteriaEvaluation);
+            criteriaEvaluation = StringEditor.ReplaceDatesAndNames(internDetails, criteriaEvaluation);
+            criteriaEvaluation = StringEditor.ReplaceWordsBasedOnGender(internDetails, criteriaEvaluation);
             Regex backSlashN = new Regex(@"\n");
             criteriaEvaluation = backSlashN.Replace(criteriaEvaluation, " ");
 
@@ -102,6 +114,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 MessageDialog msg = new MessageDialog(WORDPROCESS_ERR_TITLE, WORDPROCESS_ERR_TEXT);
             }
 
+
+
             //Erstelle .csv Datei für Serienbrief
             using (FileStream csvFileStream = new FileStream(csvFileName, FileMode.Create))
             {
@@ -116,7 +130,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             Word.Application wrdApp = new Word.Application();
             Word._Document wrdDoc = null;
             wrdApp.Visible = true;
-
             try
             {
                 wrdDoc = wrdApp.Documents.Open(fullTemplatePath);
@@ -125,13 +138,12 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 wrdDoc.MailMerge.Destination = Word.WdMailMergeDestination.wdSendToNewDocument;
                 wrdDoc.MailMerge.Execute();
             }
+
             finally
             {
 
                 if (wrdDoc != null)
-                {
                     wrdDoc.Close(false);
-                }
                 wrdApp = null;
             }
             DeleteUsedFiles(csvFileName, tempTemplatePath);
@@ -145,12 +157,21 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 
         private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
         {
-            string tempTemplatePath = @"Files\TempVorlage.docx";
-            DocX document;
+            string tempTemplatePath = @"Files\temp.docx";
+            DocX document = null;
             if (SavepathSerializer.Instance.SavePath != "")
             {
                 File.Copy(SavepathSerializer.Instance.SavePath, tempTemplatePath, true);
-                document = DocX.Load(tempTemplatePath);
+                try
+                {
+                    document = DocX.Load(tempTemplatePath);
+                }
+                catch(FileFormatException)
+                {
+                    MessageDialog Dialog = new MessageDialog(WORDPROCESS_ERR_TITLE, WORDPROCESS_ERR_EMPTY_FILE);
+                    Dialog.ShowDialog();
+                    throw new FileFormatException();
+                }
             }
             else
             {
@@ -158,8 +179,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
                 document = DocX.Load(tempTemplatePath);
             }
 
-            StringEditor.replaceWordsBasedOnGender(document, internDetails,tempTemplatePath);
-            StringEditor.replaceMuster(internDetails, document,tempTemplatePath);
+            StringEditor.ReplaceWordsBasedOnGender(document, internDetails,tempTemplatePath);
+            StringEditor.ReplaceDatesAndNames(document, internDetails, tempTemplatePath);
             return tempTemplatePath;
         }
 

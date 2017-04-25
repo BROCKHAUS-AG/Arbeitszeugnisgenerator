@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Brockhaus.PraktikumZeugnisGenerator.Model
 {
@@ -6,6 +7,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
     {
         public string Name { get; set; }
         public Grade[] Grades { get; set; }
+        public Guid guid { get; set; }
 
         public Criteria() : this(null)
         {
@@ -20,6 +22,20 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
             Grades[3] = new Grade("Ausreichend");
             Grades[4] = new Grade("Mangelhaft");
             Grades[5] = new Grade("Ungenügend");
+            guid = Guid.NewGuid();
+        }
+
+        public List<Grade> GetUsedGrades()
+        {
+            List<Grade> tempList = new List<Grade>();
+            foreach(Grade grade in new List<Grade>(Grades))
+            {
+                if(grade.Variations.Count > 0)
+                {
+                    tempList.Add(grade);
+                }
+            }
+            return tempList;
         }
 
         internal Criteria CreateBackup()
