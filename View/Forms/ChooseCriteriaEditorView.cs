@@ -12,7 +12,7 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
     public partial class ChooseCriteriaEditorView : Form
     {
         private const string NAME_WÄHLEN_MESSAGE = "Name des Kriteriums:";
-        private const string NAME_WÄHLEN_TITLE = "Eingabe für Kriteriumsname";
+        private const string NAME_WÄHLEN_TITLE = "Kriteriumsnamen eingeben";
         private const string KRITERIUM_LOESCHEN_TITLE = "Löschen des Kriteriums bestätigen";
         private const string KRITERIUM_LOESCHEN_MESSAGE = "Wollen sie das Kriterium wirklich löschen?";
 
@@ -35,7 +35,7 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
             RefreshLbxCriteria();
             RefreshBtnEditCriteria();
             RefreshBtnRemoveCriteria();
-            RefreshBtnOk();
+            //RefreshBtnOk();
             viewState = ViewState.WaitingForInput;
         }
 
@@ -78,17 +78,17 @@ namespace Brockhaus.Arbeitszeugnisgenerator.View.Forms
             }
         }
 
-        private void RefreshBtnOk()
+        /*private void RefreshBtnOk()
         {
             if (LbxCriteria.SelectedIndex == -1)
             {
-                BtnOk.Enabled = false;
+                BtnOk.Enabled = true;
             }
             else
             {
                 BtnOk.Enabled = true;
             }
-        }
+        }*/
 
         #endregion
 

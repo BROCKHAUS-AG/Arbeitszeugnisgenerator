@@ -34,6 +34,10 @@
             this.lbxBackground = new System.Windows.Forms.ListBox();
             this.ChbxAll = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             // 
             // BtnOk
             // 
@@ -102,7 +106,7 @@
             this.KeyPreview = true;
             this.Name = "ChooseCriteriaManagerV";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Kriterium Auswahl";
+            this.Text = "Kriteriumswahl";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ChooseCriteriaManagerV_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();

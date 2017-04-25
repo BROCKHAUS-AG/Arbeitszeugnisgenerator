@@ -54,6 +54,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             InternDetails = IdInternDetails.presenter.CurShowedInternDetails;
             FlpCriteriaContainer.HorizontalScroll.Enabled = false;
             FlpCriteriaContainer.VerticalScroll.Enabled = true;
+           
             RefreshToolStripMenu();
             ViewState = ViewState.WaitingForInput;
         }
@@ -76,12 +77,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         private void RefreshToolStripMenu()
         {
-            speichernToolStripMenuItem.Enabled = !IdInternDetails.presenter.emptyFile;
+            //speichernToolStripMenuItem.Enabled = !IdInternDetails.presenter.emptyFile;
         }
 
         public void SwitchElements(CriteriaTextSelectionView cri, Direction direction)
         {
-
             int count = FlpCriteriaContainer.Controls.Count;
             int index = FlpCriteriaContainer.Controls.IndexOf(cri);
 
@@ -176,6 +176,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 }
             }
             this.ResumeLayout();
+            VerticalScroll.Value = 0;
+            IdInternDetails.Focus();
+
         }
 
         private void AddCriteriaOnLoad()
@@ -366,7 +369,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 IdInternDetails.SaveDetailsAs();
             }
         }
+
+        private void IdInternDetails_Load(object sender, EventArgs e)
+        {
+
+        }
     }
+
+    
 
     public enum Direction { Up, Down }
 }

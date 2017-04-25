@@ -57,6 +57,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.FlpMainContainer.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             // 
             // LblCriteriaCaption
             // 
@@ -67,7 +68,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.LblCriteriaCaption.Location = new System.Drawing.Point(30, 327);
             this.LblCriteriaCaption.Name = "LblCriteriaCaption";
             this.LblCriteriaCaption.Size = new System.Drawing.Size(204, 26);
-            this.LblCriteriaCaption.TabIndex = 1;
+            this.LblCriteriaCaption.TabIndex = 7;
             this.LblCriteriaCaption.Text = "Bewertungskriterien";
             this.LblCriteriaCaption.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -79,7 +80,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.BtnAddCriteria.Location = new System.Drawing.Point(3, 3);
             this.BtnAddCriteria.Name = "BtnAddCriteria";
             this.BtnAddCriteria.Size = new System.Drawing.Size(634, 42);
-            this.BtnAddCriteria.TabIndex = 2;
+            this.BtnAddCriteria.TabIndex = 17;
             this.BtnAddCriteria.Text = "+";
             this.BtnAddCriteria.UseVisualStyleBackColor = true;
             this.BtnAddCriteria.Click += new System.EventHandler(this.BtnAddCriteria_Click);
@@ -114,10 +115,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             // BtnGenerate
             // 
             this.BtnGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnGenerate.BackColor = System.Drawing.Color.Snow;
             this.BtnGenerate.Location = new System.Drawing.Point(529, 51);
             this.BtnGenerate.Name = "BtnGenerate";
             this.BtnGenerate.Size = new System.Drawing.Size(108, 23);
-            this.BtnGenerate.TabIndex = 4;
+            this.BtnGenerate.TabIndex = 20;
             this.BtnGenerate.Text = "Zeugnis generieren";
             this.BtnGenerate.UseVisualStyleBackColor = true;
             this.BtnGenerate.Click += new System.EventHandler(this.BtnGenerate_Click);
@@ -125,10 +127,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             // BtnChooseTemplate
             // 
             this.BtnChooseTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnChooseTemplate.BackColor = System.Drawing.Color.Snow;
             this.BtnChooseTemplate.Location = new System.Drawing.Point(417, 51);
             this.BtnChooseTemplate.Name = "BtnChooseTemplate";
             this.BtnChooseTemplate.Size = new System.Drawing.Size(106, 23);
-            this.BtnChooseTemplate.TabIndex = 8;
+            this.BtnChooseTemplate.TabIndex = 19;
             this.BtnChooseTemplate.Text = "Vorlage auswählen";
             this.BtnChooseTemplate.UseVisualStyleBackColor = true;
             this.BtnChooseTemplate.Click += new System.EventHandler(this.BtnChooseTemplate_Click);
@@ -136,10 +139,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             // BtnSave
             // 
             this.BtnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSave.BackColor = System.Drawing.Color.Snow;
             this.BtnSave.Location = new System.Drawing.Point(306, 51);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(105, 23);
-            this.BtnSave.TabIndex = 9;
+            this.BtnSave.TabIndex = 18;
             this.BtnSave.Text = "Speichern";
             this.BtnSave.UseVisualStyleBackColor = true;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -152,7 +156,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.FlpMainContainer.Controls.Add(this.TlpCriteriaButtonContainer);
             this.FlpMainContainer.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.FlpMainContainer.Location = new System.Drawing.Point(29, 356);
-            this.FlpMainContainer.MaximumSize = new System.Drawing.Size(666, 1200);
             this.FlpMainContainer.Name = "FlpMainContainer";
             this.FlpMainContainer.Size = new System.Drawing.Size(646, 89);
             this.FlpMainContainer.TabIndex = 5;
@@ -178,7 +181,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.hilfeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(734, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(719, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -264,26 +267,21 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.IdInternDetails.Name = "IdInternDetails";
             this.IdInternDetails.Size = new System.Drawing.Size(687, 297);
             this.IdInternDetails.TabIndex = 6;
+            this.IdInternDetails.Load += new System.EventHandler(this.IdInternDetails_Load);
             // 
             // MainWindowView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(734, 456);
+            this.BackColor = System.Drawing.Color.LightGray;
+            this.ClientSize = new System.Drawing.Size(719, 461);
             this.Controls.Add(this.IdInternDetails);
             this.Controls.Add(this.FlpMainContainer);
             this.Controls.Add(this.LblCriteriaCaption);
             this.Controls.Add(this.menuStrip1);
             this.KeyPreview = true;
-            this.MainMenuStrip = this.menuStrip1;
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(750, 800);
-            this.MinimumSize = new System.Drawing.Size(750, 456);
+            this.MaximumSize = new System.Drawing.Size(735, 9999999);
+            this.MinimumSize = new System.Drawing.Size(735, 500);
             this.Name = "MainWindowView";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Arbeitszeugnis-Generator";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowV_KeyDown);
             this.TlpCriteriaButtonContainer.ResumeLayout(false);

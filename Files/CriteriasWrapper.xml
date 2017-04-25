@@ -1,0 +1,749 @@
+﻿<?xml version="1.0"?>
+<CriteriasWrapper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Criterias>&lt;&lt;Nachname&gt;&gt;
+    <Criteria>
+      <Name>Fachwissen</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; verfügt über ein äußerst umfassendes und hervorragendes Fachwissen, das &lt;&lt;er/sie&gt;&gt; zur Bewältigung &lt;&lt;seiner/ihrer&gt;&gt; Aufgaben stets sehr sicher und erfolgreich einsetzte.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Mit &lt;&lt;seinem/ihrem&gt;&gt; umfangreichen und äußerst fundierten Fachwissen erzielte &lt;&lt;er/sie&gt;&gt; stets deutlich überdurchschnittliche Erfolge.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verfügt über ein äußerst umfassendes und sehr fundiertes Fachwissen, das &lt;&lt;er/sie&gt;&gt; jederzeit hervorragend in die Praxis umzusetzen wusste. &lt;&lt;Er/Sie&gt;&gt; nahm zudem mit großem Erfolg an zahlreichen Fortbildungen teil.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; verfügt über ein umfassendes und gutes Fachwissen, das &lt;&lt;er/sie&gt;&gt; zur Bewältigung &lt;&lt;seiner/ihrer&gt;&gt; Aufgaben sehr sicher und erfolgreich einsetzte.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Mit &lt;&lt;seinem/ihrem&gt;&gt; umfangreichen und fundierten Fachwissen erzielte &lt;&lt;er/sie&gt;&gt; stets gute Erfolge.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verfügt über ein umfassendes und fundiertes Fachwissen, das &lt;&lt;er/sie&gt;&gt; jederzeit gut in die Praxis umzusetzen wusste.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; verfügt über ein solides Fachwissen, das &lt;&lt;er/sie&gt;&gt; zur Bewältigung &lt;&lt;seiner/ihrer&gt;&gt; Aufgaben erfolgreich einsetzte.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; wendete &lt;&lt;sein/ihr&gt;&gt; Fachwissen mit Erfolg in &lt;&lt;seinem/ihrem&gt;&gt; Arbeitsgebiet an.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; verfügt über ein den Anforderungen entsprechendes Fachwissen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; beherrschte &lt;&lt;seinen/ihren&gt;&gt; Arbeitsbereich entsprechend den Anforderungen.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Leistungsbereitschaft</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat sich innerhalb kürzester Zeit in den &lt;&lt;ihm/ihr&gt;&gt; gestellten Aufgabenbereich eingearbeitet. &lt;&lt;Er/Sie&gt;&gt; verfolgte die vereinbarten Ziele nachhaltig und mit höchstem Erfolg.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war ein stets äußerst motivierter Mitarbeiter. Schwierige Aufgaben ging &lt;&lt;er/sie&gt;&gt; mit großem Elan an und fand dabei immer sinnvolle und praktikable Lösungen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; war hochmotiviert und zeigte ein außerordentlich hohes Maß an Initiative und Leistungsbereitschaft.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat sich innerhalb kurzer Zeit in den &lt;&lt;ihm/ihr&gt;&gt; gestellten Aufgabenbereich eingearbeitet. &lt;&lt;Er/Sie&gt;&gt; verfolgte die vereinbarten Ziele nachhaltig und erfolgreich.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war ein stets motivierter Mitarbeiter. Schwierige Aufgaben ging &lt;&lt;er/sie&gt;&gt; mit Elan an und fand dabei sinnvolle und praktikable Lösungen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; war sehr motiviert und zeigte ein hohes Maß an Initiative und Leistungsbereitschaft.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat sich engagiert in den &lt;&lt;ihm/ihr&gt;&gt; gestellten Aufgabenbereich eingearbeitet und verfolgte die vereinbarten Ziele nachhaltig.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war motiviert und zeigte auch bei schwierigen Aufgaben Initiative und Engagement.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat sich unseren Erwartungen entsprechend in den &lt;&lt;ihm/ihr&gt;&gt; gestellten Aufgabenbereich eingearbeitet.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; zeigte auch Initiative und Engagement.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Arbeitsweise</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; war äußerst zuverlässig, und &lt;&lt;sein/ihr&gt;&gt; Arbeitsstil war stets geprägt durch sehr sorgfältige Planung und Systematik.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; führte alle Aufgaben stets selbständig, äußerst sorgfältig und planvoll durchdacht aus.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; arbeitete stets sehr effizient, zielstrebig und sorgfältig und bewies ein herausragendes Organisationsgeschick.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; war sehr zuverlässig, und &lt;&lt;sein/ihr&gt;&gt; Arbeitsstil war stets geprägt durch sorgfältige Planung und Systematik.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Mit einem guten Blick für das Wesentliche führte &lt;&lt;er/sie&gt;&gt; &lt;&lt;seine/ihre&gt;&gt; Aufgaben immer planvoll, methodisch und gründlich aus.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; arbeitete sehr effizient, zielstrebig und sorgfältig und bewies ein gutes Organisationsgeschick.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; war zuverlässig, und &lt;&lt;sein/ihr&gt;&gt; Arbeitsstil war stets geprägt durch Planung und Systematik.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; führte &lt;&lt;seine/ihre&gt;&gt; Aufgaben sorgfältig und planvoll aus.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; war zuverlässig und erledigte die entscheidenden Aufgaben problemlos.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; führte &lt;&lt;seine/ihre&gt;&gt; Aufgaben mit ausreichender Sorgfalt und Planung aus.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Arbeitsqualität</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; beeindruckte stets durch qualitativ und quantitativ hervorragende Ergebnisse.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Seine/Ihre&gt;&gt; Arbeitsergebnisse waren, auch bei wechselnden Anforderungen und unter sehr schwierigen Bedingungen, stets von sehr guter Qualität.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; überzeugte in &lt;&lt;seinen/ihren&gt;&gt; Tätigkeiten stets in qualitativer und quantitativer Hinsicht.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; lieferte stets qualitativ und quantitativ gute Ergebnisse.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Seine/Ihre&gt;&gt; Arbeitsergebnisse waren, auch bei wechselnden Anforderungen und unter sehr schwierigen Bedingungen, stets guter Qualität.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Die Qualität &lt;&lt;seiner/ihrer&gt;&gt; Arbeitsergebnisse erfüllte in vollem Umfang die an ihn gestellten Anforderungen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Seine/Ihre&gt;&gt; Arbeitsergebnisse waren von guter Qualität.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Er/Sie&gt;&gt; strebte gute Ergebnisse an.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Seine/Ihre&gt;&gt; Arbeitsergebnisse entsprachen unseren Mindestanforderungen.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Belastungsfähigkeit</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Dabei war &lt;&lt;er/sie&gt;&gt; auch höchstem Zeitdruck und Arbeitsaufwand stets gewachsen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Auch in Situationen mit extrem hohem Arbeitsanfall erwies sich &lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; als sehr belastbarer Mitarbeiter und ging jederzeit überlegt, ruhig und zielorientiert vor.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; zeichnete sich auch in extremen Stresssituationen und unter Zeitdruck stets durch hohe Belastbarkeit und Zielorientierung aus.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Dabei war &lt;&lt;er/sie&gt;&gt; auch erhöhtem Zeitdruck und Arbeitsaufwand gut gewachsen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Auch bei sehr hohem Arbeitsanfall erwies sich &lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; als belastbarer Mitarbeiter und ging überlegt, ruhig und zielorientiert vor.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; zeichnete sich auch in extremen Stresssituationen durch hohe Belastbarkeit und Zielorientierung aus.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Dabei war &lt;&lt;er/sie&gt;&gt; auch hohem Zeitdruck und Arbeitsaufwand gewachsen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Auch bei hohem Arbeitsanfall erwies sich &lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; als belastbarer Mitarbeiter.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Dabei war &lt;&lt;er/sie&gt;&gt; üblichem Zeitdruck und Arbeitsaufwand gewachsen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Bei üblichem Arbeitsanfall erwies sich &lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; als zuverlässiger Mitarbeiter.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Führungsstil (leitenden Angestellten)
+	</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; galt als hervorragende Führungskraft. &lt;&lt;Er/Sie&gt;&gt; förderte aktiv die Zusammenarbeit, förderte und informierte &lt;&lt;seine/ihre&gt;&gt; Mitarbeiter jederzeit umfassend und delegierte Aufgaben und Verantwortungen stets in angemessenem Umfang. So erreichte &lt;&lt;er/sie&gt;&gt; stets ein hervorragendes Arbeitsergebnis.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war ein geradliniger sowie geachteter und fürsorglicher Vorgesetzter. &lt;&lt;Er/Sie&gt;&gt; verstand es immer ausgezeichnet, &lt;&lt;sein/ihr&gt;&gt; Team zu motivieren und &lt;&lt;seine/ihre&gt;&gt; Abteilung zu höchster Effektivität zu bewegen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war für &lt;&lt;seine/ihre&gt;&gt; Mitarbeiter stets ein geschätztes Vorbild. &lt;&lt;Er/Sie&gt;&gt; führte &lt;&lt;seine/ihre&gt;&gt; Mitarbeiter zielorientiert und sachlich und erreichte eine außergewöhnliche Leistungssteigerung auf durchgängig hohem Niveau sowie eine sehr gute Teamatmosphäre.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; galt als gute Führungskraft. &lt;&lt;Er/Sie&gt;&gt; förderte aktiv die Zusammenarbeit, förderte und informierte &lt;&lt;seine/ihre&gt;&gt; Mitarbeiter umfassend und delegierte Aufgaben und Verantwortungen in angemessenem Umfang. So erreichte &lt;&lt;er/sie&gt;&gt; stets ein gutes Arbeitsergebnis.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war ein geradliniger sowie geachteter und fürsorglicher Vorgesetzter. &lt;&lt;Er/Sie&gt;&gt; verstand es immer gut, &lt;&lt;sein/ihr&gt;&gt; Team zu motivieren und &lt;&lt;seine/ihre&gt;&gt; Abteilung zu hoher Effektivität zu bewegen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war für &lt;&lt;seine/ihre&gt;&gt; Mitarbeiter stets ein Vorbild. &lt;&lt;Er/Sie&gt;&gt; führte &lt;&lt;seine/ihre&gt;&gt; Mitarbeiter zielorientiert und sachlich und erreichte eine gute Leistungssteigerung auf durchgängig hohem Niveau sowie eine gute Teamatmosphäre.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; galt als Führungskraft, die es verstand, &lt;&lt;seine/ihre&gt;&gt; Mitarbeiter zu fördern, zu informieren und Aufgaben sowie Verantwortung zu delegieren.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war ein geradliniger sowie fürsorglicher Vorgesetzter. &lt;&lt;Er/Sie&gt;&gt; verstand es, &lt;&lt;sein/ihr&gt;&gt; Team zu motivieren und Arbeitsprozesse in &lt;&lt;seiner/ihrer&gt;&gt; Abteilung zu verbessern.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; erfüllte in &lt;&lt;seiner/ihrer&gt;&gt;/ Funktion als Führungskraft unsere Erwartungen und erzielte Erfolge bei umgesetzten Projekten.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war ein fürsorglicher Vorgesetzter. &lt;&lt;Er/Sie&gt;&gt; verstand es, das Tagesgeschäft &lt;&lt;seiner/ihrer&gt;&gt; Abteilung zu koordinieren.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war als Führungskraft immer bemüht, klare Anweisungen zu geben und alle Arbeiten zu koordinieren.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war ein fürsorglicher Vorgesetzter. &lt;&lt;Er/Sie&gt;&gt; bemühte sich stets, das Tagesgeschäft &lt;&lt;seiner/ihrer&gt;&gt; Abteilung zu koordinieren.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Gesamturteil</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat die &lt;&lt;ihm/ihr&gt;&gt; übertragenen Aufgaben stets zu unserer vollsten Zufriedenheit erledigt.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat &lt;&lt;seine/ihre&gt;&gt; Aufgaben stets zu unserer vollsten Zufriedenheit erledigt und unseren Erwartungen in jeder Hinsicht optimal entsprochen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat unsere Erwartungen stets in jeder Hinsicht erfüllt. Wir waren mit &lt;&lt;seinen/ihren&gt;&gt; Leistungen jederzeit äußerst zufrieden.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat die &lt;&lt;ihm/ihr&gt;&gt; übertragenen Aufgaben stets zu unserer vollen Zufriedenheit erledigt.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat &lt;&lt;seine/ihre&gt;&gt; Aufgaben stets zu unserer vollen Zufriedenheit erledigt und unseren Erwartungen in jeder Hinsicht gut entsprochen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat unsere Erwartungen stets gut erfüllt. Wir waren mit &lt;&lt;seinen/ihren&gt;&gt; Leistungen jederzeit zufrieden.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat die &lt;&lt;ihm/ihr&gt;&gt; übertragenen Aufgaben zu unserer vollen Zufriedenheit erledigt.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat &lt;&lt;seine/ihre&gt;&gt; Aufgaben zu unserer vollen Zufriedenheit erledigt und unseren Erwartungen in jeder Hinsicht entsprochen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat unseren Erwartungen voll entsprochen.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat die &lt;&lt;ihm/ihr&gt;&gt; übertragenen Aufgaben zu unserer Zufriedenheit erledigt.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; beherrschte &lt;&lt;seinen/ihren&gt;&gt; Arbeitsbereich entsprechend den Anforderungen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat unseren Erwartungen entsprochen.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; erfüllte &lt;&lt;seine/ihre&gt;&gt; Aufgaben im Allgemeinen zu unserer Zufriedenheit.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; hat weitestgehend unseren Anforderungen entsprochen.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; bemühte sich, unseren Anforderungen zu entsprechen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; war stets bemüht, unseren Anforderungen gerecht zu werden.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Soziales Verhalten</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Sein/Ihr&gt;&gt; Verhalten gegenüber Vorgesetzten, Kollegen und Externen war stets hervorragend.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Gegenüber Vorgesetzten, Mitarbeitern und Kunden verhielt &lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; sich stets vorbildlich. &lt;&lt;Er/Sie&gt;&gt; trug zu einer hervorragenden und effizienten Teamarbeit bei.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>3</Name>
+              <PredifinedText>Von Vorgesetzten, Kollegen und Kunden wurde &lt;&lt;er/sie&gt;&gt; gleichermaßen geschätzt. &lt;&lt;Er/Sie&gt;&gt; verhielt sich jederzeit loyal gegenüber dem Unternehmen und überzeugte durch &lt;&lt;seine/ihre&gt;&gt; persönliche Integrität. &lt;&lt;Sein/Ihr&gt;&gt; Verhalten war immer vorbildlich. Im Kontakt mit Kunden zeichnete &lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; sich durch äußerst professionelles Auftreten aus.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Sein/Ihr&gt;&gt; Verhalten gegenüber Vorgesetzten, Kollegen und Externen war stets einwandfrei.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Gegenüber Vorgesetzten, Mitarbeitern und Kunden verhielt &lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; sich stets einwandfrei. &lt;&lt;Er/Sie&gt;&gt; trug zu einer guten und effizienten Teamarbeit bei.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Sein/Ihr&gt;&gt; Verhalten gegenüber Vorgesetzten, Kollegen und Externen war einwandfrei.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Sein/Ihr&gt;&gt; Verhalten gegenüber Vorgesetzten, Kollegen und Externen war stets korrekt.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Sein/Ihr&gt;&gt; Verhalten gegenüber Kollegen und Vorgesetzten war zufriedenstellend.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>&lt;&lt;Sein/Ihr&gt;&gt; Verhalten gegenüber Kollegen und Vorgesetzten war spannungsfrei.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Austrittsgrund</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>Auf Wunsch</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen auf eigenen Wunsch.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>Einvernehmlich</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen im gegenseitigen Einvernehmen.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>Enddatum</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen zum EndDatum</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>Enddatum betriebsbedingt</Name>
+              <PredifinedText>Das Arbeitsverhältnis endet aus betriebsbedingten Gründen zum EndDatum.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>nach vereinbarter Frist</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen nach Ablauf der vereinbarten Frist.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>Nach Ablauf des Praktikumszeitraums</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen nach Ablauf des Praktikumszeitraums.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen nach Ablauf der vereinbarten Frist.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+    <Criteria>
+      <Name>Abschiedsformel</Name>
+      <Grades>
+        <Grade>
+          <Name>Sehr Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die stets hervorragende Zusammenarbeit und bedauern es sehr, ihn als Mitarbeiter zu verlieren. Für &lt;&lt;seinen/ihren&gt;&gt; weiteren Berufs- und Lebensweg wünschen wir &lt;&lt;ihm/ihr&gt;&gt; alles Gute und auch weiterhin viel Erfolg.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die stets hervorragenden Leistungen und bedauern &lt;&lt;sein/ihr&gt;&gt; Ausscheiden sehr. Wir sind davon überzeugt, dass &lt;&lt;er/sie&gt;&gt; auch in der Zukunft außerordentliche Erfolge erzielen wird.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>Praktikant</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die hervorragenden Leistungen und würden uns freuen &lt;&lt;Ihn/Sie&gt;&gt; in Zukunft erneut bei uns begrüßen zu dürfen.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Gut</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für &lt;&lt;seine/ihre&gt;&gt; wertvolle Mitarbeit und bedauern es, ihn als Mitarbeiter zu verlieren. Für &lt;&lt;seinen/ihren&gt;&gt; weiteren Berufs- und Lebensweg wünschen wir &lt;&lt;ihm/ihr&gt;&gt; alles Gute und auch weiterhin viel Erfolg.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die stets guten Leistungen und bedauern &lt;&lt;sein/ihr&gt;&gt; Ausscheiden sehr. Wir sind davon überzeugt, dass &lt;&lt;er/sie&gt;&gt; auch in der Zukunft außerordentliche Erfolge erzielen wird.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>Praktikant</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die guten Leistungen und würden uns freuen &lt;&lt;Ihn/Sie&gt;&gt; in Zukunft erneut bei uns begrüßen zu dürfen.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Befriedigend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die erbrachte Leistung und wünschen &lt;&lt;ihm/ihr&gt;&gt; für die Zukunft weiterhin alles Gute.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für &lt;&lt;sein/ihr&gt;&gt; Wirken und bedauern &lt;&lt;sein/ihr&gt;&gt; Ausscheiden. Wir sind überzeugt, dass &lt;&lt;er/sie&gt;&gt; auch in der Zukunft gute Erfolge erzielen wird.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Ausreichend</Name>
+          <Variations>
+            <Variation>
+              <Name>1</Name>
+              <PredifinedText>Wir wünschen &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die Zukunft alles Gute.</PredifinedText>
+            </Variation>
+            <Variation>
+              <Name>2</Name>
+              <PredifinedText>Wir danken &lt;&lt;Herrn/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; für die Zusammenarbeit.</PredifinedText>
+            </Variation>
+          </Variations>
+        </Grade>
+        <Grade>
+          <Name>Mangelhaft</Name>
+          <Variations />
+        </Grade>
+        <Grade>
+          <Name>Ungenügend</Name>
+          <Variations />
+        </Grade>
+      </Grades>
+    </Criteria>
+  </Criterias>
+</CriteriasWrapper>

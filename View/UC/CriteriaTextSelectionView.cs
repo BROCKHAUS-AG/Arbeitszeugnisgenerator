@@ -115,7 +115,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         {
             if (presenter.SelectedVariation != null)
             {
-                string showText = presenter.SelectedVariation.PredifinedText != null ? presenter.SelectedVariation.PredifinedText.Replace("Muster", View.InternDetails.LastName) : "";
+                string showText = presenter.SelectedVariation.PredifinedText != null ? presenter.SelectedVariation.PredifinedText.Replace("<<Name>>", View.InternDetails.LastName) : "";
                 showText = StringEditor.ReplaceWordsBasedOnGender(View.InternDetails, showText);
                 showText = StringEditor.ReplaceDatesAndNames(View.InternDetails, showText);
                 LblPredefinedText.Text = showText;
@@ -199,9 +199,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             }
         }
 
+
         private void BtnExtend_Click(object sender, EventArgs e)
         {
-            if (viewState == ViewState.IsRefreshing) return;
+            if (viewState == ViewState.IsRefreshing)return;
+        
 
             if (!isNotExtended)
             {
@@ -246,6 +248,19 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
            
         }
 
+        private void CbxGrade_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
+        }
+
+        private void CbxVariation_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
+        }
+
+
+
+
         private void BtnUp_Click(object sender, EventArgs e)
         {
             View.SwitchElements(this, Direction.Up);
@@ -256,10 +271,5 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             View.SwitchElements(this, Direction.Down);
         }
         #endregion
-
-        private void CbxGrade_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

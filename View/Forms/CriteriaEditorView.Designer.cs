@@ -30,7 +30,6 @@
         {
             this.TxtCriteriaName = new System.Windows.Forms.TextBox();
             this.LbxVariation = new System.Windows.Forms.ListBox();
-            this.BtnOk = new System.Windows.Forms.Button();
             this.BtnAddVariation = new System.Windows.Forms.Button();
             this.BtnRemoveVariation = new System.Windows.Forms.Button();
             this.BtnRenameVariation = new System.Windows.Forms.Button();
@@ -68,16 +67,6 @@
             this.LbxVariation.Size = new System.Drawing.Size(174, 238);
             this.LbxVariation.TabIndex = 2;
             this.LbxVariation.SelectedIndexChanged += new System.EventHandler(this.LbxVariation_SelectedIndexChanged);
-            // 
-            // BtnOk
-            // 
-            this.BtnOk.Location = new System.Drawing.Point(274, 469);
-            this.BtnOk.Name = "BtnOk";
-            this.BtnOk.Size = new System.Drawing.Size(75, 23);
-            this.BtnOk.TabIndex = 6;
-            this.BtnOk.Text = "OK";
-            this.BtnOk.UseVisualStyleBackColor = true;
-            this.BtnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // BtnAddVariation
             // 
@@ -120,7 +109,7 @@
             this.RtxtPredefinedText.TabIndex = 10;
             this.RtxtPredefinedText.Text = "";
             this.RtxtPredefinedText.Leave += new System.EventHandler(this.RtxtPredefinedText_Leave);
-            // 
+            //
             // label1
             // 
             this.label1.AutoSize = true;
@@ -132,7 +121,7 @@
             // 
             // BtnCancel
             // 
-            this.BtnCancel.Location = new System.Drawing.Point(355, 470);
+            this.BtnCancel.Location = new System.Drawing.Point(446, 470);
             this.BtnCancel.Name = "BtnCancel";
             this.BtnCancel.Size = new System.Drawing.Size(75, 23);
             this.BtnCancel.TabIndex = 12;
@@ -142,13 +131,13 @@
             // 
             // BtnTake
             // 
-            this.BtnTake.Location = new System.Drawing.Point(436, 470);
+            this.BtnTake.Location = new System.Drawing.Point(355, 470);
             this.BtnTake.Name = "BtnTake";
             this.BtnTake.Size = new System.Drawing.Size(85, 23);
             this.BtnTake.TabIndex = 13;
             this.BtnTake.Text = "Übernehmen";
             this.BtnTake.UseVisualStyleBackColor = true;
-            this.BtnTake.Click += new System.EventHandler(this.BtnTake_Click);
+            this.BtnTake.Click += new System.EventHandler(this.BtnOk_Click);
             // 
             // radioButton1
             // 
@@ -250,7 +239,7 @@
             this.GboxGrades.TabStop = false;
             this.GboxGrades.Text = "Note";
             // 
-            // CriteriaEditorV
+            // CriteriaEditorView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -261,10 +250,9 @@
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.RtxtPredefinedText);
-            this.Controls.Add(this.BtnOk);
             this.Controls.Add(this.TxtCriteriaName);
             this.KeyPreview = true;
-            this.Name = "CriteriaEditorV";
+            this.Name = "CriteriaEditorView";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Kriterium bearbeiten";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CriteriaEditorV_KeyDown);
@@ -280,7 +268,7 @@
 
         private System.Windows.Forms.TextBox TxtCriteriaName;
         private System.Windows.Forms.ListBox LbxVariation;
-        private System.Windows.Forms.Button BtnOk;
+        //private System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.Button BtnAddVariation;
         private System.Windows.Forms.Button BtnRemoveVariation;
         private System.Windows.Forms.Button BtnRenameVariation;

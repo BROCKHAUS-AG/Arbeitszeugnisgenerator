@@ -32,6 +32,7 @@
             this.BtnCancel = new System.Windows.Forms.Button();
             this.BtnOk = new System.Windows.Forms.Button();
             this.TxtName = new System.Windows.Forms.TextBox();
+            this.BtnTake = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblText
@@ -62,6 +63,15 @@
             this.BtnOk.Text = "OK";
             this.BtnOk.UseVisualStyleBackColor = true;
             this.BtnOk.Click += new System.EventHandler(this.BtnOk_Click);
+            // 
+            // BtnTake
+            // 
+            this.BtnTake.Location = new System.Drawing.Point(436, 470);
+            this.BtnTake.Name = "BtnTake";
+            this.BtnTake.Size = new System.Drawing.Size(85, 23);
+            this.BtnTake.TabIndex = 13;
+            this.BtnTake.Text = "Übernehmen";
+            this.BtnTake.UseVisualStyleBackColor = true;
             // 
             // TxtName
             // 
@@ -98,5 +108,6 @@
         private System.Windows.Forms.Button BtnCancel;
         private System.Windows.Forms.Button BtnOk;
         private System.Windows.Forms.TextBox TxtName;
+        private System.Windows.Forms.Button BtnTake;
     }
 }

@@ -35,6 +35,10 @@
             this.BtnOk = new System.Windows.Forms.Button();
             this.LbxCriteria = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             // 
             // BtnRemoveCriteria
             // 
@@ -108,7 +112,7 @@
             this.Controls.Add(this.BtnAddCriteria);
             this.KeyPreview = true;
             this.Name = "ChooseCriteriaEditorV";
-            this.Text = "CriteriaEditor";
+            this.Text = "Kriterien bearbeiten";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.keyDown);
             this.ResumeLayout(false);
 

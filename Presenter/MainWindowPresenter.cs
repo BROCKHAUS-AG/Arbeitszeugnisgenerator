@@ -12,11 +12,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
     public class MainWindowPresenter
     {
         private const string UNGÜLTIGES_DATUM_TITLE = "Ungültiges Datum";
-        private const string UNGÜLTIGES_GEBURTSDATUM_TEXT = "Das Geburtsdatum kann nicht nach dem Anfangsdatum sein.";
+        private const string UNGÜLTIGES_GEBURTSDATUM_TEXT = "Das Geburtsdatum kann nicht nach oder an dem Anfangsdatum sein.";
         private const string UNGÜLTIGES_ANFANGSDATUM_TEXT = "Das Anfangsdatum kann nicht nach dem Enddatum sein.";
         private const string VORLAGE_NICHT_GEFUNDEN_TITLE = "Vorlage nicht gefunden!";
         private const string VORLAGE_NICHT_GEFUNDEN_TEXT = "Die Vorlage konnte nicht gefunden werden. Es wird auf die Standardvorlage zurück gegriffen";
+        private const string UNGÜLTIGES_ANFANGSDATUM_ZUKUNFT_TEXT = "Das Praktikum darf nicht in der Zukunft beginnen";
         private MainWindowView view;
+
         
 
         public MainWindowPresenter(MainWindowView view)
@@ -24,17 +26,28 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             this.view = view;
         }
 
+
+
         public void GenerateWordDocument(
             InternDetails internDetails,
             Dictionary<string, string> textParts,
-            bool PractExpBulletpoints, bool ExcercisesBulletPoints)
+        bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
-            if (internDetails.DateOfBirth > internDetails.FromDate)
+            //Anfangsdautm muss kleiner als jetztigesdatum sein
+            if(internDetails.DateNow < internDetails.FromDate)
+            {
+                MessageDialog messagedialog = new MessageDialog(UNGÜLTIGES_DATUM_TITLE, UNGÜLTIGES_ANFANGSDATUM_ZUKUNFT_TEXT);
+                messagedialog.ShowDialog();
+                return;
+            }
+            // Geburtsdatum darf nicht Größer oder gleich Anfang sein 
+            if (internDetails.DateOfBirth >= internDetails.FromDate)
             {
                 MessageDialog messagedialog = new MessageDialog(UNGÜLTIGES_DATUM_TITLE, UNGÜLTIGES_GEBURTSDATUM_TEXT);
                 messagedialog.ShowDialog();
                 return;
             }
+            //Startdatum darf nicht größer Enddatum sein
             if (internDetails.FromDate > internDetails.UntilDate)
             {
                 MessageDialog messagedialog = new MessageDialog(UNGÜLTIGES_DATUM_TITLE, UNGÜLTIGES_ANFANGSDATUM_TEXT);

@@ -38,7 +38,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Dialogs
                 BtnOk_Click(sender, null);
             }
         }
-
+       /* private void BtnTake_Click(object sender, EventArgs e)
+        {
+            if (viewState == ViewState.IsRefreshing) return;
+            presenter.UpdateBackup();
+            CriteriasWrapper.Instance.SaveCriteriaWrapper();
+        }
+        */
         private void InputDialog_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Escape)

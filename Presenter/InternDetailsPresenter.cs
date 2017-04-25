@@ -61,8 +61,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 {
                     CurShowedInternDetails.DateOfBirth = value;
                     savedChanges = false;
-                    view.RefreshView();
+                    
                 }
+                view.RefreshView();
             }
         }
         public string Department
@@ -73,8 +74,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 {
                     CurShowedInternDetails.Department = value;
                     savedChanges = false;
-                    view.RefreshView();
+                    
                 }
+                view.RefreshView();
             }
         }
         public DateTime FromDate
@@ -85,8 +87,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 {
                     CurShowedInternDetails.FromDate = value;
                     savedChanges = false;
-                    view.RefreshView();
+
                 }
+                view.RefreshView();
             }
         }
         public DateTime UntilDate
@@ -97,8 +100,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 {
                     CurShowedInternDetails.UntilDate = value;
                     savedChanges = false;
-                    view.RefreshView();
+                    
                 }
+                view.RefreshView();
             }
         }
         public string Exercises
@@ -109,8 +113,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 {
                     CurShowedInternDetails.Exercises = value;
                     savedChanges = false;
-                    view.RefreshView();
+                    
                 }
+                view.RefreshView();
             }
         }
         public string PracticalExperience
@@ -121,8 +126,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
                 {
                     CurShowedInternDetails.PracitcalExperience = value;
                     savedChanges = false;
-                    view.RefreshView();
+                   
                 }
+                view.RefreshView();
             }
         }
 

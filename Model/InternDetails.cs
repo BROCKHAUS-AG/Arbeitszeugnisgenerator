@@ -15,6 +15,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
         public Sex Sex { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public DateTime DateNow { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Department { get; set; }
         public DateTime FromDate { get; set; }
@@ -23,8 +24,9 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Model
         public string PracitcalExperience { get; set; }
         public List<Guid> SavedVariations { get; set; }
         public List<Guid> SavedCriterias { get; set; }
-       
+
         public InternDetails() {
+            DateNow = DateTime.Now;
             DateOfBirth = DateTime.Now;
             FromDate = DateTime.Now;
             UntilDate = DateTime.Now;
