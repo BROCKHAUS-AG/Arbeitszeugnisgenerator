@@ -63,6 +63,7 @@
     <Compile Include="Exceptions\InvalidFileFormatException.cs" />
     <Compile Include="Model\Criteria.cs" />
     <Compile Include="Model\Grade.cs" />
+    <Compile Include="Model\GuidList.cs" />
     <Compile Include="Model\InternDetails.cs" />
     <Compile Include="Presenter\ChooseCriteriaEditorPresenter.cs" />
     <Compile Include="Services\CriteriasWrapper.cs" />

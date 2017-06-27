@@ -6,7 +6,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 {
     public class InternDetailsPresenter
     {
-        public InternDetails CurShowedInternDetails { get; set; }
+        public InternalDetails CurShowedInternDetails { get; set; }
 
         public bool savedChanges = true;
         public bool emptyFile = true;
@@ -135,7 +135,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         public InternDetailsPresenter(InternDetailsV view)
         {
             this.view = view;
-            CurShowedInternDetails = new InternDetails();
+            CurShowedInternDetails = new InternalDetails();
         }
 
         public void SaveInternDetails(string savePath)
@@ -147,7 +147,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 
         public void LoadInternDetails(string loadPath)
         {
-            CurShowedInternDetails = InternDetails.Deserialize(loadPath);
+            CurShowedInternDetails = InternalDetails.Deserialize(loadPath);
             //List<Criteria> CriteriaList = CurShowedInternDetails.Criterias;
 
             view.RefreshView();

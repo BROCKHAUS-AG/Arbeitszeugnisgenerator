@@ -21,7 +21,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         private bool VariationSelectedByUser;
         public EventHandler DeleteButtonClicked;
 
-        public CriteriaTextSelectionView(Criteria selectedCriteria, Sex sex, MainWindowView view, int position, List<Guid> savedVariations)
+        public CriteriaTextSelectionView(Criteria selectedCriteria, Sex sex, MainWindowView view, int position, List<GuidId> savedVariations)
         {
             InitializeComponent();
 
@@ -167,13 +167,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             VariationSelectedByUser = false;
             if(presenter.SelectedVariation != null)
             {
-                View.InternDetails.SavedVariations.Remove(presenter.SelectedVariation.guid);
+                View.InternDetails.SavedVariations.RemoveAll(id => id.Guid == presenter.SelectedVariation.guid);
             }
-            presenter.SelectGrade(CbxGrade.SelectedIndex);
+            presenter.SelectGrade(CbxGrade);
 
             if(presenter.SelectedVariation != null)
             {
-                View.InternDetails.SavedVariations.Add(presenter.SelectedVariation.guid);
+                View.InternDetails.SavedVariations.Add(new GuidId(presenter.SelectedVariation.guid));
             }
         }
 
@@ -184,10 +184,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             VariationSelectedByUser = true;
             if (presenter.SelectedVariation != null)
             {
-                View.InternDetails.SavedVariations.Remove(presenter.SelectedVariation.guid);
+                View.InternDetails.SavedVariations.RemoveAll( id => id.Guid == presenter.SelectedVariation.guid);
             }
             presenter.SelectVariationByReference(CbxVariation.SelectedItem.ToString());
-            View.InternDetails.SavedVariations.Add(presenter.SelectedVariation.guid);
+            View.InternDetails.SavedVariations.Add(new GuidId (presenter.SelectedVariation.guid));
 
             //reset extended labels
             LblPredefinedText.MaximumSize = new Size(250, 70);
@@ -271,5 +271,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             View.SwitchElements(this, Direction.Down);
         }
         #endregion
+
+        private void CbxGrade_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

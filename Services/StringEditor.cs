@@ -9,7 +9,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
 {
     public class StringEditor
     {
-        public static string ReplaceDatesAndNames(InternDetails internDetails,string docText)
+        public static string ReplaceDatesAndNames(InternalDetails internDetails,string docText)
         {
             Regex regExTag = new Regex(@"(<<.*?>>)");
 
@@ -55,14 +55,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             return docText;
         }
 
-        public static void ReplaceDatesAndNames(DocX document, InternDetails internDetails,string path)
+        public static void ReplaceDatesAndNames(DocX document, InternalDetails internDetails,string path)
         {
             string text = document.Text;
             ReplaceDatesAndNames(document, internDetails);
             document.SaveAs(path);
         }
 
-        public static void ReplaceDatesAndNames(DocX document, InternDetails internDetails)
+        public static void ReplaceDatesAndNames(DocX document, InternalDetails internDetails)
         {
             Regex regExTag = new Regex(@"(<<.*?>>)");
 
@@ -109,14 +109,14 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
         }
 
-        public static void ReplaceWordsBasedOnGender(DocX document, InternDetails internDetails, string path)
+        public static void ReplaceWordsBasedOnGender(DocX document, InternalDetails internDetails, string path)
         {
             string text = document.Text;
             ReplaceWordsBasedOnGender(document, internDetails);
             document.SaveAs(path);
         }
 
-        public static void ReplaceWordsBasedOnGender(DocX document, InternDetails internDetails)
+        public static void ReplaceWordsBasedOnGender(DocX document, InternalDetails internDetails)
         {
             Regex replaceTag = new Regex(@"(<<[a-zA-Z]*\/.*?>>)");
             Regex reg_male = new Regex(@"(<<.*?\/)");
@@ -145,7 +145,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             }
         }
 
-        public static string ReplaceWordsBasedOnGender(InternDetails internDetails, string doctText)
+        public static string ReplaceWordsBasedOnGender(InternalDetails internDetails, string doctText)
         {
             Regex replaceTag = new Regex(@"(<<[a-zA-Z]*\/.*?>>)");
             Regex reg_male = new Regex(@"(<<.*?\/)");

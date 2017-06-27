@@ -72,7 +72,6 @@
             this.CbxVariation.TabIndex = 5;
             this.CbxVariation.SelectedIndexChanged += new System.EventHandler(this.CbxVariation_SelectedIndexChanged);
             this.CbxVariation.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.CbxVariation_MouseWheel);
-
             // 
             // LblGradeCaption
             // 
@@ -80,15 +79,16 @@
             this.LblGradeCaption.Location = new System.Drawing.Point(76, 43);
             this.LblGradeCaption.Name = "LblGradeCaption";
             this.LblGradeCaption.Size = new System.Drawing.Size(33, 13);
+            this.LblGradeCaption.TabIndex = 11;
             this.LblGradeCaption.Text = "Note:";
             // 
             // LblVariationCaption
             // 
             this.LblVariationCaption.AutoSize = true;
-            this.BtnExtend.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.LblVariationCaption.Location = new System.Drawing.Point(206, 43);
             this.LblVariationCaption.Name = "LblVariationCaption";
             this.LblVariationCaption.Size = new System.Drawing.Size(49, 13);
+            this.LblVariationCaption.TabIndex = 10;
             this.LblVariationCaption.Text = "Variante:";
             // 
             // LblPredefinedText
@@ -101,6 +101,7 @@
             this.LblPredefinedText.Name = "LblPredefinedText";
             this.LblPredefinedText.Padding = new System.Windows.Forms.Padding(5, 5, 5, 10);
             this.LblPredefinedText.Size = new System.Drawing.Size(250, 70);
+            this.LblPredefinedText.TabIndex = 9;
             this.LblPredefinedText.Text = "\r\n";
             // 
             // BtnExtend
@@ -117,44 +118,46 @@
             // 
             // BtnEdit
             // 
-            this.BtnEdit.Location = new System.Drawing.Point(592, 35);
             this.BtnEdit.BackColor = System.Drawing.Color.Snow;
+            this.BtnEdit.Location = new System.Drawing.Point(592, 35);
             this.BtnEdit.Name = "BtnEdit";
             this.BtnEdit.Size = new System.Drawing.Size(66, 23);
             this.BtnEdit.TabIndex = 8;
             this.BtnEdit.Text = "Bearbeiten";
+            this.BtnEdit.UseVisualStyleBackColor = false;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // BtnRemove
             // 
-            this.BtnRemove.Location = new System.Drawing.Point(592, 10);
             this.BtnRemove.BackColor = System.Drawing.Color.Snow;
+            this.BtnRemove.Location = new System.Drawing.Point(592, 10);
             this.BtnRemove.Name = "BtnRemove";
             this.BtnRemove.Size = new System.Drawing.Size(66, 23);
             this.BtnRemove.TabIndex = 7;
             this.BtnRemove.Text = "Löschen";
+            this.BtnRemove.UseVisualStyleBackColor = false;
             this.BtnRemove.Click += new System.EventHandler(this.BtnRemove_Click);
-
-
             // 
             // BtnUp
             // 
-            this.BtnUp.Location = new System.Drawing.Point(13, 30);
             this.BtnUp.BackColor = System.Drawing.Color.Snow;
+            this.BtnUp.Location = new System.Drawing.Point(13, 30);
             this.BtnUp.Name = "BtnUp";
             this.BtnUp.Size = new System.Drawing.Size(29, 23);
             this.BtnUp.TabIndex = 2;
             this.BtnUp.Text = "/\\";
+            this.BtnUp.UseVisualStyleBackColor = false;
             this.BtnUp.Click += new System.EventHandler(this.BtnUp_Click);
             // 
             // BtnDown
             // 
-            this.BtnDown.Location = new System.Drawing.Point(13, 59);
             this.BtnDown.BackColor = System.Drawing.Color.Snow;
+            this.BtnDown.Location = new System.Drawing.Point(13, 59);
             this.BtnDown.Name = "BtnDown";
             this.BtnDown.Size = new System.Drawing.Size(29, 23);
             this.BtnDown.TabIndex = 3;
             this.BtnDown.Text = "\\/";
+            this.BtnDown.UseVisualStyleBackColor = false;
             this.BtnDown.Click += new System.EventHandler(this.BtnDown_Click);
             // 
             // CriteriaTextSelectionView
@@ -182,6 +185,7 @@
             this.Size = new System.Drawing.Size(660, 108);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

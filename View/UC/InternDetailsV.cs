@@ -52,7 +52,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         public void RefreshView()
         {
             if (viewState == ViewState.IsRefreshing) return;
-            Model.InternDetails curShowedInternDetails = presenter.CurShowedInternDetails;
+            Model.InternalDetails curShowedInternDetails = presenter.CurShowedInternDetails;
             if (curShowedInternDetails == null) return;
             viewState = ViewState.IsRefreshing;
 
@@ -137,7 +137,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                     {
                         throw new InvalidFileFormatException();
                     }
-                    if (!savePath.Contains(".xml") && savePath != "")
+                    if (!savePath.Contains(".xml") && !string.IsNullOrEmpty(savePath))
                     {
                         savePath += ".xml";
                     }
@@ -179,7 +179,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
                 LoadedDataPath = openFileDialog.FileName;
                 try
                 {
-                    if (Path.GetExtension(loadPath) != ".xml")
+                    if (Path.GetExtension(loadPath).ToLower() != ".xml")
                     {
                         throw new InvalidFileFormatException();
                     }
@@ -206,7 +206,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
         }
         internal void SaveDetails()
         {
-            if (LoadedDataPath == "")
+            if (string.IsNullOrEmpty(LoadedDataPath))
             {
                 SaveDetailsAs();
             }
@@ -217,7 +217,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             try
             {
 
-                if (Path.GetExtension(savePath) != ".xml")
+                if (Path.GetExtension(savePath).ToLower() != ".xml")
                 {
                     throw new InvalidFileFormatException();
                 }
@@ -389,9 +389,13 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.UC
             }
             RtxtPracticalExperience.DeselectAll();
         }
+
         #endregion
 
-
+        private void DtpUntilDate_ValueChanged(object sender, EventArgs e)
+        {
+            Basis.RefreshView();
+        }
     }
     public enum ViewState
     {

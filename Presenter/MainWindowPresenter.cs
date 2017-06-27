@@ -19,7 +19,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
         private const string UNGÜLTIGES_ANFANGSDATUM_ZUKUNFT_TEXT = "Das Praktikum darf nicht in der Zukunft beginnen";
         private MainWindowView view;
 
-        
+
 
         public MainWindowPresenter(MainWindowView view)
         {
@@ -29,7 +29,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
 
 
         public void GenerateWordDocument(
-            InternDetails internDetails,
+            InternalDetails internDetails,
             Dictionary<string, string> textParts,
         bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
@@ -60,10 +60,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             }
             catch (FileNotFoundException)
             {
-                SavepathSerializer.Instance.SaveSavepath("");
+                SavepathSerializer.Instance.SaveSavepath(string.Empty);
                 MessageDialog message = new MessageDialog(VORLAGE_NICHT_GEFUNDEN_TITLE, VORLAGE_NICHT_GEFUNDEN_TEXT);
                 message.ShowDialog();
-                SavepathSerializer.Instance.SavePath = "";
+                SavepathSerializer.Instance.SavePath = string.Empty;
                 WordDocumentManipulater.WordReplacerInterop(internDetails, textParts, PractExpBulletpoints, ExcercisesBulletPoints);
             }
         }
