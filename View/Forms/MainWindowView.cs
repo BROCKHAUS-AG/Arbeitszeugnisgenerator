@@ -37,7 +37,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         public MainWindowPresenter Presenter;
         private ViewState ViewState;
         private List<Criteria> CriteriaList;
-        public InternDetails InternDetails;
+        public InternalDetails InternDetails;
 
         private List<Criteria> CurrentlyShownCriterias;
 
@@ -54,7 +54,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             InternDetails = IdInternDetails.presenter.CurShowedInternDetails;
             FlpCriteriaContainer.HorizontalScroll.Enabled = false;
             FlpCriteriaContainer.VerticalScroll.Enabled = true;
-           
+
             RefreshToolStripMenu();
             ViewState = ViewState.WaitingForInput;
         }
@@ -93,14 +93,19 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             {
                 case Direction.Up:
                     /* Den ersten View nicht nach oben verschieben */
-                    if(index > 0)
+                    if (index > 0)
                     {
+                        InternDetails.ChangeIndex(index, Direction.Up);
                         FlpCriteriaContainer.Controls.SetChildIndex(cri, FlpCriteriaContainer.Controls.IndexOf(cri) - 1);
                     }
                     break;
                 case Direction.Down:
-                    /* Den letzen View nicht nach unten verschieben */
-                    FlpCriteriaContainer.Controls.SetChildIndex(cri, FlpCriteriaContainer.Controls.IndexOf(cri) + 1);
+                    if (index < FlpCriteriaContainer.Controls.Count - 1)
+                    {
+                        InternDetails.ChangeIndex(index, Direction.Down);
+                        /* Den letzen View nicht nach unten verschieben */
+                        FlpCriteriaContainer.Controls.SetChildIndex(cri, FlpCriteriaContainer.Controls.IndexOf(cri) + 1);
+                    }
                     break;
             }
         }
@@ -119,7 +124,23 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             }
 
             Dictionary<string, string> textParts = new Dictionary<string, string>();
-            foreach (CriteriaTextSelectionView singleTextPartSelection in textPartSelectionList)
+            List<CriteriaTextSelectionView> sortList = new List<CriteriaTextSelectionView>();
+
+            List<GuidId> sortedCriteria = new List<GuidId>(InternDetails.SavedCriterias);            
+            sortedCriteria.Sort(InternDetails.SavedCriterias.SortDelegate);
+            
+            foreach (GuidId savedId in sortedCriteria)
+            {
+                foreach (CriteriaTextSelectionView singleTextPartSelection in textPartSelectionList)
+                {
+                    if (singleTextPartSelection.presenter.CurShowedCriteria.guid == savedId.Guid)
+                    {
+                        sortList.Add(singleTextPartSelection);
+                    }
+                }
+            }
+
+            foreach (CriteriaTextSelectionView singleTextPartSelection in sortList)
             {
                 if (singleTextPartSelection.presenter.SelectedVariation != null)
                 {
@@ -127,9 +148,10 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 }
                 else
                 {
-                    textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = "";
+                    textParts[singleTextPartSelection.presenter.CurShowedCriteria.Name] = string.Empty;
                 }
             }
+
             try
             {
                 Presenter.GenerateWordDocument(IdInternDetails.presenter.CurShowedInternDetails, textParts, IdInternDetails.BulletpointsPractExp, IdInternDetails.BulletpointsExcercises);
@@ -151,8 +173,8 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
         private List<Criteria> GetCurrentlyNotShownCriterias()
         {
             List<Criteria> tempList = new List<Criteria>(CriteriaList);
-                
-            foreach(Criteria criteria in CurrentlyShownCriterias)
+
+            foreach (Criteria criteria in CurrentlyShownCriterias)
             {
                 tempList.Remove(criteria);
             }
@@ -192,7 +214,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             this.ResumeLayout();
         }
 
-        private void AddCriteria(Criteria criteria, List<Guid> savedVariations, Boolean isLoading)
+        private void AddCriteria(Criteria criteria, List<GuidId> savedVariations, Boolean isLoading)
         {
 
             CriteriaTextSelectionView criteriaTextSelection = new CriteriaTextSelectionView(criteria, IdInternDetails.presenter.Sex, this, FlpCriteriaContainer.Controls.Count, savedVariations);
@@ -202,11 +224,11 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
             //not on loading profile
             if (!isLoading)
             {
-                InternDetails.SavedCriterias.Add(criteria.guid);
-                if(criteriaTextSelection.presenter.SelectedVariation != null)
+                InternDetails.SavedCriterias.Add(new GuidId(criteria.guid, CurrentlyShownCriterias.Count));
+                if (criteriaTextSelection.presenter.SelectedVariation != null)
                 {
-                    InternDetails.SavedVariations.Add(criteriaTextSelection.presenter.SelectedVariation.guid);
-                }               
+                    InternDetails.SavedVariations.Add(new GuidId(criteriaTextSelection.presenter.SelectedVariation.guid));
+                }
             }
 
             //add the views
@@ -217,20 +239,19 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         private void RemoveCriteria(CriteriaTextSelectionView removedCriteria)
         {
-            if(removedCriteria.presenter.SelectedVariation != null)
+            if (removedCriteria.presenter.SelectedVariation != null)
             {
-                InternDetails.SavedVariations.Remove(removedCriteria.presenter.SelectedVariation.guid);
-
+                InternDetails.SavedVariations.RemoveAll(id => id.Guid == removedCriteria.presenter.SelectedVariation.guid);
             }
             CurrentlyShownCriterias.Remove(removedCriteria.presenter.CurShowedCriteria);
-            InternDetails.SavedCriterias.Remove(removedCriteria.presenter.CurShowedCriteria.guid);
+            InternDetails.SavedCriterias.RemoveAll(id => id.Guid == removedCriteria.presenter.CurShowedCriteria.guid);
             removedCriteria.DeleteButtonClicked -= this.BtnRemoveCriteria_Click;
             FlpCriteriaContainer.Controls.Remove(removedCriteria);
         }
 
         private void RemoveAllCriterias()
         {
-            foreach(CriteriaTextSelectionView removedCriteria in textPartSelectionList)
+            foreach (CriteriaTextSelectionView removedCriteria in textPartSelectionList)
             {
                 RemoveCriteria(removedCriteria);
             }
@@ -317,7 +338,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
                 ConfirmationDialog saving = new ConfirmationDialog(CREATE_NEW_DOC_TITLE, CREATE_NEW_DOC_TEXT);
                 if (saving.ShowDialog() == DialogResult.Yes)
                 {
-                    if (IdInternDetails.LoadedDataPath != "")
+                    if (!String.IsNullOrEmpty(IdInternDetails.LoadedDataPath))
                     {
                         IdInternDetails.SaveDetailsAs();
                     }
@@ -375,8 +396,6 @@ namespace Brockhaus.PraktikumZeugnisGenerator.View.Forms
 
         }
     }
-
-    
 
     public enum Direction { Up, Down }
 }

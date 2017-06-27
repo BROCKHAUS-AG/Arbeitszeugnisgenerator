@@ -49,8 +49,8 @@
             this.GboxInternData = new System.Windows.Forms.GroupBox();
             this.RtxtPracticalExperience = new System.Windows.Forms.RichTextBox();
             this.LblPracticalExperience = new System.Windows.Forms.Label();
-            this.ChbxBulletPointsExcercises = new System.Windows.Forms.CheckBox();
             this.ChbxBulletPointsPractExp = new System.Windows.Forms.CheckBox();
+            this.ChbxBulletPointsExcercises = new System.Windows.Forms.CheckBox();
             this.GboxPersonalData.SuspendLayout();
             this.GboxInternData.SuspendLayout();
             this.SuspendLayout();
@@ -123,6 +123,9 @@
             this.DtpUntilDate.Name = "DtpUntilDate";
             this.DtpUntilDate.Size = new System.Drawing.Size(200, 20);
             this.DtpUntilDate.TabIndex = 7;
+            this.DtpUntilDate.CloseUp += new System.EventHandler(this.DtpUntilDate_ValueChanged);
+            this.DtpUntilDate.ValueChanged += new System.EventHandler(this.DtpUntilDate_ValueChanged);
+            this.DtpUntilDate.DropDown += new System.EventHandler(this.DtpUntilDate_ValueChanged);
             this.DtpUntilDate.KeyUp += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
             this.DtpUntilDate.Leave += new System.EventHandler(this.DtpUntilDate_Leave);
             // 
@@ -152,6 +155,16 @@
             this.LblExercises.Size = new System.Drawing.Size(56, 13);
             this.LblExercises.TabIndex = 13;
             this.LblExercises.Text = "Aufgaben:";
+            // 
+            // RtxtExercises
+            // 
+            this.RtxtExercises.Location = new System.Drawing.Point(133, 97);
+            this.RtxtExercises.Name = "RtxtExercises";
+            this.RtxtExercises.Size = new System.Drawing.Size(200, 81);
+            this.RtxtExercises.TabIndex = 21;
+            this.RtxtExercises.Text = "";
+            this.RtxtExercises.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
+            this.RtxtExercises.Leave += new System.EventHandler(this.RtxtExercises_Leave);
             // 
             // LblDepartment
             // 
@@ -244,17 +257,6 @@
             this.GboxInternData.TabStop = false;
             this.GboxInternData.Text = "Daten zur Arbeit";
             // 
-            // RtxtExercises
-            // 
-            this.RtxtExercises.Location = new System.Drawing.Point(133, 97);
-            this.RtxtExercises.Name = "RtxtExercises";
-            this.RtxtExercises.Size = new System.Drawing.Size(200, 81);
-            this.RtxtExercises.TabIndex = 21;
-            this.RtxtExercises.Text = "";
-            this.RtxtExercises.KeyDown += new System.Windows.Forms.KeyEventHandler(this.All_KeyDown);
-            this.RtxtExercises.Leave += new System.EventHandler(this.RtxtExercises_Leave);
-
-            // 
             // RtxtPracticalExperience
             // 
             this.RtxtPracticalExperience.Location = new System.Drawing.Point(133, 184);
@@ -271,18 +273,8 @@
             this.LblPracticalExperience.Location = new System.Drawing.Point(6, 187);
             this.LblPracticalExperience.Name = "LblPracticalExperience";
             this.LblPracticalExperience.Size = new System.Drawing.Size(109, 13);
+            this.LblPracticalExperience.TabIndex = 24;
             this.LblPracticalExperience.Text = "Praktische Erfahrung:";
-            // 
-            // ChbxBulletPointsExcercises
-            // 
-            this.ChbxBulletPointsExcercises.AutoSize = true;
-            this.ChbxBulletPointsExcercises.Location = new System.Drawing.Point(9, 117);
-            this.ChbxBulletPointsExcercises.Name = "ChbxBulletPointsExcercises";
-            this.ChbxBulletPointsExcercises.Size = new System.Drawing.Size(121, 17);
-            this.ChbxBulletPointsExcercises.TabIndex = 20;
-            this.ChbxBulletPointsExcercises.Text = "Aufzählungszeichen";
-            this.ChbxBulletPointsExcercises.UseVisualStyleBackColor = true;
-            this.ChbxBulletPointsExcercises.CheckedChanged += new System.EventHandler(this.ChbxBulletPointsExcercises_CheckedChanged);
             // 
             // ChbxBulletPointsPractExp
             // 
@@ -294,6 +286,17 @@
             this.ChbxBulletPointsPractExp.Text = "Aufzählungszeichen";
             this.ChbxBulletPointsPractExp.UseVisualStyleBackColor = true;
             this.ChbxBulletPointsPractExp.CheckedChanged += new System.EventHandler(this.ChbxBulletPointsPractExp_CheckedChanged);
+            // 
+            // ChbxBulletPointsExcercises
+            // 
+            this.ChbxBulletPointsExcercises.AutoSize = true;
+            this.ChbxBulletPointsExcercises.Location = new System.Drawing.Point(9, 117);
+            this.ChbxBulletPointsExcercises.Name = "ChbxBulletPointsExcercises";
+            this.ChbxBulletPointsExcercises.Size = new System.Drawing.Size(121, 17);
+            this.ChbxBulletPointsExcercises.TabIndex = 20;
+            this.ChbxBulletPointsExcercises.Text = "Aufzählungszeichen";
+            this.ChbxBulletPointsExcercises.UseVisualStyleBackColor = true;
+            this.ChbxBulletPointsExcercises.CheckedChanged += new System.EventHandler(this.ChbxBulletPointsExcercises_CheckedChanged);
             // 
             // InternDetailsV
             // 

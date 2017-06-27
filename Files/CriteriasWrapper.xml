@@ -629,11 +629,11 @@
             </Variation>
             <Variation>
               <Name>Enddatum</Name>
-              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen zum EndDatum</PredifinedText>
+              <PredifinedText>&lt;&lt;Herr/Frau&gt;&gt; &lt;&lt;Nachname&gt;&gt; verlässt unser Unternehmen zum &lt;&lt;EndDatum&gt;&gt;</PredifinedText>
             </Variation>
             <Variation>
               <Name>Enddatum betriebsbedingt</Name>
-              <PredifinedText>Das Arbeitsverhältnis endet aus betriebsbedingten Gründen zum EndDatum.</PredifinedText>
+              <PredifinedText>Das Arbeitsverhältnis endet aus betriebsbedingten Gründen zum &lt;&lt;EndDatum&gt;&gt;.</PredifinedText>
             </Variation>
             <Variation>
               <Name>nach vereinbarter Frist</Name>

@@ -20,7 +20,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
         private const string WORDPROCESS_ERR_TEXT = "Es ist ein Fehler aufgetreten. Bitte beachten Sie, dass die Vorlage eine Serienbriefvorlage sein muss.";
         private const string WORDPROCESS_ERR_EMPTY_FILE = "Das Dokument darf nicht leer sein.";
 
-        public static void WordReplacerInterop(InternDetails internDetails, Dictionary<string, string> textParts, bool PractExpBulletpoints, bool ExcercisesBulletPoints)
+        public static void WordReplacerInterop(InternalDetails internDetails, Dictionary<string, string> textParts, bool PractExpBulletpoints, bool ExcercisesBulletPoints)
         {
 
 
@@ -155,7 +155,7 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Services
             File.Delete(csvFileName);
         }
 
-        private static string CreateDocumentWithSexDependendwords(Sex s, InternDetails internDetails)
+        private static string CreateDocumentWithSexDependendwords(Sex s, InternalDetails internDetails)
         {
             string tempTemplatePath = @"Files\temp.docx";
             DocX document = null;

@@ -64,12 +64,29 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             curShowedCriteria = shownCriteria;
         }
 
-        public CriteriaTextSelectionPresenter(CriteriaTextSelectionView view, Criteria shownCriteria, List<Guid> savedVariations):this(view, shownCriteria)
+        public CriteriaTextSelectionPresenter(CriteriaTextSelectionView view, Criteria shownCriteria, List<GuidId> savedVariations):this(view, shownCriteria)
         {
             SelectVariationBySavedVariations(savedVariations);
         }
 
-        public void SelectGrade(int selectIndex) {
+        public void SelectGrade(System.Windows.Forms.ComboBox selectBox)
+        {
+
+            int selectIndex = selectBox.SelectedIndex;
+
+            if (selectIndex == -1) return;
+
+            int gradeIndex = FindGradeIndexByListName(selectBox.Items[selectIndex].ToString());
+            if (selectIndex < 0 || selectIndex >= CurShowedCriteria.Grades.Length || gradeIndex < 0)
+            {
+                throw new IndexOutOfRangeException("Der Index liegt nicht in den auswählbaren Noten(Grade)");
+            }
+            SelectedGrade = CurShowedCriteria.Grades[gradeIndex];
+            SelectedVariation = selectedGrade.Variations.Count > 0 ? selectedGrade.Variations[0] : null;
+            view.RefreshView();
+        }
+        public void SelectGrade(int selectIndex)
+        {
             if (selectIndex == -1) return;
             if (selectIndex < 0 || selectIndex >= CurShowedCriteria.Grades.Length)
             {
@@ -80,6 +97,15 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             view.RefreshView();
         }
 
+        private int FindGradeIndexByListName(string selectName)
+        {
+            for (int i = 0; i < CurShowedCriteria.Grades.Length; i++)
+            {
+                if (CurShowedCriteria.Grades[i].Name == selectName)
+                    return i;
+            }
+            return -1;
+        }
 
         public void SelectVariationByIndex(int selectIndex )
         {
@@ -101,15 +127,15 @@ namespace Brockhaus.PraktikumZeugnisGenerator.Presenter
             view.RefreshView();
         }
 
-        private void SelectVariationBySavedVariations(List<Guid> savedVariations)
+        private void SelectVariationBySavedVariations(List<GuidId> savedVariations)
         {
             SelectedVariation = null;
             Variation tempVariation;
-            foreach(Guid variationID in savedVariations)
+            foreach(GuidId variationID in savedVariations)
             {
                 foreach(Grade usedGrades in CurShowedCriteria.Grades)
                 {
-                    tempVariation = usedGrades.Variations.Find(variation => variation.guid == variationID);
+                    tempVariation = usedGrades.Variations.Find(variation => variation.guid == variationID.Guid);
                     if (tempVariation != null)
                     {
                         SelectedGrade = usedGrades;
